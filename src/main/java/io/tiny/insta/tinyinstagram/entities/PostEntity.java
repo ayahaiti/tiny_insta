@@ -1,24 +1,20 @@
 package io.tiny.insta.tinyinstagram.entities;
 
-import javax.jws.soap.SOAPBinding;
-import javax.persistence.*;
 
-@Entity
-@Table(name="POST_ENTITY")
+import org.springframework.cloud.gcp.data.datastore.core.mapping.Entity;
+import org.springframework.data.annotation.Id;
+
+@Entity(name="POST_ENTITY")
 public class PostEntity {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String image;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_user", nullable=false)
-    private UserEntity userEntity;
-
     private String quote;
+
+    private String username;
 
     public PostEntity() {
     }
@@ -29,10 +25,10 @@ public class PostEntity {
         this.quote = quote;
     }
 
-    public PostEntity(String image, String quote, UserEntity userEntity) {
+    public PostEntity(String image, String quote, String username) {
         this.image = image;
         this.quote = quote;
-        this.userEntity=userEntity;
+        this.username=username;
     }
 
     public String getQuote() {
@@ -59,11 +55,11 @@ public class PostEntity {
         this.image = image;
     }
 
-    public UserEntity getUserEntity() {
-        return userEntity;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

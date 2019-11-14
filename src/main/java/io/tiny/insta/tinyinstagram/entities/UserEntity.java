@@ -1,13 +1,12 @@
 package io.tiny.insta.tinyinstagram.entities;
 
-import javax.persistence.*;
-import java.util.Set;
+import org.springframework.cloud.gcp.data.datastore.core.mapping.Entity;
+import org.springframework.data.annotation.Id;
 
-@Entity
-@Table(name="USER_ENTITY")
+@Entity(name="USER_ENTITY")
 public class UserEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
 
     private String username;
@@ -19,9 +18,6 @@ public class UserEntity {
     private String joiningDate;
 
     private String token;
-
-    @OneToMany(mappedBy="userEntity", fetch = FetchType.LAZY)
-    private Set<PostEntity> posts;
 
     public UserEntity() {
     }

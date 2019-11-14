@@ -3,7 +3,7 @@ package io.tiny.insta.tinyinstagram.services;
 import io.tiny.insta.tinyinstagram.entities.PostEntity;
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
 import io.tiny.insta.tinyinstagram.repositories.PostRepository;
-import io.tiny.insta.tinyinstagram.repositories.TempPostSortingAndPaginationRepository;
+import io.tiny.insta.tinyinstagram.repositories.PostSortingAndPaginationRepository;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
 import io.tiny.insta.tinyinstagram.services.io_post.AddPostServiceInput;
 import io.tiny.insta.tinyinstagram.services.io_post.AddPostServiceOutput;
@@ -23,11 +23,11 @@ public class PostServiceImpl implements PostService {
 
     private final UserRepository userRepository;
     private final PostRepository postRepository;
-    private final TempPostSortingAndPaginationRepository tempPostSortingAndPaginationRepository;
+    private final PostSortingAndPaginationRepository tempPostSortingAndPaginationRepository;
 
     public PostServiceImpl(UserRepository userRepository,
                            PostRepository postRepository,
-                           TempPostSortingAndPaginationRepository tempPostSortingAndPaginationRepository) {
+                           PostSortingAndPaginationRepository tempPostSortingAndPaginationRepository) {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
         this.tempPostSortingAndPaginationRepository = tempPostSortingAndPaginationRepository;
@@ -43,7 +43,7 @@ public class PostServiceImpl implements PostService {
         if(userEntity.isPresent()) {
             PostEntity postEntity = new PostEntity(addPostServiceInput.getImage(),
                     addPostServiceInput.getQuote(),
-                    userEntity.get());
+                    userEntity.get().getUsername());
             postRepository.save(postEntity);
             addPostServiceOutput.setPostAdded(true);
         }
@@ -77,7 +77,7 @@ public class PostServiceImpl implements PostService {
                     outputFromDatabase.get()
                             .map(postEntity -> {
                                 return new PostPojo(postEntity.getId()+"",
-                                        postEntity.getUserEntity().getUsername(),
+                                        postEntity.getUsername(),
                                         postEntity.getQuote(),
                                         postEntity.getImage()
                                 );
