@@ -1,0 +1,5 @@
+gcloud auth list
+
+gcloud config list project
+
+gcloud config set project <PROJECT_ID>
