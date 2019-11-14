@@ -3,7 +3,7 @@ package io.tiny.insta.tinyinstagram.entities;
 import org.springframework.cloud.gcp.data.datastore.core.mapping.Entity;
 import org.springframework.data.annotation.Id;
 
-@Entity(name="USER_ENTITY")
+@Entity(name="users")
 public class UserEntity {
 
     @Id
