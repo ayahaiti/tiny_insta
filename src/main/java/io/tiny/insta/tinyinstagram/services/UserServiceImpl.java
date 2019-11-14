@@ -4,6 +4,8 @@ import io.tiny.insta.tinyinstagram.entities.UserEntity;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
 import io.tiny.insta.tinyinstagram.services.io_user.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,7 +26,8 @@ public class UserServiceImpl implements UserService {
                 createUserServiceInput.getEmail(),
                 System.currentTimeMillis()+"",
                 null);
-        if(!userRepository.findByUsername(createUserServiceInput.getUsername()).isPresent()){
+        List<UserEntity> result = userRepository.findByUsername(createUserServiceInput.getUsername());
+        if( result == null || ( result!=null && result.size() == 0 ) ){
             userRepository.save(repositoryInput);
         }
         else{
@@ -61,10 +64,10 @@ public class UserServiceImpl implements UserService {
         FindUserServiceOutput findUserServiceOutput = new FindUserServiceOutput();
         Optional<UserEntity> userEntity = userRepository.findByUsernameAndToken(findUserServiceInput.getUsername(),
                 findUserServiceInput.getToken());
-        Optional<UserEntity> userEntityToFind = userRepository.findByUsername(findUserServiceInput.getUserToSearch());
+        List<UserEntity> userEntityToFind = userRepository.findByUsername(findUserServiceInput.getUserToSearch());
         if(userEntity.isPresent()){
-            if(userEntityToFind.isPresent()) {
-                findUserServiceOutput.setUserEntity(userEntityToFind.get());
+            if(userEntityToFind != null && userEntityToFind.size()==1) {
+                findUserServiceOutput.setUserEntity(userEntityToFind.get(0));
             }
         }
         return findUserServiceOutput;

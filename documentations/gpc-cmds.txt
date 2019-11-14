@@ -3,3 +3,11 @@ gcloud auth list
 gcloud config list project
 
 gcloud config set project <PROJECT_ID>
+
+gcloud app regions list
+
+gcloud app create --region <REGION>
+
+mvn -DskipTests package appengine:deploy
+
+gcloud app browse

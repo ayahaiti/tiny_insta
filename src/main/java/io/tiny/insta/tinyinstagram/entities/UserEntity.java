@@ -7,20 +7,17 @@ import org.springframework.data.annotation.Id;
 public class UserEntity {
 
     @Id
-    private Long id;
+    Long id;
 
-    private String username;
+    String username;
 
-    private String password;
+    String password;
 
-    private String email;
+    String email;
 
-    private String joiningDate;
+    String joiningDate;
 
-    private String token;
-
-    public UserEntity() {
-    }
+    String token;
 
     public UserEntity(String username, String password, String email, String joiningDate, String token) {
         this.username = username;
@@ -30,52 +27,32 @@ public class UserEntity {
         this.token = token;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
+    @Override
+    public String toString() {
+        return "User_Entity{" +
+                "id=" + this.id +
+                ", username='" + this.username + '\'' +
+                ", email=" + this.email +
+                '}';
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(String joiningDate) {
-        this.joiningDate = joiningDate;
+    public String getUsername() {
+        return this.username;
     }
 
     public String getToken() {
         return token;
     }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
 }
