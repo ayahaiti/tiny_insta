@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends DatastoreRepository<UserEntity, Long> {
 
-    List<UserEntity> findByUsername(String username);
+    Optional<UserEntity> findByUsername(String username);
     Optional<UserEntity> findByUsernameAndPassword(String username, String password);
     Optional<UserEntity> findByUsernameAndToken(String username, String token);
 

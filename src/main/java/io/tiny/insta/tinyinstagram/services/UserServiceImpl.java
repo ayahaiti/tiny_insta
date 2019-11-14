@@ -26,8 +26,7 @@ public class UserServiceImpl implements UserService {
                 createUserServiceInput.getEmail(),
                 System.currentTimeMillis()+"",
                 null);
-        List<UserEntity> result = userRepository.findByUsername(createUserServiceInput.getUsername());
-        if( result == null || ( result!=null && result.size() == 0 ) ){
+        if( userRepository.findByUsername(createUserServiceInput.getUsername()).isPresent() ){
             userRepository.save(repositoryInput);
         }
         else{
@@ -64,10 +63,10 @@ public class UserServiceImpl implements UserService {
         FindUserServiceOutput findUserServiceOutput = new FindUserServiceOutput();
         Optional<UserEntity> userEntity = userRepository.findByUsernameAndToken(findUserServiceInput.getUsername(),
                 findUserServiceInput.getToken());
-        List<UserEntity> userEntityToFind = userRepository.findByUsername(findUserServiceInput.getUserToSearch());
+        Optional<UserEntity> userEntityToFind = userRepository.findByUsername(findUserServiceInput.getUserToSearch());
         if(userEntity.isPresent()){
-            if(userEntityToFind != null && userEntityToFind.size()==1) {
-                findUserServiceOutput.setUserEntity(userEntityToFind.get(0));
+            if(userEntityToFind.isPresent()) {
+                findUserServiceOutput.setUserEntity(userEntityToFind.get());
             }
         }
         return findUserServiceOutput;
