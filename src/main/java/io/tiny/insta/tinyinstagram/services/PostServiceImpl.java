@@ -15,7 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,14 +36,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public AddPostServiceOutput addPost(AddPostServiceInput addPostServiceInput) {
         AddPostServiceOutput addPostServiceOutput = new AddPostServiceOutput();
-        Optional<UserEntity> userEntity = userRepository.findByUsernameAndToken(
+        List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 addPostServiceInput.getUsername(),
                 addPostServiceInput.getToken()
         ) ;
-        if(userEntity.isPresent()) {
+        if(userEntity!=null && userEntity.size()==1) {
             PostEntity postEntity = new PostEntity(addPostServiceInput.getImage(),
                     addPostServiceInput.getQuote(),
-                    userEntity.get().getUsername());
+                    userEntity.get(0).getUsername());
             postRepository.save(postEntity);
             addPostServiceOutput.setPostAdded(true);
         }
@@ -57,12 +57,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public GetLastPostsServiceOutput getSomePosts(GetLastPostsServiceInput input) {
         GetLastPostsServiceOutput output = null;
-        Optional<UserEntity> userEntityOptional =
+        List<UserEntity> userEntityOptional =
                 userRepository.findByUsernameAndToken(
                         input.getUsername(),
                         input.getToken()
                 );
-        if(userEntityOptional.isPresent()){
+        if(userEntityOptional!=null && userEntityOptional.size()==1){
             Page<PostEntity> outputFromDatabase = tempPostSortingAndPaginationRepository.findAll(
                     PageRequest.of(
                             input.getPage(),

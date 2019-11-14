@@ -26,7 +26,8 @@ public class UserServiceImpl implements UserService {
                 createUserServiceInput.getEmail(),
                 System.currentTimeMillis()+"",
                 null);
-        if( userRepository.findByUsername(createUserServiceInput.getUsername()).isPresent() ){
+        List<UserEntity> resultFromDB = userRepository.findByUsername(createUserServiceInput.getUsername());
+        if( resultFromDB == null || ( resultFromDB != null && resultFromDB.size() == 0 ) ){
             userRepository.save(repositoryInput);
         }
         else{
@@ -44,12 +45,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public CheckTokenServiceOutput checkToken(CheckTokenServiceInput checkTokenServiceInput) {
         CheckTokenServiceOutput checkTokenServiceOutput = new CheckTokenServiceOutput();
-        Optional<UserEntity> userEntityOptional = userRepository
+        List<UserEntity> resultFromDB = userRepository
                 .findByUsernameAndToken(
                         checkTokenServiceInput.getUsername(),
                         checkTokenServiceInput.getToken()
                 );
-        if(userEntityOptional.isPresent()){
+        if( resultFromDB == null || ( resultFromDB != null && resultFromDB.size() == 0 ) ){
             checkTokenServiceOutput.setConnected(true);
         }
         else{
@@ -61,12 +62,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput) {
         FindUserServiceOutput findUserServiceOutput = new FindUserServiceOutput();
-        Optional<UserEntity> userEntity = userRepository.findByUsernameAndToken(findUserServiceInput.getUsername(),
+        List<UserEntity> userEntity = userRepository.findByUsernameAndToken(findUserServiceInput.getUsername(),
                 findUserServiceInput.getToken());
-        Optional<UserEntity> userEntityToFind = userRepository.findByUsername(findUserServiceInput.getUserToSearch());
-        if(userEntity.isPresent()){
-            if(userEntityToFind.isPresent()) {
-                findUserServiceOutput.setUserEntity(userEntityToFind.get());
+        List<UserEntity> userEntityToFind = userRepository.findByUsername(findUserServiceInput.getUserToSearch());
+        if( userEntity != null && userEntity.size() == 1 ){
+            if( userEntityToFind!=null && userEntityToFind.size()==1 ) {
+                findUserServiceOutput.setUserEntity(userEntityToFind.get(0));
             }
         }
         return findUserServiceOutput;
@@ -74,16 +75,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ConnectUserServiceOutput connectUser(ConnectUserServiceInput connectUserServiceInput) {
-        Optional<UserEntity> userEntity = userRepository.findByUsernameAndPassword(connectUserServiceInput.getUsername(),
+        List<UserEntity> userEntity = userRepository.findByUsernameAndPassword(connectUserServiceInput.getUsername(),
                 connectUserServiceInput.getPassword());
         ConnectUserServiceOutput responseOutput = null;
         String tokenGenerated = generateToken();
-        if(userEntity.isPresent()){
-            if(userEntity.get().getToken() == null){
-                userEntity.get().setToken(tokenGenerated);
+        if(userEntity!=null && userEntity.size()==1){
+            if(userEntity.get(0).getToken() == null){
+                userEntity.get(0).setToken(tokenGenerated);
             }
-            userRepository.save(userEntity.get());
-            responseOutput = new ConnectUserServiceOutput(userEntity.get().getUsername(), userEntity.get().getToken());
+            userRepository.save(userEntity.get(0));
+            responseOutput = new ConnectUserServiceOutput(userEntity.get(0).getUsername(), userEntity.get(0).getToken());
         }
         return responseOutput;
     }
@@ -91,14 +92,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public DisconnectUserServiceOutput disconnectUser(DisconnectUserServiceInput disconnectUserServiceInput) {
         DisconnectUserServiceOutput disconnectResponse = new DisconnectUserServiceOutput();
-        Optional<UserEntity> userEntityOptional = userRepository
+        List<UserEntity> userEntityOptional = userRepository
                 .findByUsernameAndToken(
                         disconnectUserServiceInput.getUsername(),
                         disconnectUserServiceInput.getToken()
                 );
-        if(userEntityOptional.isPresent()){
-            userEntityOptional.get().setToken(null);
-            userRepository.save(userEntityOptional.get());
+        if(userEntityOptional!=null && userEntityOptional.size()==1){
+            userEntityOptional.get(0).setToken(null);
+            userRepository.save(userEntityOptional.get(0));
             disconnectResponse.setDisconnected(true);
         }
         else{
