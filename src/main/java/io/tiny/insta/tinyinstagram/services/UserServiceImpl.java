@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
                         checkTokenServiceInput.getUsername(),
                         checkTokenServiceInput.getToken()
                 );
-        if( resultFromDB == null || ( resultFromDB != null && resultFromDB.size() == 0 ) ){
+        if( resultFromDB!=null && resultFromDB.size() == 1 ){
             checkTokenServiceOutput.setConnected(true);
         }
         else{
