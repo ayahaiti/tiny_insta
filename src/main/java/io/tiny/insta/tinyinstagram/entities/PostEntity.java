@@ -4,7 +4,7 @@ package io.tiny.insta.tinyinstagram.entities;
 import org.springframework.cloud.gcp.data.datastore.core.mapping.Entity;
 import org.springframework.data.annotation.Id;
 
-@Entity(name="POST_ENTITY")
+@Entity(name="posts")
 public class PostEntity {
 
     @Id
