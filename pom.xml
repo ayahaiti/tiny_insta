@@ -108,7 +108,7 @@
                 </executions>
                 <configuration>
                     <executable>ng</executable>
-                    <workingDirectory>src/main/resources/front-end/angular-app</workingDirectory>
+                    <workingDirectory>src/main/resources/front-end/tiny-insta-angular-app</workingDirectory>
                     <arguments>
                         <argument>build</argument>
                     </arguments>
