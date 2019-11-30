@@ -42,9 +42,9 @@ public class PostController {
             @RequestBody CheckPostControllerInput checkPostControllerInput
     ) throws Exception {
         PostCheckServiceInput postCheckServiceInput = new PostCheckServiceInput(
+                checkPostControllerInput.getUniqueIdentifier(),
                 checkPostControllerInput.getUsername(),
-                checkPostControllerInput.getToken(),
-                checkPostControllerInput.getUniqueIdentifier()
+                checkPostControllerInput.getToken()
                 );
         PostCheckServiceOutput postCheckServiceOutput = postService.checkPost(postCheckServiceInput);
         CheckPostControllerOutput checkPostControllerOutput = new CheckPostControllerOutput(

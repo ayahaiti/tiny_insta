@@ -1,5 +1,7 @@
-stet 1 :
- go to angular homes = /src\main\resources\front-end\tiny-insta-angular-app
+step 0 : install npm and then run : npm install -g @angular/cli
+
+step 1 :
+ go to angular home = /src\main\resources\front-end\tiny-insta-angular-app
  run : npm install
 
 step 2:
