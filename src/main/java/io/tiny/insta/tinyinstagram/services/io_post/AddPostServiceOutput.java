@@ -2,7 +2,9 @@ package io.tiny.insta.tinyinstagram.services.io_post;
 
 public class AddPostServiceOutput {
 
-    boolean postAdded;
+    private boolean postAdded;
+
+    private String uniqueIdentifier;
 
     public AddPostServiceOutput() {
     }
@@ -17,5 +19,13 @@ public class AddPostServiceOutput {
 
     public void setPostAdded(boolean postAdded) {
         this.postAdded = postAdded;
+    }
+
+    public String getUniqueIdentifier() {
+        return uniqueIdentifier;
+    }
+
+    public void setUniqueIdentifier(String uniqueIdentifier) {
+        this.uniqueIdentifier = uniqueIdentifier;
     }
 }

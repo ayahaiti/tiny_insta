@@ -5,10 +5,7 @@ import io.tiny.insta.tinyinstagram.entities.UserEntity;
 import io.tiny.insta.tinyinstagram.repositories.PostRepository;
 import io.tiny.insta.tinyinstagram.repositories.PostSortingAndPaginationRepository;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
-import io.tiny.insta.tinyinstagram.services.io_post.AddPostServiceInput;
-import io.tiny.insta.tinyinstagram.services.io_post.AddPostServiceOutput;
-import io.tiny.insta.tinyinstagram.services.io_post.GetLastPostsServiceInput;
-import io.tiny.insta.tinyinstagram.services.io_post.GetLastPostsServiceOutput;
+import io.tiny.insta.tinyinstagram.services.io_post.*;
 import io.tiny.insta.tinyinstagram.services.utils.PostPojo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,13 +37,17 @@ public class PostServiceImpl implements PostService {
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 addPostServiceInput.getUsername(),
                 addPostServiceInput.getToken()
-        ) ;
+        );
         if(userEntity!=null && userEntity.size()==1) {
             PostEntity postEntity = new PostEntity(addPostServiceInput.getImage(),
                     addPostServiceInput.getQuote(),
-                    userEntity.get(0).getUsername());
+                    userEntity.get(0).getUsername(),
+                    System.currentTimeMillis()+"",
+                    UUID.randomUUID().toString()
+                    );
             postRepository.save(postEntity);
             addPostServiceOutput.setPostAdded(true);
+            addPostServiceOutput.setUniqueIdentifier(postEntity.getUniqueIdentifier());
         }
         else{
             addPostServiceOutput.setPostAdded(false);
@@ -53,6 +55,24 @@ public class PostServiceImpl implements PostService {
         return addPostServiceOutput;
     }
 
+    @Override
+    public PostCheckServiceOutput checkPost(PostCheckServiceInput postCheckInput) throws Exception {
+        PostCheckServiceOutput checkPostServiceOutput = new PostCheckServiceOutput(Boolean.FALSE);
+        List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
+                postCheckInput.getUsername(),
+                postCheckInput.getToken()
+        );
+        if(userEntity!=null && userEntity.size()==1) {
+            List<PostEntity> postEntities = postRepository.findByUniqueIdentifier(postCheckInput.getUniqueIdentifier());
+            if(postEntities!=null && postEntities.size() == 1){
+                checkPostServiceOutput.setExists(Boolean.TRUE);
+            }
+        }
+        else{
+            throw new Exception();
+        }
+        return checkPostServiceOutput;
+    }
 
     @Override
     public GetLastPostsServiceOutput getSomePosts(GetLastPostsServiceInput input) {
@@ -69,7 +89,7 @@ public class PostServiceImpl implements PostService {
                             10,
                             Sort.by(
                                     Sort.Direction.DESC,
-                                    "id"
+                                    "timestamp"
                             )
                     )
             );

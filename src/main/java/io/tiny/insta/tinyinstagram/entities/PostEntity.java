@@ -10,6 +10,10 @@ public class PostEntity {
     @Id
     private Long id;
 
+    private String timestamp;
+
+    private String uniqueIdentifier;
+
     private String image;
 
     private String quote;
@@ -19,16 +23,20 @@ public class PostEntity {
     public PostEntity() {
     }
 
-    public PostEntity(Long id, String image, String quote, String username) {
+    public PostEntity(Long id, String image, String quote, String username, String timestamp, String uniqueIdentifier) {
         this.id = id;
         this.image = image;
         this.quote = quote;
+        this.timestamp = timestamp;
+        this.uniqueIdentifier = uniqueIdentifier;
     }
 
-    public PostEntity(String image, String quote, String username) {
+    public PostEntity(String image, String quote, String username, String timestamp, String uniqueIdentifier) {
         this.image = image;
         this.quote = quote;
         this.username=username;
+        this.timestamp = timestamp;
+        this.uniqueIdentifier = uniqueIdentifier;
     }
 
     public String getQuote() {
@@ -61,5 +69,21 @@ public class PostEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUniqueIdentifier() {
+        return uniqueIdentifier;
+    }
+
+    public void setUniqueIdentifier(String uniqueIdentifier) {
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

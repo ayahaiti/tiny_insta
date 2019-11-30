@@ -2,7 +2,8 @@ package io.tiny.insta.tinyinstagram.controllers.io_post;
 
 public class AddPostControllerOutput {
 
-    boolean added;
+    private boolean added;
+    private String uniqueIdentifier;
 
     public boolean isAdded() {
         return added;
@@ -12,7 +13,16 @@ public class AddPostControllerOutput {
         this.added = added;
     }
 
-    public AddPostControllerOutput(boolean added) {
+    public AddPostControllerOutput(boolean added, String uniqueIdentifier) {
         this.added = added;
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+
+    public String getUniqueIdentifier() {
+        return uniqueIdentifier;
+    }
+
+    public void setUniqueIdentifier(String uniqueIdentifier) {
+        this.uniqueIdentifier = uniqueIdentifier;
     }
 }
