@@ -1,21 +1,21 @@
 
 <h2>Register</h2>
-<form action="action_page.php" method="post">
+<div>
   <div class="container">
     <label> <b>Email</b></label>
-    <input type="text" placeholder="Enter email" name="email" required>
+    <input type="text" placeholder="Enter email" (ngModelChange)="onEmailChanged($event)" [(ngModel)]="email" name="email" required>
 
     <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter Username" (ngModelChange)="onUsernameChanged($event)" [(ngModel)]="username" name="uname" required>
 
     <label ><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" (ngModelChange)="onPasswordChanged($event)" [(ngModel)]="password" name="psw" required>
 
-    <button type="submit">Login</button>
+    <button type="button" [disabled]="!buttonActif" (click)="onUserRegisterButtonClicked()">Register</button>
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
 
     <span class="login">You already have an account? <a href="/login">Login</a></span>
   </div>
-</form>
+</div>

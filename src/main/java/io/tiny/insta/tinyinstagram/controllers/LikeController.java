@@ -19,7 +19,7 @@ public class LikeController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = "application/json",
             produces = "application/json",
-            path = "/addlike"
+            path = "/add"
     )
     public void likePost(@RequestBody LikePostControllerInput likePostControllerInput) throws Exception {
         LikePostServiceInput likePostServiceInput = new LikePostServiceInput(
@@ -32,7 +32,7 @@ public class LikeController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = "application/json",
             produces = "application/json",
-            path = "/checkliked"
+            path = "/check"
     )
     public @ResponseBody CheckLikedControllerOutput checkLiked(
             @RequestBody CheckLikedControllerInput checkLikedControllerInput)
@@ -52,7 +52,7 @@ public class LikeController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = "application/json",
             produces = "application/json",
-            path = "/likes"
+            path = "/count"
     )
     public @ResponseBody
     GetPostNbOfLikesControllerOutput getLikes(

@@ -12,7 +12,7 @@ import io.tiny.insta.tinyinstagram.services.io_likes.GetPostNbOfLikesServiceOutp
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/follow")
+@RequestMapping(path = "/follower")
 public class FollowController {
 
     private FollowService followService;
@@ -24,7 +24,7 @@ public class FollowController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = "application/json",
             produces = "application/json",
-            path = "/addfollow"
+            path = "/add"
     )
     public void likePost(@RequestBody FollowUserControllerInput followUserControllerInput) throws Exception {
         FollowUserServiceInput followUserServiceInput = new FollowUserServiceInput(
@@ -38,7 +38,7 @@ public class FollowController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = "application/json",
             produces = "application/json",
-            path = "/followers"
+            path = "/count"
     )
     public @ResponseBody
     GetNbOfFollowersControllerOutput getLikes(

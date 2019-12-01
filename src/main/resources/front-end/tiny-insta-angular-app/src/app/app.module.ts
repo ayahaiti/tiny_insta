@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {SearchComponent} from "./search/search.component";
-import { Follow } from './follow/follow.component/follow.component.component';
 import { FollowComponent } from './follow/follow.component';
 import { FeedComponent } from './feed/feed.component';
 import { OnepostComponent } from './onepost/onepost.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,16 +18,17 @@ import { OnepostComponent } from './onepost/onepost.component';
     LoginComponent,
     RegisterComponent,
     SearchComponent,
-    Follow.ComponentComponent,
     FollowComponent,
     FeedComponent,
     OnepostComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

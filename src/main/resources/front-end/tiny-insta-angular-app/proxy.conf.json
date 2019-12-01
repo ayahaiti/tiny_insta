@@ -1,0 +1,8 @@
+{
+  "/": {
+    "target": "http://tiny-insta-haiti-aya.appspot.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
