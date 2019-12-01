@@ -7,17 +7,18 @@ import org.springframework.data.annotation.Id;
 public class UserEntity {
 
     @Id
-    Long id;
+    private Long id;
 
-    String username;
+    private String username;
 
-    String password;
+    private String password;
 
-    String email;
+    private String email;
 
-    String joiningDate;
+    private String joiningDate;
 
-    String token;
+    private String token;
+
 
     public UserEntity(String username, String password, String email, String joiningDate, String token) {
         this.username = username;
@@ -31,6 +32,11 @@ public class UserEntity {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
     @Override
     public String toString() {
         return "User_Entity{" +
@@ -40,19 +46,45 @@ public class UserEntity {
                 '}';
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     public void setToken(String token) {
         this.token = token;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getEmail() {
+        return email;
     }
 
-    public String getToken() {
-        return token;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(String joiningDate) {
+        this.joiningDate = joiningDate;
+    }
+
 }

@@ -16,4 +16,6 @@ public interface UserService {
 
     FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput);
 
+    CheckUsernameExistsServiceOutput CheckUsernameExists(CheckUsernameExistsServiceInput checkUsernameExistsServiceInput);
+
 }

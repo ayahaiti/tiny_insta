@@ -107,4 +107,19 @@ public class UserServiceImpl implements UserService {
         }
         return disconnectResponse;
     }
+
+
+    @Override
+    public CheckUsernameExistsServiceOutput CheckUsernameExists(CheckUsernameExistsServiceInput checkUsernameExistsServiceInput) {
+        CheckUsernameExistsServiceOutput checkUsernameExistsServiceOutput = new CheckUsernameExistsServiceOutput();
+        List<UserEntity> userEntities = userRepository.findByUsername(checkUsernameExistsServiceInput.getUsername());
+        if( userEntities.size() == 0 ) {
+            checkUsernameExistsServiceOutput.setExists(false);
+        }
+        else {
+            checkUsernameExistsServiceOutput.setExists(true);
+        }
+        return checkUsernameExistsServiceOutput;
+    }
+
 }

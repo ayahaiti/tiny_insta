@@ -6,13 +6,21 @@ import { AppComponent } from './app.component';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {SearchComponent} from "./search/search.component";
+import { Follow } from './follow/follow.component/follow.component.component';
+import { FollowComponent } from './follow/follow.component';
+import { FeedComponent } from './feed/feed.component';
+import { OnepostComponent } from './onepost/onepost.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    SearchComponent
+    SearchComponent,
+    Follow.ComponentComponent,
+    FollowComponent,
+    FeedComponent,
+    OnepostComponent
   ],
   imports: [
     BrowserModule,

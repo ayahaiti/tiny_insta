@@ -1,0 +1,70 @@
+.like {
+  width: 20px;
+  height: 20px;
+  top:50%;
+  position: fixed;
+  left: 50%;
+  margin-top: -45px;
+  margin-left: -50px;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+.follow_unfollow {
+  z-index: 9;
+  margin-top: 120px;
+  margin-left: 100px;
+}
+.follow_div {
+  width: 600px;
+  height: 70px;
+  background: lightgray;
+  top: 1px;
+  position: relative;
+  margin: 0 auto;
+  font-family: 'Alfa Slab One', sans-serif;
+  font-size: 1em;
+  z-index: 6;
+  border: 4px solid black;
+  border-radius: 5px;
+  color: black;
+  text-shadow: none;
+  text-align: center;
+}
+.username {
+  display: inline-block;
+  font-size: 1.1em;
+  color: black;
+  font-weight: bold;
+  text-shadow: 0px 0px white;
+  margin-left: 2px ;
+  float: left;
+}
+
+.follow_button {
+  display: inline-block;
+  background-color: royalblue;
+  color: white;
+  border-radius: 6px;
+  width: 130px;
+  height: 30px;
+  float: right;
+  margin-top: 14px;
+}
+
+.unfollow_button {
+  display: inline-block;
+  background-color: royalblue;
+  color: white;
+  border-radius: 6px;
+  width: 130px;
+  height: 30px;
+  float: right;
+  margin-top: 14px;
+}
+
+.nb_followers {
+  display: inline-block;
+  font-weight: bold;
+}

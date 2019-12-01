@@ -1,0 +1,20 @@
+.username {
+  font-weight: bold;
+  font-size: 1.05em;
+}
+[id='toggle-heart'] {
+  position: absolute;
+  left: -100vw;
+}
+[for='toggle-heart'] {
+  color: #aab8c2;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+[id='toggle-heart']:checked + label {
+  color: #e2264d;
+}
+[for='toggle-heart'] {
+  align-self: center;
+}
