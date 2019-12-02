@@ -1,5 +1,6 @@
 package io.tiny.insta.tinyinstagram.controllers;
 
+import io.tiny.insta.tinyinstagram.controllers.io_followers.CheckIfFollowedControllerInput;
 import io.tiny.insta.tinyinstagram.controllers.io_user.*;
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
@@ -96,6 +97,25 @@ public class UserController {
         FindUserServiceOutput findUserServiceOutput = userService.findUser(findUserServiceInput);
         findUserControllerOutput.setUserEntity(findUserServiceOutput.getUserEntity());
         return findUserControllerOutput;
+    }
+
+    @RequestMapping(method = RequestMethod.POST,
+            consumes = "application/json",
+            produces = "application/json",
+            path = "/username/check"
+    )
+    public @ResponseBody CheckUsernameExistsControllerOutput checkusernameExists(
+            @RequestBody CheckUsernameExistsControllerInput checkUsernameExistsControllerInput){
+       CheckUsernameExistsServiceInput checkUsernameExistsServiceInput = new CheckUsernameExistsServiceInput(
+               checkUsernameExistsControllerInput.getUsername()
+       );
+       CheckUsernameExistsServiceOutput checkUsernameExistsServiceOutput = userService.checkUsernameExists(
+               checkUsernameExistsServiceInput
+       );
+       CheckUsernameExistsControllerOutput checkUsernameExistsControllerOutput = new CheckUsernameExistsControllerOutput(
+               checkUsernameExistsServiceOutput.isExists()
+       );
+       return checkUsernameExistsControllerOutput;
     }
 
 }

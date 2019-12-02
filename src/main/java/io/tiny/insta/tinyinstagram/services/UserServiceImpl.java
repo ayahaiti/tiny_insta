@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public CheckUsernameExistsServiceOutput CheckUsernameExists(CheckUsernameExistsServiceInput checkUsernameExistsServiceInput) {
+    public CheckUsernameExistsServiceOutput checkUsernameExists(CheckUsernameExistsServiceInput checkUsernameExistsServiceInput) {
         CheckUsernameExistsServiceOutput checkUsernameExistsServiceOutput = new CheckUsernameExistsServiceOutput();
         List<UserEntity> userEntities = userRepository.findByUsername(checkUsernameExistsServiceInput.getUsername());
         if( userEntities.size() == 0 ) {

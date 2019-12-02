@@ -1,14 +1,8 @@
 package io.tiny.insta.tinyinstagram.controllers;
 
-import io.tiny.insta.tinyinstagram.controllers.io_followers.FollowUserControllerInput;
-import io.tiny.insta.tinyinstagram.controllers.io_followers.FollowUserControllerOutput;
-import io.tiny.insta.tinyinstagram.controllers.io_followers.GetNbOfFollowersControllerInput;
-import io.tiny.insta.tinyinstagram.controllers.io_followers.GetNbOfFollowersControllerOutput;
+import io.tiny.insta.tinyinstagram.controllers.io_followers.*;
 import io.tiny.insta.tinyinstagram.services.FollowService;
-import io.tiny.insta.tinyinstagram.services.io_followers.FollowUserServiceInput;
-import io.tiny.insta.tinyinstagram.services.io_followers.GetNbOfFollowersServiceInput;
-import io.tiny.insta.tinyinstagram.services.io_followers.GetNbOfFollowersServiceOutput;
-import io.tiny.insta.tinyinstagram.services.io_likes.GetPostNbOfLikesServiceOutput;
+import io.tiny.insta.tinyinstagram.services.io_followers.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,6 +32,24 @@ public class FollowController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = "application/json",
             produces = "application/json",
+            path = "/check"
+    )
+    public CheckIfFollowedControllerOutput checkFollowed(@RequestBody CheckIfFollowedControllerInput checkIfFollowedControllerInput) throws Exception {
+        CheckIfFollowedServiceInput checkIfFollowedServiceInput = new CheckIfFollowedServiceInput(
+                checkIfFollowedControllerInput.getFollower(),
+                checkIfFollowedControllerInput.getFollowed(),
+                checkIfFollowedControllerInput.getToken()
+        );
+        CheckIfFollowedServiceOutput checkIfFollowedServiceOutput = followService.checkIfFollowed(checkIfFollowedServiceInput);
+        CheckIfFollowedControllerOutput checkIfFollowedControllerOutput = new CheckIfFollowedControllerOutput(
+                checkIfFollowedServiceOutput.isFollowed()
+        );
+        return checkIfFollowedControllerOutput;
+    }
+
+    @RequestMapping(method = RequestMethod.POST,
+            consumes = "application/json",
+            produces = "application/json",
             path = "/count"
     )
     public @ResponseBody
@@ -55,5 +67,6 @@ public class FollowController {
         );
         return getNbOfFollowersControllerOutput;
     }
+
 
 }
