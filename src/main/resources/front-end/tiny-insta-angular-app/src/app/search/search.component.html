@@ -1,5 +1,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <form class="example" action="" style="margin:auto;max-width:300px">
-  <input type="text" placeholder="Search username.." name="search2">
-  <button type="submit"><i class="fa fa-search"></i></button>
+  <input type="text" placeholder="Search username.." name="search2" [(ngModel)]="username" >
+  <button type="submit" (click)="callFindUser()"><i class="fa fa-search"></i></button>
+  <p > {{output.username}}-{{output.countOfFollowers}}</p>
+  <button>Follow</button>
 </form>
