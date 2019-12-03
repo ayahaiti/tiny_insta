@@ -7,7 +7,6 @@ import {Router} from "@angular/router";
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [UserService]
 })
 export class RegisterComponent {
 
@@ -20,6 +19,14 @@ export class RegisterComponent {
   inputForm : RegisterFormInput = new RegisterFormInput();
 
   constructor (private userService: UserService, private router: Router){
+  }
+
+  ngOnInit(): void {
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+    if (token != null && username != null) {
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
   onEmailChanged(data){

@@ -1,11 +1,9 @@
-export class RegisterFormInput {
+export class LoginFormInput {
   username : string;
-  email : string;
   password : string;
 
   isValid(){
     if( this.username != null && this.username.length>0
-      && this.email != null && this.email.length>0
       && this.password != null && this.password.length>0 ){
       return true;
     }

@@ -1,6 +1,6 @@
 
 <h2>Register</h2>
-<div>
+<form>
   <div class="container">
     <label> <b>Email</b></label>
     <input type="text" placeholder="Enter email" (ngModelChange)="onEmailChanged($event)" [(ngModel)]="email" name="email" required>
@@ -16,6 +16,6 @@
 
   <div class="container" style="background-color:#f1f1f1">
 
-    <span class="login">You already have an account? <a href="/login">Login</a></span>
+    <span class="login">You already have an account? <a href="/#/login">Login</a></span>
   </div>
-</div>
+</form>
