@@ -4,12 +4,13 @@ import io.tiny.insta.tinyinstagram.entities.UserEntity;
 
 public class FindUserControllerOutput {
 
-    UserEntity userEntity;
+    private UserEntity userEntity;
 
     public FindUserControllerOutput() {
     }
 
     public FindUserControllerOutput(UserEntity userEntity) {
+        this.userEntity = new UserEntity();
         this.userEntity = userEntity;
     }
 

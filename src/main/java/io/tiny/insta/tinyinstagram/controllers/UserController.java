@@ -1,14 +1,9 @@
 package io.tiny.insta.tinyinstagram.controllers;
 
-import io.tiny.insta.tinyinstagram.controllers.io_followers.CheckIfFollowedControllerInput;
 import io.tiny.insta.tinyinstagram.controllers.io_user.*;
-import io.tiny.insta.tinyinstagram.entities.UserEntity;
-import io.tiny.insta.tinyinstagram.repositories.UserRepository;
 import io.tiny.insta.tinyinstagram.services.UserService;
 import io.tiny.insta.tinyinstagram.services.io_user.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -90,7 +85,8 @@ public class UserController {
     public @ResponseBody FindUserControllerOutput findUser(
             @RequestBody FindUserControllerInput findUserControllerInput) {
         FindUserControllerOutput findUserControllerOutput = new FindUserControllerOutput();
-        FindUserServiceInput findUserServiceInput = new FindUserServiceInput(findUserControllerInput.getUserToFind(),
+        FindUserServiceInput findUserServiceInput = new FindUserServiceInput(
+                findUserControllerInput.getUserToFind(),
                 findUserControllerInput.getUsername(),
                 findUserControllerInput.getToken()
         );

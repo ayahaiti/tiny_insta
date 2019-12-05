@@ -1,6 +1,7 @@
 package io.tiny.insta.tinyinstagram.controllers.io_user;
 
 public class FindUserControllerInput {
+
     String userToFind;
     String username;
 

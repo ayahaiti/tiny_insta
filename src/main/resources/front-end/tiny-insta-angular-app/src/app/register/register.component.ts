@@ -24,9 +24,6 @@ export class RegisterComponent {
   ngOnInit(): void {
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('token');
-    if (token != null && username != null) {
-      this.router.navigateByUrl('/dashboard');
-    }
   }
 
   onEmailChanged(data){
@@ -49,7 +46,7 @@ export class RegisterComponent {
 
   onUserRegistrationSucceded(){
     this.buttonActif = true;
-    this.router.navigate(['/login'])
+    this.router.navigateByUrl('/login');
   }
 
   onUserRegistrationFailed(){
@@ -63,4 +60,7 @@ export class RegisterComponent {
       error => this.onUserRegistrationFailed());
   }
 
+  goToLogin() {
+    this.router.navigateByUrl('/#/login');
+  }
 }

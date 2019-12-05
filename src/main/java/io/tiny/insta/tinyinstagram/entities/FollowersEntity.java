@@ -10,19 +10,29 @@ public class FollowersEntity {
     @Id
     private Long id;
 
-    private String followedUsername;
+    private String followed;
 
-    private String followerUsername;
+    private String follower;
 
-    public FollowersEntity(String followedUsername, String followerUsername) {
-        this.followedUsername = followedUsername;
-        this.followerUsername = followerUsername;
+    public FollowersEntity() {
+    }
+    public FollowersEntity(String followed, String follower) {
+        this.followed = followed;
+        this.follower = follower;
     }
 
+    @Override
+    public String toString() {
+        return "User_Entity{" +
+                "id=" + this.id +
+                ", followed='" + this.followed + '\'' +
+                ", follower=" + this.follower +
+                '}';
+    }
     public FollowersEntity(Long id, String followed_username, String follower_username) {
         this.id = id;
-        this.followedUsername = followed_username;
-        this.followerUsername = follower_username;
+        this.followed = followed_username;
+        this.follower = follower_username;
     }
 
     public Long getId() {
@@ -33,19 +43,19 @@ public class FollowersEntity {
         this.id = id;
     }
 
-    public String getFollowedUsername() {
-        return followedUsername;
+    public String getFollowed() {
+        return followed;
     }
 
-    public void setFollowedUsername(String followedUsername) {
-        this.followedUsername = followedUsername;
+    public void setFollowed(String followed) {
+        this.followed = followed;
     }
 
-    public String getFollowerUsername() {
-        return followerUsername;
+    public String getFollower() {
+        return follower;
     }
 
-    public void setFollowerUsername(String followerUsername) {
-        this.followerUsername = followerUsername;
+    public void setFollower(String follower) {
+        this.follower = follower;
     }
 }

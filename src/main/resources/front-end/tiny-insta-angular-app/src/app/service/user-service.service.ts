@@ -4,7 +4,11 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RegisterFormInput} from "../register/RegisterFormInput";
 import {LoginFormInput} from "../login/LoginFormInput";
 import {FindUserInput} from "../search/FindUserInput";
-
+import {CheckUsernameInput} from "../search/CheckUsernameInput";
+import {GetUserFollowersInput} from "../search/GetUserFollowersInput";
+import {FollowInput} from "../search/FollowInput";
+import {CheckFollowedInut} from "../search/CheckFollowedInut";
+import {UnfollowInput} from "../search/UnfollowInput";
 
 
 @Injectable()
@@ -14,7 +18,12 @@ export class UserService {
 
   private registerUserUrl = "/user/create";
   private connectUserUrl = "/user/connect";
-  private findUserUrl = "/user/find"
+  private findUserUrl = "/user/find";
+  private checkUsernameExists = "/user/username/check";
+  private  getFolllowers = "/follower/count";
+  private follow = "/follower/add";
+  private checkFollower = "/follower/check";
+  private unfollowUser = "/follower/delete";
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -33,4 +42,25 @@ export class UserService {
   findUser(body: FindUserInput) {
     return this.httpClient.post(this.findUserUrl, body, this.httpOptions);
   }
+
+  checkUsername(body: CheckUsernameInput) {
+    return this.httpClient.post(this.checkUsernameExists, body, this.httpOptions);
+  }
+
+  getUserFollowers(body: GetUserFollowersInput) {
+    return this.httpClient.post(this.getFolllowers, body, this.httpOptions);
+  }
+
+  followUser(body: FollowInput) {
+    return this.httpClient.post(this.follow, body, this.httpOptions);
+  }
+
+  checkUsernameIsFollowed(body: CheckFollowedInut) {
+    return this.httpClient.post(this.checkFollower, body, this.httpOptions);
+  }
+
+  unfollow( body: UnfollowInput) {
+    return this.httpClient.post(this.unfollowUser, body, this.httpOptions);
+  }
+
 }

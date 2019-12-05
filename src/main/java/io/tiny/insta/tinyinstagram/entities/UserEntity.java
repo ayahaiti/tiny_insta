@@ -28,6 +28,10 @@ public class UserEntity {
         this.token = token;
     }
 
+    public UserEntity() {
+
+    }
+
     public long getId() {
         return id;
     }

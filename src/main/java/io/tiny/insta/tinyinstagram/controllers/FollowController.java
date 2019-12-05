@@ -53,7 +53,7 @@ public class FollowController {
             path = "/count"
     )
     public @ResponseBody
-    GetNbOfFollowersControllerOutput getLikes(
+    GetNbOfFollowersControllerOutput getFollowers(
             @RequestBody GetNbOfFollowersControllerInput getPostNbOfLikesControllerInput)
     {
         GetNbOfFollowersServiceInput getNbOfFollowersServiceInput = new GetNbOfFollowersServiceInput(
@@ -68,5 +68,21 @@ public class FollowController {
         return getNbOfFollowersControllerOutput;
     }
 
+    @RequestMapping(method = RequestMethod.POST,
+            consumes = "application/json",
+            produces = "application/json",
+            path = "/delete"
+    )
+    public @ResponseBody
+    UnfollowOutputController unfollow(UnfollowInputController unfollowInputController) {
+        UnfollowOutputController unfollowOutputController = new UnfollowOutputController();
+        UnfollowServiceInput unfollowServiceInput = new UnfollowServiceInput(
+                unfollowInputController.getUsername(),
+                unfollowInputController.getToken(),
+                unfollowInputController.getUsernameToFollow()
+        );
+        this.followService.unfollow(unfollowServiceInput);
+        return unfollowOutputController;
+    }
 
 }

@@ -29,8 +29,9 @@ public class FollowServiceImpl implements FollowService {
                 followUserServiceInput.getToken());
         if ( userEntity.size() == 1 && userEntity != null) {
             FollowersEntity followersEntity = new FollowersEntity(
-                    followUserServiceInput.getUsernameToFollow(),
-                    followUserServiceInput.getUsername());
+                    followUserServiceInput.getUsername(),
+                    followUserServiceInput.getUsernameToFollow()
+            );
             follRepository.save(followersEntity);
         }
         else {
@@ -68,5 +69,15 @@ public class FollowServiceImpl implements FollowService {
         int nbOfFollowers = follRepository.countByFollowedUsername(getNbOfFollowersServiceInput.getUsername());
         getNbOfFollowersServiceOutput.setNbOfFollowers(nbOfFollowers);
         return getNbOfFollowersServiceOutput;
+    }
+
+    @Override
+    public UnfollowServiceOutput unfollow(UnfollowServiceInput unfollowServiceInput) {
+        UnfollowServiceOutput unfollowServiceOutput = new UnfollowServiceOutput();
+        this.follRepository.deleteByFollowedAndFollower(
+                unfollowServiceInput.getUsernameToFollow(),
+                unfollowServiceInput.getUsername()
+        );
+        return unfollowServiceOutput;
     }
 }

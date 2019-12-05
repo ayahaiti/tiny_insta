@@ -8,4 +8,5 @@ public interface FollowService {
     void followUser(FollowUserServiceInput followUserServiceInput) throws Exception;
     CheckIfFollowedServiceOutput checkIfFollowed(CheckIfFollowedServiceInput checkIfFollowedServiceInput) throws Exception;
     GetNbOfFollowersServiceOutput getUserNbOfFollowers(GetNbOfFollowersServiceInput getNbOfFollowersServiceInput);
+    UnfollowServiceOutput unfollow(UnfollowServiceInput unfollowServiceInput);
 }
