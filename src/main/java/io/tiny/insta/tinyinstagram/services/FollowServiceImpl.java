@@ -28,16 +28,23 @@ public class FollowServiceImpl implements FollowService {
                 followUserServiceInput.getUsername(),
                 followUserServiceInput.getToken());
         if ( userEntity.size() == 1 && userEntity != null) {
-            FollowersEntity followersEntity = new FollowersEntity(
-                    followUserServiceInput.getUsername(),
-                    followUserServiceInput.getUsernameToFollow()
+            List<FollowersEntity> followersEntities = follRepository.findByFollowedAndFollower(
+                    followUserServiceInput.getUsernameToFollow(),
+                    followUserServiceInput.getUsername()
             );
-            follRepository.save(followersEntity);
+            if (followersEntities != null && followersEntities.size() == 1) {
+                throw new Exception();
+            } else {
+                FollowersEntity followersEntity = new FollowersEntity(
+                        followUserServiceInput.getUsername(),
+                        followUserServiceInput.getUsernameToFollow()
+                );
+                follRepository.save(followersEntity);
+            }
         }
         else {
             throw new Exception();
         }
-
     }
 
     @Override
@@ -47,7 +54,7 @@ public class FollowServiceImpl implements FollowService {
                 checkIfFollowedServiceInput.getFollower(),
                 checkIfFollowedServiceInput.getToken());
         if ( userEntity.size() == 1 && userEntity != null) {
-            List<FollowersEntity> followersEntities = follRepository.findByFollowedUsernameAndFollowerUsername(
+            List<FollowersEntity> followersEntities = follRepository.findByFollowedAndFollower(
                     checkIfFollowedServiceInput.getFollowed(),
                     checkIfFollowedServiceInput.getFollower()
             );

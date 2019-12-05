@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface FollowersRepository extends DatastoreRepository<FollowersEntity, Long> {
 
-    List<FollowersEntity> findByFollowedUsernameAndFollowerUsername(String followed, String follower);
+    List<FollowersEntity> findByFollowedAndFollower(String followed, String follower);
 
     int countByFollowedUsername(String username);
 

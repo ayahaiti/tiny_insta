@@ -11,8 +11,6 @@ public class CheckIfFollowedControllerInput {
     public CheckIfFollowedControllerInput() {
     }
 
-
-
     public CheckIfFollowedControllerInput(String follower, String followed, String token) {
         this.follower = follower;
         this.followed = followed;

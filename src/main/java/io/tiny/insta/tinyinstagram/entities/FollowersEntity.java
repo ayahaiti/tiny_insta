@@ -16,6 +16,7 @@ public class FollowersEntity {
 
     public FollowersEntity() {
     }
+
     public FollowersEntity(String followed, String follower) {
         this.followed = followed;
         this.follower = follower;
