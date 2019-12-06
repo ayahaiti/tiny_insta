@@ -72,7 +72,7 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public GetNbOfFollowersServiceOutput getUserNbOfFollowers(GetNbOfFollowersServiceInput getNbOfFollowersServiceInput) {
         GetNbOfFollowersServiceOutput getNbOfFollowersServiceOutput = new GetNbOfFollowersServiceOutput();
-        int nbOfFollowers = follRepository.countByFollowedUsername(getNbOfFollowersServiceInput.getUsername());
+        int nbOfFollowers = follRepository.countByFollowed(getNbOfFollowersServiceInput.getUsername());
         getNbOfFollowersServiceOutput.setNbOfFollowers(nbOfFollowers);
         return getNbOfFollowersServiceOutput;
     }
