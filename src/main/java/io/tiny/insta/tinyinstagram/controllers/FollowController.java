@@ -74,14 +74,15 @@ public class FollowController {
             path = "/delete"
     )
     public @ResponseBody
-    UnfollowOutputController unfollow(UnfollowInputController unfollowInputController) {
+    UnfollowOutputController unfollow(UnfollowInputController unfollowInputController) throws Exception {
         UnfollowOutputController unfollowOutputController = new UnfollowOutputController();
         UnfollowServiceInput unfollowServiceInput = new UnfollowServiceInput(
                 unfollowInputController.getUsername(),
                 unfollowInputController.getToken(),
                 unfollowInputController.getUsernameToFollow()
         );
-        this.followService.unfollow(unfollowServiceInput);
+        UnfollowServiceOutput unfollowServiceOutput = this.followService.unfollow(unfollowServiceInput);
+        unfollowOutputController.setDeleted(unfollowServiceOutput.getDeleted());
         return unfollowOutputController;
     }
 

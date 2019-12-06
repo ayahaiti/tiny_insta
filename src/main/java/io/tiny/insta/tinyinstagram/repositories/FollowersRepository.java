@@ -12,5 +12,6 @@ public interface FollowersRepository extends DatastoreRepository<FollowersEntity
 
     List<FollowersEntity> findByFollowedAndFollower(String followed, String follower);
     int countByFollowed(String username);
-    void deleteByFollowedAndFollower( String followed, String follower);
+    Long deleteByFollowedAndFollower( String followed, String follower);
+
 }

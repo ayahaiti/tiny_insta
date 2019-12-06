@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit{
     username: '',
     countOfFollowers: null
   };
+
   nonExistant: string = 'none';
 
   checkUnFollow: string = 'none';
@@ -144,9 +145,11 @@ export class SearchComponent implements OnInit{
     this.checkFollow = 'block';
   }
 
-  private doUnFollowSuccessful(response: Object) {
-    this.checkFollow ='block';
-    this.checkUnFollow = 'none';
+  private doUnFollowSuccessful(response: any) {
+    if (response.deleted === 1) {
+      this.checkFollow = 'block';
+      this.checkUnFollow = 'none';
+    }
   }
 
   private UnFollowUnsuccessful(error: any) {

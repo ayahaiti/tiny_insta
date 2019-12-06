@@ -79,12 +79,31 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public UnfollowServiceOutput unfollow(UnfollowServiceInput unfollowServiceInput) {
+    public UnfollowServiceOutput unfollow(UnfollowServiceInput unfollowServiceInput) throws Exception{
         UnfollowServiceOutput unfollowServiceOutput = new UnfollowServiceOutput();
-        this.follRepository.deleteByFollowedAndFollower(
-                unfollowServiceInput.getUsernameToFollow(),
-                unfollowServiceInput.getUsername()
-        );
+        List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
+                unfollowServiceInput.getUsername(),
+                unfollowServiceInput.getToken());
+        if ( userEntity.size() == 1 && userEntity != null) {
+            List<FollowersEntity> followersEntities = follRepository.findByFollowedAndFollower(
+                    unfollowServiceInput.getUsernameToFollow(),
+                    unfollowServiceInput.getUsername()
+            );
+
+            if (followersEntities != null && followersEntities.size() > 0) {
+                Long deleted = this.follRepository.deleteByFollowedAndFollower(
+                        unfollowServiceInput.getUsernameToFollow(),
+                        unfollowServiceInput.getUsername()
+                );
+                unfollowServiceOutput.setDeleted(deleted);
+
+            } else {
+                throw new Exception();
+            }
+        }
+        else {
+            throw new Exception();
+        }
         return unfollowServiceOutput;
     }
 }
