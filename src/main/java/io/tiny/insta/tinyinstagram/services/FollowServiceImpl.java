@@ -26,7 +26,7 @@ public class FollowServiceImpl implements FollowService {
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 followUserServiceInput.getUsername(),
                 followUserServiceInput.getToken());
-        if ( userEntity.size() == 1 && userEntity != null) {
+        if (userEntity != null &&  userEntity.size() == 1) {
             List<FollowersEntity> followersEntities = follRepository.findByFollowedAndFollower(
                     followUserServiceInput.getUsernameToFollow(),
                     followUserServiceInput.getUsername()
@@ -53,7 +53,7 @@ public class FollowServiceImpl implements FollowService {
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 checkIfFollowedServiceInput.getFollower(),
                 checkIfFollowedServiceInput.getToken());
-        if ( userEntity.size() == 1 && userEntity != null) {
+        if (userEntity != null &&  userEntity.size() == 1) {
             List<FollowersEntity> followersEntities = follRepository.findByFollowedAndFollower(
                     checkIfFollowedServiceInput.getFollowed(),
                     checkIfFollowedServiceInput.getFollower()
@@ -84,7 +84,7 @@ public class FollowServiceImpl implements FollowService {
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 unfollowServiceInput.getUsername(),
                 unfollowServiceInput.getToken());
-        if ( userEntity.size() == 1 && userEntity != null) {
+        if ( userEntity != null && userEntity.size() == 1) {
             List<FollowersEntity> followersEntities = follRepository.findByFollowedAndFollower(
                     unfollowServiceInput.getUsernameToFollow(),
                     unfollowServiceInput.getUsername()

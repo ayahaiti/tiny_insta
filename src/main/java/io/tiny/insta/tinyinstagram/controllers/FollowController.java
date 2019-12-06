@@ -74,7 +74,7 @@ public class FollowController {
             path = "/delete"
     )
     public @ResponseBody
-    UnfollowOutputController unfollow(UnfollowInputController unfollowInputController) throws Exception {
+    UnfollowOutputController unfollow( @RequestBody UnfollowInputController unfollowInputController) throws Exception {
         UnfollowOutputController unfollowOutputController = new UnfollowOutputController();
         UnfollowServiceInput unfollowServiceInput = new UnfollowServiceInput(
                 unfollowInputController.getUsername(),
