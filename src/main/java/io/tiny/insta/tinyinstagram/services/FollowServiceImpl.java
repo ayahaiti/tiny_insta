@@ -12,14 +12,13 @@ import java.util.List;
 @Service
 public class FollowServiceImpl implements FollowService {
 
-    final FollowersRepository follRepository;
-    final UserRepository userRepository;
+    private final FollowersRepository follRepository;
+    private final UserRepository userRepository;
 
-    public FollowServiceImpl(FollowersRepository follRepository, UserRepository userRepository) {
-        this.follRepository = follRepository;
+    public FollowServiceImpl(UserRepository userRepository, FollowersRepository follRepository){
         this.userRepository = userRepository;
+        this.follRepository = follRepository;
     }
-
 
     @Override
     public void followUser(FollowUserServiceInput followUserServiceInput) throws Exception{

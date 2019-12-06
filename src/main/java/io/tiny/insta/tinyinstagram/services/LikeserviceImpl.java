@@ -13,7 +13,6 @@ import java.util.List;
 public class LikeserviceImpl implements LikeService {
 
     private final LikesRespository likesRespository;
-
     private final UserRepository userRepository;
 
     public LikeserviceImpl(LikesRespository likesRespository, UserRepository userRepository) {
