@@ -36,8 +36,8 @@ public class FollowServiceImpl implements FollowService {
                 throw new Exception();
             } else {
                 FollowersEntity followersEntity = new FollowersEntity(
-                        followUserServiceInput.getUsername(),
-                        followUserServiceInput.getUsernameToFollow()
+                        followUserServiceInput.getUsernameToFollow(),
+                        followUserServiceInput.getUsername()
                 );
                 follRepository.save(followersEntity);
             }
