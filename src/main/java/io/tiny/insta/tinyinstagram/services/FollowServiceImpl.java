@@ -31,7 +31,8 @@ public class FollowServiceImpl implements FollowService {
                     followUserServiceInput.getUsernameToFollow(),
                     followUserServiceInput.getUsername()
             );
-            if (followersEntities != null && followersEntities.size() == 1) {
+
+            if (followersEntities != null && followersEntities.size() > 0) {
                 throw new Exception();
             } else {
                 FollowersEntity followersEntity = new FollowersEntity(
@@ -57,7 +58,7 @@ public class FollowServiceImpl implements FollowService {
                     checkIfFollowedServiceInput.getFollowed(),
                     checkIfFollowedServiceInput.getFollower()
             );
-            if (followersEntities != null && followersEntities.size() == 1) {
+            if (followersEntities != null && followersEntities.size() > 0) {
                 checkIfFollowedServiceOutput.setFollowed(true);
             } else {
                 checkIfFollowedServiceOutput.setFollowed(false);

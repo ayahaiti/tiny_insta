@@ -11,8 +11,6 @@ import java.util.List;
 public interface FollowersRepository extends DatastoreRepository<FollowersEntity, Long> {
 
     List<FollowersEntity> findByFollowedAndFollower(String followed, String follower);
-
     int countByFollowed(String username);
-
     void deleteByFollowedAndFollower( String followed, String follower);
 }

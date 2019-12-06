@@ -20,7 +20,7 @@ public class FollowController {
             produces = "application/json",
             path = "/add"
     )
-    public void likePost(@RequestBody FollowUserControllerInput followUserControllerInput) throws Exception {
+    public void follow(@RequestBody FollowUserControllerInput followUserControllerInput) throws Exception {
         FollowUserServiceInput followUserServiceInput = new FollowUserServiceInput(
                 followUserControllerInput.getUsername(),
                 followUserControllerInput.getToken(),

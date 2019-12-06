@@ -14,5 +14,4 @@ public interface UserRepository extends DatastoreRepository<UserEntity, Long> {
     List<UserEntity> findByUsernameAndPassword(String username, String password);
     List<UserEntity> findByUsernameAndToken(String username, String token);
 
-
 }

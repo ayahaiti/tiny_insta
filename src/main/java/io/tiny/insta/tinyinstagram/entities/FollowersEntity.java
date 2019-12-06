@@ -24,7 +24,7 @@ public class FollowersEntity {
 
     @Override
     public String toString() {
-        return "User_Entity{" +
+        return "Follower_Entity{" +
                 "id=" + this.id +
                 ", followed='" + this.followed + '\'' +
                 ", follower=" + this.follower +
