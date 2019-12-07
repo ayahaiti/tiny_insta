@@ -4,11 +4,11 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RegisterFormInput} from "../register/RegisterFormInput";
 import {LoginFormInput} from "../login/LoginFormInput";
 import {FindUserInput} from "../search/FindUserInput";
-import {CheckUsernameInput} from "../search/CheckUsernameInput";
 import {GetUserFollowersInput} from "../search/GetUserFollowersInput";
 import {FollowInput} from "../search/FollowInput";
 import {CheckFollowedInut} from "../search/CheckFollowedInut";
 import {UnfollowInput} from "../search/UnfollowInput";
+import {GetLastPostsInput} from "../feed/GetLastPostsInput";
 
 
 @Injectable()
@@ -19,7 +19,7 @@ export class UserService {
   private registerUserUrl = "/user/create";
   private connectUserUrl = "/user/connect";
   private findUserUrl = "/user/find";
-  private checkUsernameExists = "/user/username/check";
+  private getLastPostsUrl = "/post/get";
   private  getFolllowers = "/follower/count";
   private follow = "/follower/add";
   private checkFollower = "/follower/check";
@@ -35,16 +35,22 @@ export class UserService {
     return this.httpClient.post(this.registerUserUrl, body, this.httpOptions);
   }
 
+  getLastPosts(){
+    return this.httpClient.post(
+      this.getLastPostsUrl,
+      new GetLastPostsInput(
+        localStorage.getItem('username'),
+        localStorage.getItem('token')
+      ),
+      this.httpOptions);
+  }
+
   connectUser(body: LoginFormInput){
     return this.httpClient.post(this.connectUserUrl, body, this.httpOptions);
   }
 
   findUser(body: FindUserInput) {
     return this.httpClient.post(this.findUserUrl, body, this.httpOptions);
-  }
-
-  checkUsername(body: CheckUsernameInput) {
-    return this.httpClient.post(this.checkUsernameExists, body, this.httpOptions);
   }
 
   getUserFollowers(body: GetUserFollowersInput) {

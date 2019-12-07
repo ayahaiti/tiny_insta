@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../service/user-service.service";
+import {Post} from "./Post";
 
 @Component({
   selector: 'app-feed',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  postList: Post[];
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.retrieveLastPosts();
   }
 
+  retrieveLastPosts(){
+    this.userService.getLastPosts().subscribe(
+      response => this.doOnPostsRetrievedOk(response),
+        error => this.doOnPostsRetrievedKo(error)
+    );
+  }
+
+  private doOnPostsRetrievedOk(response) {
+    this.postList = response.tempPostPojoList;
+  }
+
+  private doOnPostsRetrievedKo(error) {
+
+  }
 }

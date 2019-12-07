@@ -4,7 +4,7 @@ export class FindUserInput {
   username: string;
   token: string;
 
-  constructor(userToFind: string, username: string, token: string) {
+  constructor(username: string, token: string, userToFind: string) {
       this.username = username;
       this.userToFind = userToFind;
       this.token = token;

@@ -1,16 +1,17 @@
 <div>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<form class="example" action="" style="margin:auto;max-width:300px">
-  <input type="text" placeholder="Search username.." name="search2" [(ngModel)]="username" >
-  <button type="submit" (click)="findUserAndNbOfFollowers()"><i class="fa fa-search"></i></button>
-  <p [ngStyle]="{display: (nonExistant)}">{{output.username}}</p>
-</form>
-</div>
-<div class="follow_unfollow" [ngStyle]="{display: (displayUser)}">
-  <div class="follow_div">
-    <p class="username">{{output.username}}</p>
-    <p class="nb_followers">{{output.countOfFollowers}}</p>
-    <button class="follow_button" (click)="follow()" [ngStyle]="{display: (checkFollow), disabled: 'false'}">FOLLOW</button>
-    <button class="unfollow_button" (click)="unfollow()" [ngStyle]="{display: (checkUnFollow)}">UNFOLLOW</button>
+  <div class="example" style="margin:auto;max-width:300px">
+    <input type="text" placeholder="Search username.." name="search2" [(ngModel)]="username" >
+    <button type="submit" [disabled]="!searchButtonEnabled" (click)="findUserAndNbOfFollowers()"><i class="fa fa-search"></i></button>
+  </div>
+  <p *ngIf="!userExists && output.errorMessage!=null">{{output.errorMessage}}</p>
+  <div class="follow_unfollow" *ngIf="userExists">
+    <div class="follow_div">
+      <p class="username">{{output.username}}</p>
+      <p class="nb_followers">{{output.countOfFollowers}}</p>
+      <button class="follow_button" [disabled]="!followButtonEnabled" (click)="follow()" *ngIf="!iFollowHim">FOLLOW</button>
+      <button class="unfollow_button" [disabled]="!unfollowButtonEnabled" (click)="unfollow()" *ngIf="iFollowHim">UNFOLLOW</button>
+    </div>
   </div>
 </div>
+
