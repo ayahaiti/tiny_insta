@@ -77,7 +77,7 @@ export class SearchComponent implements OnInit{
   private doCheckUsernameExitsSuccessful(response: any) {
     if(response.exists === null || response.exists === false) {
       this.output.username = "Unexistant Username!";
-      this.nonExistant = 'block'
+      this.nonExistant = 'block';
     } else {
         this.callFindUser();
         this.displayUser = 'block';

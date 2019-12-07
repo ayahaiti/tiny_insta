@@ -6,7 +6,6 @@ import io.tiny.insta.tinyinstagram.services.io_user.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -65,7 +64,7 @@ public class UserServiceImpl implements UserService {
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(findUserServiceInput.getUsername(),
                 findUserServiceInput.getToken());
         List<UserEntity> userEntityToFind = userRepository.findByUsername(findUserServiceInput.getUserToSearch());
-        if( userEntity != null && userEntity.size() == 1 ){
+        if( userEntity != null && userEntity.size() == 1 ) {
             if( userEntityToFind!=null && userEntityToFind.size()==1 ) {
                 findUserServiceOutput.setUserEntity(userEntityToFind.get(0));
             }
@@ -108,12 +107,11 @@ public class UserServiceImpl implements UserService {
         return disconnectResponse;
     }
 
-
     @Override
     public CheckUsernameExistsServiceOutput checkUsernameExists(CheckUsernameExistsServiceInput checkUsernameExistsServiceInput) {
         CheckUsernameExistsServiceOutput checkUsernameExistsServiceOutput = new CheckUsernameExistsServiceOutput();
         List<UserEntity> userEntities = userRepository.findByUsername(checkUsernameExistsServiceInput.getUsername());
-        if( userEntities.size() == 0 ) {
+        if( userEntities.size() == 0  || userEntities == null) {
             checkUsernameExistsServiceOutput.setExists(false);
         }
         else {
