@@ -12,6 +12,10 @@ public class LikesEntity {
 
     private String uniqueIdentifier;
 
+    public LikesEntity(){
+
+    }
+
     public LikesEntity(Long id, String username, String uniqueIdentifier) {
         this.id = id;
         this.username = username;
