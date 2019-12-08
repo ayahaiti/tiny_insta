@@ -24,9 +24,24 @@ public class LikeController {
     public void likePost(@RequestBody LikePostControllerInput likePostControllerInput) throws Exception {
         LikePostServiceInput likePostServiceInput = new LikePostServiceInput(
                 likePostControllerInput.getUsername(),
+                likePostControllerInput.getToken(),
                 likePostControllerInput.getUniqueIdentifier()
         );
         likeService.likePost(likePostServiceInput);
+    }
+
+    @RequestMapping(method = RequestMethod.POST,
+            consumes = "application/json",
+            produces = "application/json",
+            path = "/delete"
+    )
+    public void dislikePost(@RequestBody DislikePostControllerInput dislikePostControllerInput) throws Exception {
+        UnlikePostServiceInput unlikePostServiceInput = new UnlikePostServiceInput(
+                dislikePostControllerInput.getUsername(),
+                dislikePostControllerInput.getToken(),
+                dislikePostControllerInput.getUniqueIdentifier()
+        );
+        likeService.unLikePost(unlikePostServiceInput);
     }
 
     @RequestMapping(method = RequestMethod.POST,

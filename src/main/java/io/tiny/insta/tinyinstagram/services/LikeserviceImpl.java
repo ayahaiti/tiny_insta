@@ -29,13 +29,33 @@ public class LikeserviceImpl implements LikeService {
                    likePostServiceInput.getUsername(),
                    likePostServiceInput.getUniqueIdentifier()
            );
-           if (likesEntities != null && likesEntities.size() == 1){
+           if (likesEntities != null && likesEntities.size() > 0){
                throw new Exception();
            }
            else{
                LikesEntity likesEntity = new LikesEntity(likePostServiceInput.getUsername(), likePostServiceInput.getUniqueIdentifier());
                likesRespository.save(likesEntity);
            }
+        }
+        else {
+            throw new Exception();
+        }
+    }
+
+    @Override
+    public void unLikePost(UnlikePostServiceInput unlikePostServiceInput) throws Exception{
+        List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
+                unlikePostServiceInput.getUsername(),
+                unlikePostServiceInput.getToken());
+        if( userEntity != null && userEntity.size() == 1) {
+            List<LikesEntity> likesEntities = likesRespository.findByUsernameAndUniqueIdentifier(
+                    unlikePostServiceInput.getUsername(),
+                    unlikePostServiceInput.getUniqueIdentifier()
+            );
+            likesRespository.deleteByUsernameAndUniqueIdentifier(
+                    unlikePostServiceInput.getUsername(),
+                    unlikePostServiceInput.getUniqueIdentifier()
+            );
         }
         else {
             throw new Exception();

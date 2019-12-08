@@ -1,6 +1,7 @@
-package io.tiny.insta.tinyinstagram.services.io_likes;
+package io.tiny.insta.tinyinstagram.controllers.io_likes;
 
-public class UnlikePostServiceInput {
+public class DislikePostControllerInput {
+
 
     private String username;
 
@@ -8,10 +9,10 @@ public class UnlikePostServiceInput {
 
     private String uniqueIdentifier;
 
-    public UnlikePostServiceInput() {
+    public DislikePostControllerInput() {
     }
 
-    public UnlikePostServiceInput(String username, String token, String uniqueIdentifier) {
+    public DislikePostControllerInput(String username, String token, String uniqueIdentifier) {
         this.username = username;
         this.token = token;
         this.uniqueIdentifier = uniqueIdentifier;
@@ -40,4 +41,5 @@ public class UnlikePostServiceInput {
     public void setUniqueIdentifier(String uniqueIdentifier) {
         this.uniqueIdentifier = uniqueIdentifier;
     }
+
 }

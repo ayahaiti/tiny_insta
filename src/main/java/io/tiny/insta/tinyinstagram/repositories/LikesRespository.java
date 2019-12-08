@@ -12,5 +12,6 @@ public interface LikesRespository extends DatastoreRepository<LikesEntity, Long>
 
     List<LikesEntity> findByUsernameAndUniqueIdentifier(String username, String uniqueidentifier);
     int countAllByUniqueIdentifier(String uniqueIdentifier);
+    Long deleteByUsernameAndUniqueIdentifier(String username, String uniqueIdentifier);
 
 }
