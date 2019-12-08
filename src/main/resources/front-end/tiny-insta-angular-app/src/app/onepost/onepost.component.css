@@ -18,3 +18,8 @@
 [for='toggle-heart'] {
   align-self: center;
 }
+
+.post {
+  margin-left: 165px;
+  margin-right: 180px;
+}

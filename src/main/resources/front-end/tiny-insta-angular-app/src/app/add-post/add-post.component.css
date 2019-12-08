@@ -1,0 +1,63 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 2px;
+  background-color: black;
+  padding: 2px;
+}
+
+.grid-container > div {
+  background-color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.item1 {
+  width: 150px;
+}
+
+.item1 span {
+  font-size: 23px;
+  font-weight: bolder;
+}
+
+.item2 {
+  width: 1000px;
+}
+
+.item2 label{
+  font-size: 19px;
+}
+
+.item3 {
+  width: 168px;
+}
+
+.quote {
+  margin-left: -300px;
+  display: inline-block;
+}
+
+.image {
+  margin-left: 340px;
+  display: inline-block;
+}
+
+.image label {
+  font-size: 19px;
+}
+
+.item3 button {
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  color: #bf00ff;
+  cursor: pointer;
+}
+
+.item3 button span {
+  font-size: 30px;
+  font-weight: bold;
+}

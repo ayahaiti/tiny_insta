@@ -12,6 +12,8 @@ import { OnepostComponent } from './onepost/onepost.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DisconnectComponent } from './disconnect/disconnect.component';
+import { AddPostComponent } from './add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FollowComponent,
     FeedComponent,
     OnepostComponent,
-    DashboardComponent
+    DashboardComponent,
+    DisconnectComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,

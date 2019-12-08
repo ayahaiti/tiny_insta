@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
                         disconnectUserServiceInput.getUsername(),
                         disconnectUserServiceInput.getToken()
                 );
-        if(userEntityOptional!=null && userEntityOptional.size()==1){
+        if(userEntityOptional != null && userEntityOptional.size()==1){
             userEntityOptional.get(0).setToken(null);
             userRepository.save(userEntityOptional.get(0));
             disconnectResponse.setDisconnected(true);

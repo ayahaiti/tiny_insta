@@ -9,7 +9,8 @@ import {FollowInput} from "../search/FollowInput";
 import {CheckFollowedInut} from "../search/CheckFollowedInut";
 import {UnfollowInput} from "../search/UnfollowInput";
 import {GetLastPostsInput} from "../feed/GetLastPostsInput";
-
+import {DisconnectInput} from "../disconnect/DisconnectInput";
+import {AddPostInput} from "../add-post/AddPostInput";
 
 @Injectable()
 export class UserService {
@@ -24,6 +25,8 @@ export class UserService {
   private follow = "/follower/add";
   private checkFollower = "/follower/check";
   private unfollowUser = "/follower/delete";
+  private disconnectUser = "/user/disconnect";
+  private addpost = "post/add"
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -35,6 +38,10 @@ export class UserService {
     return this.httpClient.post(this.registerUserUrl, body, this.httpOptions);
   }
 
+  addPost(body: AddPostInput) {
+    return this.httpClient.post(this.addpost, body, this.httpOptions);
+  }
+
   getLastPosts(){
     return this.httpClient.post(
       this.getLastPostsUrl,
@@ -43,6 +50,17 @@ export class UserService {
         localStorage.getItem('token')
       ),
       this.httpOptions);
+  }
+
+  disconnect() {
+    return this.httpClient.post(
+      this.disconnectUser,
+      new DisconnectInput(
+        localStorage.getItem('username'),
+        localStorage.getItem('token')
+      ),
+      this.httpOptions
+    );
   }
 
   connectUser(body: LoginFormInput){

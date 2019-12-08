@@ -3,5 +3,7 @@
   <div class="image">{{input.image}}</div>
   <p>{{input.quote}}</p>
   <input id="toggle-heart" type="checkbox" />
-  <label for="toggle-heart">❤</label>
+  <p class="nb_likes">0</p>
+  <label for="toggle-heart" (click)="likePost()" [ngStyle]="{color: (liked)}">❤</label>
+  <hr>
 </div>

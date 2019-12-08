@@ -9,10 +9,18 @@ import {Post} from "../feed/Post";
 export class OnepostComponent implements OnInit {
 
   @Input() input: Post;
+  liked: string = 'grey';
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  likePost() {
+    if(this.liked === 'grey') {
+      this.liked = 'red';
+    } else {
+      this.liked = 'grey';
+    }
+  }
 }

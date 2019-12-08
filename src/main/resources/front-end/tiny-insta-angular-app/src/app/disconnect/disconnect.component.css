@@ -1,0 +1,9 @@
+.disconnect {
+  background-color: #bf00ff;
+  color: white;
+  float: right;
+  margin-top: 0;
+  width: 75px;
+  height: 30px;
+  font-weight: bold;
+}
