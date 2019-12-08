@@ -8,8 +8,9 @@ public class LikePostControllerInput {
 
     private String uniqueIdentifier;
 
-    public LikePostControllerInput(String username, String uniqueIdentifier) {
+    public LikePostControllerInput(String username, String token, String uniqueIdentifier) {
         this.username = username;
+        this.token = token;
         this.uniqueIdentifier = uniqueIdentifier;
     }
 

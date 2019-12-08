@@ -8,8 +8,9 @@ public class LikePostServiceInput {
 
     private String uniqueIdentifier;
 
-    public LikePostServiceInput(String username, String uniqueIdentifier) {
+    public LikePostServiceInput(String username, String token, String uniqueIdentifier) {
         this.username = username;
+        this.token = token;
         this.uniqueIdentifier = uniqueIdentifier;
     }
 

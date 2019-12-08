@@ -27,7 +27,8 @@ public class LikeserviceImpl implements LikeService {
        if( userEntity != null && userEntity.size() == 1) {
            List<LikesEntity> likesEntities = likesRespository.findByUsernameAndUniqueIdentifier(
                    likePostServiceInput.getUsername(),
-                   likePostServiceInput.getUniqueIdentifier());
+                   likePostServiceInput.getUniqueIdentifier()
+           );
            if (likesEntities != null && likesEntities.size() == 1){
                throw new Exception();
            }
