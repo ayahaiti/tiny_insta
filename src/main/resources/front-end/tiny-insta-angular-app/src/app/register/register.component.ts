@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RegisterFormInput} from "./RegisterFormInput";
-import {UserService} from "../service/user-service.service";
+import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 
 @Component({
