@@ -1107,7 +1107,7 @@ SearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ "./src/app/service/user-service.service.ts":
 /*!*************************************************!*\
-  !*** ./src/app/service/user-service.service.ts ***!
+  !*** ./src/app/service/user.service.ts ***!
   \*************************************************/
 /*! exports provided: UserService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

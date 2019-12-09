@@ -11,6 +11,10 @@ import {UnfollowInput} from "../search/UnfollowInput";
 import {GetLastPostsInput} from "../feed/GetLastPostsInput";
 import {DisconnectInput} from "../disconnect/DisconnectInput";
 import {AddPostInput} from "../add-post/AddPostInput";
+import {LikePostInput} from "../onepost/LikePostInput";
+import {DislikePostInput} from "../onepost/DislikePostInput";
+import {CheckLikePostInput} from "../onepost/CheckLikePostInput";
+import {CountLikePostInput} from "../onepost/CountLikePostInput";
 
 @Injectable()
 export class UserService {
@@ -26,7 +30,11 @@ export class UserService {
   private checkFollower = "/follower/check";
   private unfollowUser = "/follower/delete";
   private disconnectUser = "/user/disconnect";
-  private addpost = "post/add"
+  private addpost = "post/add";
+  private likePostUrl = "like/add";
+  private dislikePostUrl = "like/delete";
+  private checkLikePostUrl = "like/check";
+  private countLikesUrl = "like/count";
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -48,6 +56,48 @@ export class UserService {
       new GetLastPostsInput(
         localStorage.getItem('username'),
         localStorage.getItem('token')
+      ),
+      this.httpOptions);
+  }
+
+  countLikes(uniqueIdentifier: string){
+    return this.httpClient.post(
+      this.countLikesUrl,
+      new CountLikePostInput(
+        uniqueIdentifier
+      ),
+      this.httpOptions);
+  }
+
+  checkLike(uniqueIdentifier: string){
+    return this.httpClient.post(
+      this.checkLikePostUrl,
+      new CheckLikePostInput(
+        localStorage.getItem('username'),
+        localStorage.getItem('token'),
+        uniqueIdentifier
+      ),
+      this.httpOptions);
+  }
+
+  likePost(uniqueIdentifier: string){
+    return this.httpClient.post(
+      this.likePostUrl,
+      new LikePostInput(
+        localStorage.getItem('username'),
+        localStorage.getItem('token'),
+        uniqueIdentifier
+      ),
+      this.httpOptions);
+  }
+
+  dislikePost(uniqueIdentifier: string){
+    return this.httpClient.post(
+      this.dislikePostUrl,
+      new DislikePostInput(
+        localStorage.getItem('username'),
+        localStorage.getItem('token'),
+        uniqueIdentifier
       ),
       this.httpOptions);
   }

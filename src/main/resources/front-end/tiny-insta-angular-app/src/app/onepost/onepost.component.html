@@ -1,9 +1,9 @@
-<div class="post">
+<div class="post" id="{{input.id}}">
   <p class="username">{{input.username}}</p>
   <div class="image">{{input.image}}</div>
   <p>{{input.quote}}</p>
   <input id="toggle-heart" type="checkbox" />
-  <p class="nb_likes">0</p>
+  <p class="nb_likes">{{nbrOfLikes}}</p>
   <label for="toggle-heart" (click)="likePost()" [ngStyle]="{color: (liked)}">❤</label>
   <hr>
 </div>
