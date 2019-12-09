@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TinyInstagramApplication {
 
-    // TODO angular : form control in login/register + show error messages
-    // TODO spring boot : fix all webservices
+    // TODO load image => show image ( code in bitbucket shareArticle platform )
+    // TODO show feed like slides => better form to insert image material design in bitbucket shareArticle
 
-    // TODO angular : in dashboard = show search component + show feed component
+    // TODO lock all button after click + show error messages
 
     // TODO add auto-scaling config gcp https://www.baeldung.com/spring-boot-google-app-engine
 
