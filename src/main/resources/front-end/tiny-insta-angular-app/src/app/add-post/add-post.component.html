@@ -8,18 +8,19 @@
     <form class="form-inline">
       <div class="form-group mb-2">
         <label for="picture" class="sr-only">Picture</label>
-        <input type="file" class="form-control-file" (change)="onFileChange($event)" id="picture" accept="image/jpeg">
+        <input #fileInput type="file" class="form-control-file" (change)="onFileChange($event)" id="picture" accept="image/jpeg">
       </div>
     </form>
-    <form *ngIf="errorMessage!=null">
+    <form>
       <div class="form-group">
-        <p style="color: red">{{errorMessage}}</p>
+        <p style="color: red" *ngIf="errorMessage!=null">{{errorMessage}}</p>
+        <p style="color: red" *ngIf="sizeMessage!=null">{{sizeMessage}}</p>
       </div>
     </form>
     <form>
       <div class="form-group">
         <button type="submit" class="btn btn-primary"
-                [disabled]="errorMessage!=null || uploadedImage==null"
+                [disabled]="errorMessage!=null || sizeMessage!=null || uploadedImage==null"
                 (click)="sendPost()">post</button>
       </div>
     </form>

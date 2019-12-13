@@ -89,4 +89,15 @@ export class OnepostComponent implements OnInit {
     el.scrollIntoView();
   }
 
+  onImgClicked(){
+    // Get the modal
+    var modal = document.getElementById("myModal"+this.input.id);
+    modal.style.display = "block";
+  }
+
+  onCloseModalClicked(){
+    var modal = document.getElementById("myModal"+this.input.id);
+    modal.style.display = "none";
+  }
+
 }
