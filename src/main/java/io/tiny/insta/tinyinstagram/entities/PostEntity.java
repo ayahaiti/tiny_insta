@@ -2,6 +2,7 @@ package io.tiny.insta.tinyinstagram.entities;
 
 
 import org.springframework.cloud.gcp.data.datastore.core.mapping.Entity;
+import org.springframework.cloud.gcp.data.datastore.core.mapping.Unindexed;
 import org.springframework.data.annotation.Id;
 
 @Entity(name="posts")
@@ -14,6 +15,7 @@ public class PostEntity {
 
     private String uniqueIdentifier;
 
+    @Unindexed
     private String image;
 
     private String quote;

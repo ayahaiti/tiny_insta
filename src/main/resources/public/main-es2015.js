@@ -23,6 +23,19 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/add-post/add-post.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/add-post/add-post.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"grid-container\">\r\n  <div class=\"item1\">\r\n    <span>New Post</span>\r\n  </div>\r\n  <div class=\"item2\">\r\n    <div class=\"quote\">\r\n    <label>Quote: </label>\r\n    <input [(ngModel)]=\"quote\"/>\r\n    </div>\r\n    <div class=\"image\">\r\n    <!--<label>Image: </label>-->\r\n      <div class=\"file-upload\" style=\"margin-top: 5px;\">\r\n        <div class=\"file-select\">\r\n          <div class=\"file-select-button\" id=\"fileName\">Choose File</div>\r\n          <div class=\"file-select-name\" id=\"noFile\">{{fileName}}</div>\r\n          <input type=\"file\" name=\"chooseFile\" id=\"chooseFile\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"item3\">\r\n    <button (click)=\"addpost()\"> <span>+</span> </button>\r\n  </div>\r\n</div>\r\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html":
 /*!**************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html ***!
@@ -32,7 +45,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<router-outlet></router-outlet>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<router-outlet></router-outlet>\r\n");
 
 /***/ }),
 
@@ -45,7 +58,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-search></app-search>\r\n<app-feed></app-feed>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-search></app-search>\r\n<app-add-post></app-add-post>\r\n<app-feed></app-feed>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/disconnect/disconnect.component.html":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/disconnect/disconnect.component.html ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<button class=\"disconnect\" (click)=\"disconnectUser()\">Log out</button>\r\n");
 
 /***/ }),
 
@@ -58,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"feed\" *ngFor=\"let post of postList\">\r\n  <app-onepost [input]=\"post\" class=\"onepost\"></app-onepost>\r\n</div>\r\n\r\n");
 
 /***/ }),
 
@@ -71,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"follow_unfollow\">\n  <div class=\"follow_div\">\n    <p class=\"username\">Username</p>\n    <p class=\"nb_followers\">0</p>\n    <button class=\"follow_button\" [ngStyle]=\"{display: 'block'}\">FOLLOW</button>\n    <button class=\"unfollow_button\" [ngStyle]=\"{display: 'block'}\">UNFOLLOW</button>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"follow_unfollow\">\r\n  <div class=\"follow_div\">\r\n    <p class=\"username\">Username</p>\r\n    <p class=\"nb_followers\">0</p>\r\n    <button class=\"follow_button\" [ngStyle]=\"{display: 'block'}\">FOLLOW</button>\r\n    <button class=\"unfollow_button\" [ngStyle]=\"{display: 'block'}\">UNFOLLOW</button>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -97,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"post\">\n  <p class=\"username\">Username</p>\n  <div class=\"image\"></div>\n  <p>Quote</p>\n  <input id=\"toggle-heart\" type=\"checkbox\" />\n  <label for=\"toggle-heart\">❤</label>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"post\" id=\"{{input.id}}\">\r\n  <p class=\"username\">{{input.username}}</p>\r\n  <div class=\"image\">{{input.image}}</div>\r\n  <p>{{input.quote}}</p>\r\n  <input id=\"toggle-heart\" type=\"checkbox\" />\r\n  <p class=\"nb_likes\">{{nbrOfLikes}}</p>\r\n  <label for=\"toggle-heart\" (click)=\"likePost()\" [ngStyle]=\"{color: (liked)}\">❤</label>\r\n  <hr>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -123,7 +149,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n<form class=\"example\" action=\"\" style=\"margin:auto;max-width:300px\">\r\n  <input type=\"text\" placeholder=\"Search username..\" name=\"search2\" [(ngModel)]=\"username\" >\r\n  <button type=\"submit\" (click)=\"findUserAndNbOfFollowers()\"><i class=\"fa fa-search\"></i></button>\r\n  <p > {{output.username}} </p>\r\n  <p>{{output.countOfFollowers}}</p>\r\n  <button>Follow</button>\r\n</form>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n  <div class=\"example\" style=\"margin:auto;max-width:300px\">\r\n    <input type=\"text\" placeholder=\"Search username..\" name=\"search2\" [(ngModel)]=\"username\" >\r\n    <button type=\"submit\" [disabled]=\"!searchButtonEnabled\" (click)=\"findUserAndNbOfFollowers()\"><i class=\"fa fa-search\"></i></button>\r\n  </div>\r\n  <app-disconnect></app-disconnect>\r\n  <p *ngIf=\"!userExists && output.errorMessage!=null\"  class=\"usernotfound\">{{output.errorMessage}}</p>\r\n  <div class=\"follow_unfollow\" *ngIf=\"userExists\">\r\n    <div class=\"follow_div\">\r\n      <p class=\"username\">{{output.username}}</p>\r\n      <p class=\"nb_followers\">{{output.countOfFollowers}}</p>\r\n      <button class=\"follow_button\" [disabled]=\"!followButtonEnabled\" (click)=\"follow()\" *ngIf=\"!iFollowHim\">FOLLOW</button>\r\n      <button class=\"unfollow_button\" [disabled]=\"!unfollowButtonEnabled\" (click)=\"unfollow()\" *ngIf=\"iFollowHim\">UNFOLLOW</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n<br><br><br>\r\n\r\n");
 
 /***/ }),
 
@@ -356,6 +382,92 @@ function __importDefault(mod) {
 
 /***/ }),
 
+/***/ "./src/app/add-post/AddPostInput.ts":
+/*!******************************************!*\
+  !*** ./src/app/add-post/AddPostInput.ts ***!
+  \******************************************/
+/*! exports provided: AddPostInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddPostInput", function() { return AddPostInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class AddPostInput {
+    constructor(image, username, token, quote) {
+        this.image = image;
+        this.username = username;
+        this.token = token;
+        this.quote = quote;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/add-post/add-post.component.css":
+/*!*************************************************!*\
+  !*** ./src/app/add-post/add-post.component.css ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".grid-container {\r\n  display: grid;\r\n  grid-template-columns: auto auto auto auto;\r\n  grid-gap: 2px;\r\n  background-color: black;\r\n  padding: 2px;\r\n}\r\n\r\n.grid-container > div {\r\n  background-color: white;\r\n  text-align: center;\r\n  padding: 20px 0;\r\n  font-size: 30px;\r\n}\r\n\r\n.item1 {\r\n  width: 150px;\r\n}\r\n\r\n.item1 span {\r\n  font-size: 23px;\r\n  font-weight: bolder;\r\n}\r\n\r\n.item2 {\r\n  width: 1000px;\r\n}\r\n\r\n.item2 label{\r\n  font-size: 19px;\r\n}\r\n\r\n.item3 {\r\n  width: 168px;\r\n}\r\n\r\n.quote {\r\n  margin-left: -300px;\r\n  display: inline-block;\r\n}\r\n\r\n.image {\r\n  margin-left: 340px;\r\n  display: inline-block;\r\n}\r\n\r\n.image label {\r\n  font-size: 19px;\r\n}\r\n\r\n.item3 button {\r\n  border-radius: 20px;\r\n  width: 40px;\r\n  height: 40px;\r\n  background-color: black;\r\n  color: #bf00ff;\r\n  cursor: pointer;\r\n}\r\n\r\n.item3 button span {\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRkLXBvc3QvYWRkLXBvc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQWE7RUFDYiwwQ0FBMEM7RUFDMUMsYUFBYTtFQUNiLHVCQUF1QjtFQUN2QixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSx1QkFBdUI7RUFDdkIsa0JBQWtCO0VBQ2xCLGVBQWU7RUFDZixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsZUFBZTtFQUNmLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxtQkFBbUI7RUFDbkIscUJBQXFCO0FBQ3ZCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtBQUN2Qjs7QUFFQTtFQUNFLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxtQkFBbUI7RUFDbkIsV0FBVztFQUNYLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIsY0FBYztFQUNkLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0FBQ25CIiwiZmlsZSI6InNyYy9hcHAvYWRkLXBvc3QvYWRkLXBvc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5ncmlkLWNvbnRhaW5lciB7XHJcbiAgZGlzcGxheTogZ3JpZDtcclxuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IGF1dG8gYXV0byBhdXRvIGF1dG87XHJcbiAgZ3JpZC1nYXA6IDJweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFjaztcclxuICBwYWRkaW5nOiAycHg7XHJcbn1cclxuXHJcbi5ncmlkLWNvbnRhaW5lciA+IGRpdiB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIHBhZGRpbmc6IDIwcHggMDtcclxuICBmb250LXNpemU6IDMwcHg7XHJcbn1cclxuXHJcbi5pdGVtMSB7XHJcbiAgd2lkdGg6IDE1MHB4O1xyXG59XHJcblxyXG4uaXRlbTEgc3BhbiB7XHJcbiAgZm9udC1zaXplOiAyM3B4O1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkZXI7XHJcbn1cclxuXHJcbi5pdGVtMiB7XHJcbiAgd2lkdGg6IDEwMDBweDtcclxufVxyXG5cclxuLml0ZW0yIGxhYmVse1xyXG4gIGZvbnQtc2l6ZTogMTlweDtcclxufVxyXG5cclxuLml0ZW0zIHtcclxuICB3aWR0aDogMTY4cHg7XHJcbn1cclxuXHJcbi5xdW90ZSB7XHJcbiAgbWFyZ2luLWxlZnQ6IC0zMDBweDtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbn1cclxuXHJcbi5pbWFnZSB7XHJcbiAgbWFyZ2luLWxlZnQ6IDM0MHB4O1xyXG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxufVxyXG5cclxuLmltYWdlIGxhYmVsIHtcclxuICBmb250LXNpemU6IDE5cHg7XHJcbn1cclxuXHJcbi5pdGVtMyBidXR0b24ge1xyXG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XHJcbiAgd2lkdGg6IDQwcHg7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xyXG4gIGNvbG9yOiAjYmYwMGZmO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLml0ZW0zIGJ1dHRvbiBzcGFuIHtcclxuICBmb250LXNpemU6IDMwcHg7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuIl19 */");
+
+/***/ }),
+
+/***/ "./src/app/add-post/add-post.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/add-post/add-post.component.ts ***!
+  \************************************************/
+/*! exports provided: AddPostComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddPostComponent", function() { return AddPostComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/user.service */ "./src/app/service/user.service.ts");
+/* harmony import */ var _AddPostInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddPostInput */ "./src/app/add-post/AddPostInput.ts");
+
+
+
+
+let AddPostComponent = class AddPostComponent {
+    constructor(userService) {
+        this.userService = userService;
+        this.uploadedImage = null;
+        this.quote = null;
+    }
+    ngOnInit() {
+    }
+    addpost() {
+        this.userService.addPost(new _AddPostInput__WEBPACK_IMPORTED_MODULE_3__["AddPostInput"](this.uploadedImage, localStorage.getItem('username'), localStorage.getItem('token'), this.quote)).subscribe(response => this.doAddPostSuccessful(), error => this.doAddPostUnsuccessful());
+    }
+    doAddPostSuccessful() {
+    }
+    doAddPostUnsuccessful() {
+    }
+};
+AddPostComponent.ctorParameters = () => [
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] }
+];
+AddPostComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-add-post',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./add-post.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/add-post/add-post.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./add-post.component.css */ "./src/app/add-post/add-post.component.css")).default]
+    })
+], AddPostComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -373,6 +485,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./search/search.component */ "./src/app/search/search.component.ts");
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _feed_feed_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./feed/feed.component */ "./src/app/feed/feed.component.ts");
+
 
 
 
@@ -385,7 +499,8 @@ const routes = [
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
     { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_4__["RegisterComponent"] },
     { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_6__["DashboardComponent"] },
-    { path: 'search', component: _search_search_component__WEBPACK_IMPORTED_MODULE_5__["SearchComponent"] }
+    { path: 'search', component: _search_search_component__WEBPACK_IMPORTED_MODULE_5__["SearchComponent"] },
+    { path: 'feed', component: _feed_feed_component__WEBPACK_IMPORTED_MODULE_7__["FeedComponent"] }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -425,7 +540,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _service_user_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./service/user-service.service */ "./src/app/service/user-service.service.ts");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./service/user.service */ "./src/app/service/user.service.ts");
 
 
 
@@ -438,7 +553,7 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-root',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
-        providers: [_service_user_service_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]],
+        providers: [_service_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]],
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")).default]
     })
 ], AppComponent);
@@ -471,6 +586,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _disconnect_disconnect_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./disconnect/disconnect.component */ "./src/app/disconnect/disconnect.component.ts");
+/* harmony import */ var _add_post_add_post_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./add-post/add-post.component */ "./src/app/add-post/add-post.component.ts");
+
+
 
 
 
@@ -497,7 +616,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _follow_follow_component__WEBPACK_IMPORTED_MODULE_8__["FollowComponent"],
             _feed_feed_component__WEBPACK_IMPORTED_MODULE_9__["FeedComponent"],
             _onepost_onepost_component__WEBPACK_IMPORTED_MODULE_10__["OnepostComponent"],
-            _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__["DashboardComponent"]
+            _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__["DashboardComponent"],
+            _disconnect_disconnect_component__WEBPACK_IMPORTED_MODULE_14__["DisconnectComponent"],
+            _add_post_add_post_component__WEBPACK_IMPORTED_MODULE_15__["AddPostComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -523,7 +644,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = (".appfeed {\r\n  margin-left: 5px;\r\n  margin-top: 300px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGlCQUFpQjtBQUNuQiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hcHBmZWVkIHtcclxuICBtYXJnaW4tbGVmdDogNXB4O1xyXG4gIG1hcmdpbi10b3A6IDMwMHB4O1xyXG59XHJcbiJdfQ== */");
 
 /***/ }),
 
@@ -570,6 +691,117 @@ DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/disconnect/DisconnectInput.ts":
+/*!***********************************************!*\
+  !*** ./src/app/disconnect/DisconnectInput.ts ***!
+  \***********************************************/
+/*! exports provided: DisconnectInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisconnectInput", function() { return DisconnectInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class DisconnectInput {
+    constructor(username, token) {
+        this.username = username;
+        this.token = token;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/disconnect/disconnect.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/disconnect/disconnect.component.css ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".disconnect {\r\n  background-color: #bf00ff;\r\n  color: white;\r\n  float: right;\r\n  margin-top: 0;\r\n  width: 75px;\r\n  height: 30px;\r\n  font-weight: bold;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGlzY29ubmVjdC9kaXNjb25uZWN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUI7RUFDekIsWUFBWTtFQUNaLFlBQVk7RUFDWixhQUFhO0VBQ2IsV0FBVztFQUNYLFlBQVk7RUFDWixpQkFBaUI7QUFDbkIiLCJmaWxlIjoic3JjL2FwcC9kaXNjb25uZWN0L2Rpc2Nvbm5lY3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kaXNjb25uZWN0IHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjYmYwMGZmO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbWFyZ2luLXRvcDogMDtcclxuICB3aWR0aDogNzVweDtcclxuICBoZWlnaHQ6IDMwcHg7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuIl19 */");
+
+/***/ }),
+
+/***/ "./src/app/disconnect/disconnect.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/disconnect/disconnect.component.ts ***!
+  \****************************************************/
+/*! exports provided: DisconnectComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisconnectComponent", function() { return DisconnectComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/user.service */ "./src/app/service/user.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+let DisconnectComponent = class DisconnectComponent {
+    constructor(router, userService) {
+        this.router = router;
+        this.userService = userService;
+    }
+    ngOnInit() {
+    }
+    disconnectUser() {
+        this.userService.disconnect().subscribe(response => this.disconnectSuccessful(response), error => this.disconnectUnsuccessful(error));
+    }
+    disconnectUnsuccessful(response) {
+        // TODO
+    }
+    disconnectSuccessful(error) {
+        localStorage.removeItem('username');
+        localStorage.removeItem('token');
+        this.router.navigateByUrl('/login');
+    }
+};
+DisconnectComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] }
+];
+DisconnectComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-disconnect',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./disconnect.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/disconnect/disconnect.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./disconnect.component.css */ "./src/app/disconnect/disconnect.component.css")).default]
+    })
+], DisconnectComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/feed/GetLastPostsInput.ts":
+/*!*******************************************!*\
+  !*** ./src/app/feed/GetLastPostsInput.ts ***!
+  \*******************************************/
+/*! exports provided: GetLastPostsInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetLastPostsInput", function() { return GetLastPostsInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class GetLastPostsInput {
+    constructor(username, token) {
+        this.page = 0;
+        this.username = username;
+        this.token = token;
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/feed/feed.component.css":
 /*!*****************************************!*\
   !*** ./src/app/feed/feed.component.css ***!
@@ -579,7 +811,7 @@ DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2ZlZWQvZmVlZC5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2ZlZWQvZmVlZC5jb21wb25lbnQuY3NzIn0= */");
 
 /***/ }),
 
@@ -595,13 +827,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedComponent", function() { return FeedComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/user.service */ "./src/app/service/user.service.ts");
+
 
 
 let FeedComponent = class FeedComponent {
-    constructor() { }
+    constructor(userService) {
+        this.userService = userService;
+    }
     ngOnInit() {
+        this.retrieveLastPosts();
+    }
+    retrieveLastPosts() {
+        this.userService.getLastPosts().subscribe(response => this.doOnPostsRetrievedOk(response), error => this.doOnPostsRetrievedKo(error));
+    }
+    doOnPostsRetrievedOk(response) {
+        this.postList = response.tempPostPojoList;
+    }
+    doOnPostsRetrievedKo(error) {
     }
 };
+FeedComponent.ctorParameters = () => [
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] }
+];
 FeedComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-feed',
@@ -712,7 +960,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _LoginFormInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LoginFormInput */ "./src/app/login/LoginFormInput.ts");
-/* harmony import */ var _service_user_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../service/user-service.service */ "./src/app/service/user-service.service.ts");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../service/user.service */ "./src/app/service/user.service.ts");
 
 
 
@@ -746,7 +994,7 @@ let LoginComponent = class LoginComponent {
 };
 LoginComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _service_user_service_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] }
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] }
 ];
 LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -760,6 +1008,96 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/onepost/CheckLikePostInput.ts":
+/*!***********************************************!*\
+  !*** ./src/app/onepost/CheckLikePostInput.ts ***!
+  \***********************************************/
+/*! exports provided: CheckLikePostInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckLikePostInput", function() { return CheckLikePostInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class CheckLikePostInput {
+    constructor(username, token, uniqueIdentifier) {
+        this.username = username;
+        this.token = token;
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/onepost/CountLikePostInput.ts":
+/*!***********************************************!*\
+  !*** ./src/app/onepost/CountLikePostInput.ts ***!
+  \***********************************************/
+/*! exports provided: CountLikePostInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CountLikePostInput", function() { return CountLikePostInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class CountLikePostInput {
+    constructor(uniqueIdentifier) {
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/onepost/DislikePostInput.ts":
+/*!*********************************************!*\
+  !*** ./src/app/onepost/DislikePostInput.ts ***!
+  \*********************************************/
+/*! exports provided: DislikePostInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DislikePostInput", function() { return DislikePostInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class DislikePostInput {
+    constructor(username, token, uniqueIdentifier) {
+        this.username = username;
+        this.token = token;
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/onepost/LikePostInput.ts":
+/*!******************************************!*\
+  !*** ./src/app/onepost/LikePostInput.ts ***!
+  \******************************************/
+/*! exports provided: LikePostInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LikePostInput", function() { return LikePostInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class LikePostInput {
+    constructor(username, token, uniqueIdentifier) {
+        this.username = username;
+        this.token = token;
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/onepost/onepost.component.css":
 /*!***********************************************!*\
   !*** ./src/app/onepost/onepost.component.css ***!
@@ -769,7 +1107,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".username {\r\n  font-weight: bold;\r\n  font-size: 1.05em;\r\n}\r\n[id='toggle-heart'] {\r\n  position: absolute;\r\n  left: -100vw;\r\n}\r\n[for='toggle-heart'] {\r\n  color: #aab8c2;\r\n  font-size: 2em;\r\n  cursor: pointer;\r\n}\r\n[id='toggle-heart']:checked + label {\r\n  color: #e2264d;\r\n}\r\n[for='toggle-heart'] {\r\n  align-self: center;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb25lcG9zdC9vbmVwb3N0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxpQkFBaUI7RUFDakIsaUJBQWlCO0FBQ25CO0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsY0FBYztFQUNkLGVBQWU7QUFDakI7QUFFQTtFQUNFLGNBQWM7QUFDaEI7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQiIsImZpbGUiOiJzcmMvYXBwL29uZXBvc3Qvb25lcG9zdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnVzZXJuYW1lIHtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBmb250LXNpemU6IDEuMDVlbTtcclxufVxyXG5baWQ9J3RvZ2dsZS1oZWFydCddIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogLTEwMHZ3O1xyXG59XHJcbltmb3I9J3RvZ2dsZS1oZWFydCddIHtcclxuICBjb2xvcjogI2FhYjhjMjtcclxuICBmb250LXNpemU6IDJlbTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbltpZD0ndG9nZ2xlLWhlYXJ0J106Y2hlY2tlZCArIGxhYmVsIHtcclxuICBjb2xvcjogI2UyMjY0ZDtcclxufVxyXG5bZm9yPSd0b2dnbGUtaGVhcnQnXSB7XHJcbiAgYWxpZ24tc2VsZjogY2VudGVyO1xyXG59XHJcbiJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".username {\r\n  font-weight: bold;\r\n  font-size: 1.05em;\r\n}\r\n[id='toggle-heart'] {\r\n  position: absolute;\r\n  left: -100vw;\r\n}\r\n[for='toggle-heart'] {\r\n  color: #aab8c2;\r\n  font-size: 2em;\r\n  cursor: pointer;\r\n}\r\n[id='toggle-heart']:checked + label {\r\n  color: #e2264d;\r\n}\r\n[for='toggle-heart'] {\r\n  align-self: center;\r\n}\r\n.post {\r\n  margin-left: 165px;\r\n  margin-right: 180px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb25lcG9zdC9vbmVwb3N0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxpQkFBaUI7RUFDakIsaUJBQWlCO0FBQ25CO0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxjQUFjO0VBQ2QsY0FBYztFQUNkLGVBQWU7QUFDakI7QUFFQTtFQUNFLGNBQWM7QUFDaEI7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLG1CQUFtQjtBQUNyQiIsImZpbGUiOiJzcmMvYXBwL29uZXBvc3Qvb25lcG9zdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnVzZXJuYW1lIHtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBmb250LXNpemU6IDEuMDVlbTtcclxufVxyXG5baWQ9J3RvZ2dsZS1oZWFydCddIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogLTEwMHZ3O1xyXG59XHJcbltmb3I9J3RvZ2dsZS1oZWFydCddIHtcclxuICBjb2xvcjogI2FhYjhjMjtcclxuICBmb250LXNpemU6IDJlbTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbltpZD0ndG9nZ2xlLWhlYXJ0J106Y2hlY2tlZCArIGxhYmVsIHtcclxuICBjb2xvcjogI2UyMjY0ZDtcclxufVxyXG5bZm9yPSd0b2dnbGUtaGVhcnQnXSB7XHJcbiAgYWxpZ24tc2VsZjogY2VudGVyO1xyXG59XHJcblxyXG4ucG9zdCB7XHJcbiAgbWFyZ2luLWxlZnQ6IDE2NXB4O1xyXG4gIG1hcmdpbi1yaWdodDogMTgwcHg7XHJcbn1cclxuIl19 */");
 
 /***/ }),
 
@@ -785,13 +1123,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OnepostComponent", function() { return OnepostComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/user.service */ "./src/app/service/user.service.ts");
+
 
 
 let OnepostComponent = class OnepostComponent {
-    constructor() { }
+    constructor(userService) {
+        this.userService = userService;
+        this.liked = 'grey';
+        this.nbrOfLikes = 0;
+    }
     ngOnInit() {
+        this.checkIfLiked();
+        var thiObj = this;
+        setInterval(function () {
+            thiObj.getNbrOfLikes();
+        }, 2000);
+    }
+    likePost() {
+        if (this.liked === 'grey') {
+            this.userService.likePost(this.input.id).subscribe(response => this.doOnLikeOk(), error => this.doOnLikeKo(error));
+        }
+        else {
+            this.userService.dislikePost(this.input.id).subscribe(response => this.doOnDislikeOk(), error => this.doOnDislikeKo(error));
+            this.liked = 'grey';
+        }
+    }
+    doOnLikeOk() {
+        this.scroll(document.getElementById(this.input.id));
+        this.liked = 'red';
+    }
+    doOnLikeKo(error) {
+        // TODO show error
+    }
+    doOnDislikeOk() {
+        this.scroll(document.getElementById(this.input.id));
+        this.liked = 'grey';
+    }
+    doOnDislikeKo(error) {
+        // TODO show error
+    }
+    checkIfLiked() {
+        this.userService.checkLike(this.input.id).subscribe(response => this.doOnCheckLikeOk(response), error => this.doOnCheckLikeKo(error));
+    }
+    doOnCheckLikeOk(response) {
+        if (response.liked) {
+            this.liked = 'red';
+        }
+        else {
+            this.liked = 'grey';
+        }
+    }
+    doOnCheckLikeKo(error) {
+        // TODO show error
+    }
+    getNbrOfLikes() {
+        this.userService.countLikes(this.input.id).subscribe(response => this.doOnGetNbrOfLikesOk(response), error => this.doOnGetNbrOfLikesKo(error));
+    }
+    doOnGetNbrOfLikesOk(response) {
+        this.nbrOfLikes = response.nbOfPostLikes;
+    }
+    doOnGetNbrOfLikesKo(error) {
+        // TODO show error
+    }
+    scroll(el) {
+        el.scrollIntoView();
     }
 };
+OnepostComponent.ctorParameters = () => [
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], OnepostComponent.prototype, "input", void 0);
 OnepostComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-onepost',
@@ -858,7 +1262,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _RegisterFormInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RegisterFormInput */ "./src/app/register/RegisterFormInput.ts");
-/* harmony import */ var _service_user_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/user-service.service */ "./src/app/service/user-service.service.ts");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/user.service */ "./src/app/service/user.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 
 
@@ -911,7 +1315,7 @@ let RegisterComponent = class RegisterComponent {
     }
 };
 RegisterComponent.ctorParameters = () => [
-    { type: _service_user_service_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
 ];
 RegisterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -926,22 +1330,23 @@ RegisterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/search/CheckUsernameInput.ts":
-/*!**********************************************!*\
-  !*** ./src/app/search/CheckUsernameInput.ts ***!
-  \**********************************************/
-/*! exports provided: CheckUsernameInput */
+/***/ "./src/app/search/CheckFollowedInut.ts":
+/*!*********************************************!*\
+  !*** ./src/app/search/CheckFollowedInut.ts ***!
+  \*********************************************/
+/*! exports provided: CheckFollowedInut */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckUsernameInput", function() { return CheckUsernameInput; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckFollowedInut", function() { return CheckFollowedInut; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
-class CheckUsernameInput {
-    constructor(exists) {
-        this.username = null;
-        this.username = exists;
+class CheckFollowedInut {
+    constructor(follower, followed, token) {
+        this.follower = follower;
+        this.followed = followed;
+        this.token = token;
     }
 }
 
@@ -961,7 +1366,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
 class FindUserInput {
-    constructor(username, userToFind, token) {
+    constructor(username, token, userToFind) {
         this.username = username;
         this.userToFind = userToFind;
         this.token = token;
@@ -973,6 +1378,32 @@ class FindUserInput {
         else {
             return false;
         }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/search/FollowInput.ts":
+/*!***************************************!*\
+  !*** ./src/app/search/FollowInput.ts ***!
+  \***************************************/
+/*! exports provided: FollowInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FollowInput", function() { return FollowInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class FollowInput {
+    constructor(username, token, usernameToFollow) {
+        this.username = null;
+        this.token = null;
+        this.usernameToFollow = null;
+        this.username = username;
+        this.token = token;
+        this.usernameToFollow = usernameToFollow;
     }
 }
 
@@ -1001,6 +1432,29 @@ class GetUserFollowersInput {
 
 /***/ }),
 
+/***/ "./src/app/search/UnfollowInput.ts":
+/*!*****************************************!*\
+  !*** ./src/app/search/UnfollowInput.ts ***!
+  \*****************************************/
+/*! exports provided: UnfollowInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UnfollowInput", function() { return UnfollowInput; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class UnfollowInput {
+    constructor(username, token, usernameToFollow) {
+        this.username = username;
+        this.token = token;
+        this.usernameToFollow = usernameToFollow;
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/search/search.component.css":
 /*!*********************************************!*\
   !*** ./src/app/search/search.component.css ***!
@@ -1010,7 +1464,7 @@ class GetUserFollowersInput {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("body {\r\n  font-family: Arial;\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nform.example input[type=text] {\r\n  padding: 10px;\r\n  font-size: 17px;\r\n  border: 1px solid grey;\r\n  float: left;\r\n  width: 80%;\r\n  background: #f1f1f1;\r\n  vertical-align: bottom;\r\n}\r\n\r\nform.example button {\r\n  float: left;\r\n  width: 20%;\r\n  padding: 10px;\r\n  background: #bf00ff;\r\n  color: white;\r\n  font-size: 17px;\r\n  border: 1px solid grey;\r\n  border-left: none;\r\n  cursor: pointer;\r\n  vertical-align: bottom;\r\n}\r\n\r\nform.example button:hover {\r\n  background:#800080;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsYUFBYTtFQUNiLGVBQWU7RUFDZixzQkFBc0I7RUFDdEIsV0FBVztFQUNYLFVBQVU7RUFDVixtQkFBbUI7RUFDbkIsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsV0FBVztFQUNYLFVBQVU7RUFDVixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixlQUFlO0VBQ2Ysc0JBQXNCO0VBQ3RCLGlCQUFpQjtFQUNqQixlQUFlO0VBQ2Ysc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCIiwiZmlsZSI6InNyYy9hcHAvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XHJcbiAgZm9udC1mYW1pbHk6IEFyaWFsO1xyXG59XHJcblxyXG4qIHtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG59XHJcblxyXG5mb3JtLmV4YW1wbGUgaW5wdXRbdHlwZT10ZXh0XSB7XHJcbiAgcGFkZGluZzogMTBweDtcclxuICBmb250LXNpemU6IDE3cHg7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JleTtcclxuICBmbG9hdDogbGVmdDtcclxuICB3aWR0aDogODAlO1xyXG4gIGJhY2tncm91bmQ6ICNmMWYxZjE7XHJcbiAgdmVydGljYWwtYWxpZ246IGJvdHRvbTtcclxufVxyXG5cclxuZm9ybS5leGFtcGxlIGJ1dHRvbiB7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgd2lkdGg6IDIwJTtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGJhY2tncm91bmQ6ICNiZjAwZmY7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGZvbnQtc2l6ZTogMTdweDtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmV5O1xyXG4gIGJvcmRlci1sZWZ0OiBub25lO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB2ZXJ0aWNhbC1hbGlnbjogYm90dG9tO1xyXG59XHJcblxyXG5mb3JtLmV4YW1wbGUgYnV0dG9uOmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kOiM4MDAwODA7XHJcbn1cclxuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("body {\r\n  font-family: Arial;\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n.example input[type=text] {\r\n  padding: 10px;\r\n  font-size: 17px;\r\n  border: 1px solid grey;\r\n  width: 80%;\r\n  background: white;\r\n}\r\n\r\n.example button {\r\n  width: 20%;\r\n  padding: 10px;\r\n  background: #bf00ff;\r\n  color: white;\r\n  font-size: 17px;\r\n  border: 1px solid grey;\r\n  border-left: none;\r\n  cursor: pointer;\r\n}\r\n\r\n.example button:hover {\r\n  background: grey;\r\n}\r\n\r\n.follow_unfollow {\r\n  z-index: 9;\r\n  margin-top: 20px;\r\n  margin-left: 30px;\r\n}\r\n\r\n.follow_div {\r\n  width: 900px;\r\n  height: 70px;\r\n  background: lightgray;\r\n  top: 1px;\r\n  position: relative;\r\n  margin: 0 auto;\r\n  font-family: 'Alfa Slab One', sans-serif;\r\n  font-size: 1em;\r\n  z-index: 6;\r\n  border: 4px solid #bf00ff;\r\n  border-radius: 5px;\r\n  color: black;\r\n  text-shadow: none;\r\n  text-align: center;\r\n}\r\n\r\n.username {\r\n  display: inline-block;\r\n  font-size: 1.1em;\r\n  color: black;\r\n  font-weight: bold;\r\n  text-shadow: 0px 0px white;\r\n  float: left;\r\n}\r\n\r\n.follow_button {\r\n  display: inline-block;\r\n  background-color: black;\r\n  color: white;\r\n  border-radius: 6px;\r\n  width: 130px;\r\n  height: 30px;\r\n  float: right;\r\n  margin-top: 14px;\r\n}\r\n\r\n.unfollow_button {\r\n  display: inline-block;\r\n  background-color: black;\r\n  color: white;\r\n  border-radius: 6px;\r\n  width: 130px;\r\n  height: 30px;\r\n  float: right;\r\n  margin-top: 14px;\r\n}\r\n\r\n.nb_followers {\r\n  display: inline-block;\r\n  font-weight: bold;\r\n  float: none;\r\n}\r\n\r\n.appfeed {\r\n  margin-top: 50px;\r\n}\r\n\r\n.usernotfound {\r\n  margin-top: 20px;\r\n  margin-left: 525px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUNBO0VBQ0UsYUFBYTtFQUNiLGVBQWU7RUFDZixzQkFBc0I7RUFDdEIsVUFBVTtFQUNWLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLFVBQVU7RUFDVixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixlQUFlO0VBQ2Ysc0JBQXNCO0VBQ3RCLGlCQUFpQjtFQUNqQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZ0JBQWdCO0FBQ2xCOztBQUNBO0VBQ0UsVUFBVTtFQUNWLGdCQUFnQjtFQUNoQixpQkFBaUI7QUFDbkI7O0FBQ0E7RUFDRSxZQUFZO0VBQ1osWUFBWTtFQUNaLHFCQUFxQjtFQUNyQixRQUFRO0VBQ1Isa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCx3Q0FBd0M7RUFDeEMsY0FBYztFQUNkLFVBQVU7RUFDVix5QkFBeUI7RUFDekIsa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0UscUJBQXFCO0VBQ3JCLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osaUJBQWlCO0VBQ2pCLDBCQUEwQjtFQUMxQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsdUJBQXVCO0VBQ3ZCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLFlBQVk7RUFDWixZQUFZO0VBQ1osZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixZQUFZO0VBQ1osWUFBWTtFQUNaLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLHFCQUFxQjtFQUNyQixpQkFBaUI7RUFDakIsV0FBVztBQUNiOztBQUVBO0VBQ0UsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQiIsImZpbGUiOiJzcmMvYXBwL3NlYXJjaC9zZWFyY2guY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG4gIGZvbnQtZmFtaWx5OiBBcmlhbDtcclxufVxyXG5cclxuKiB7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG4uZXhhbXBsZSBpbnB1dFt0eXBlPXRleHRdIHtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGZvbnQtc2l6ZTogMTdweDtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmV5O1xyXG4gIHdpZHRoOiA4MCU7XHJcbiAgYmFja2dyb3VuZDogd2hpdGU7XHJcbn1cclxuXHJcbi5leGFtcGxlIGJ1dHRvbiB7XHJcbiAgd2lkdGg6IDIwJTtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGJhY2tncm91bmQ6ICNiZjAwZmY7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGZvbnQtc2l6ZTogMTdweDtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmV5O1xyXG4gIGJvcmRlci1sZWZ0OiBub25lO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmV4YW1wbGUgYnV0dG9uOmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kOiBncmV5O1xyXG59XHJcbi5mb2xsb3dfdW5mb2xsb3cge1xyXG4gIHotaW5kZXg6IDk7XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxuICBtYXJnaW4tbGVmdDogMzBweDtcclxufVxyXG4uZm9sbG93X2RpdiB7XHJcbiAgd2lkdGg6IDkwMHB4O1xyXG4gIGhlaWdodDogNzBweDtcclxuICBiYWNrZ3JvdW5kOiBsaWdodGdyYXk7XHJcbiAgdG9wOiAxcHg7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIG1hcmdpbjogMCBhdXRvO1xyXG4gIGZvbnQtZmFtaWx5OiAnQWxmYSBTbGFiIE9uZScsIHNhbnMtc2VyaWY7XHJcbiAgZm9udC1zaXplOiAxZW07XHJcbiAgei1pbmRleDogNjtcclxuICBib3JkZXI6IDRweCBzb2xpZCAjYmYwMGZmO1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBjb2xvcjogYmxhY2s7XHJcbiAgdGV4dC1zaGFkb3c6IG5vbmU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbi51c2VybmFtZSB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIGZvbnQtc2l6ZTogMS4xZW07XHJcbiAgY29sb3I6IGJsYWNrO1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gIHRleHQtc2hhZG93OiAwcHggMHB4IHdoaXRlO1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG59XHJcblxyXG4uZm9sbG93X2J1dHRvbiB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBib3JkZXItcmFkaXVzOiA2cHg7XHJcbiAgd2lkdGg6IDEzMHB4O1xyXG4gIGhlaWdodDogMzBweDtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbWFyZ2luLXRvcDogMTRweDtcclxufVxyXG5cclxuLnVuZm9sbG93X2J1dHRvbiB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBib3JkZXItcmFkaXVzOiA2cHg7XHJcbiAgd2lkdGg6IDEzMHB4O1xyXG4gIGhlaWdodDogMzBweDtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbWFyZ2luLXRvcDogMTRweDtcclxufVxyXG5cclxuLm5iX2ZvbGxvd2VycyB7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gIGZsb2F0OiBub25lO1xyXG59XHJcblxyXG4uYXBwZmVlZCB7XHJcbiAgbWFyZ2luLXRvcDogNTBweDtcclxufVxyXG5cclxuLnVzZXJub3Rmb3VuZCB7XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxuICBtYXJnaW4tbGVmdDogNTI1cHg7XHJcbn1cclxuIl19 */");
 
 /***/ }),
 
@@ -1026,10 +1480,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchComponent", function() { return SearchComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _service_user_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/user-service.service */ "./src/app/service/user-service.service.ts");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/user.service */ "./src/app/service/user.service.ts");
 /* harmony import */ var _FindUserInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FindUserInput */ "./src/app/search/FindUserInput.ts");
-/* harmony import */ var _CheckUsernameInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CheckUsernameInput */ "./src/app/search/CheckUsernameInput.ts");
-/* harmony import */ var _GetUserFollowersInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./GetUserFollowersInput */ "./src/app/search/GetUserFollowersInput.ts");
+/* harmony import */ var _GetUserFollowersInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./GetUserFollowersInput */ "./src/app/search/GetUserFollowersInput.ts");
+/* harmony import */ var _FollowInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FollowInput */ "./src/app/search/FollowInput.ts");
+/* harmony import */ var _CheckFollowedInut__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CheckFollowedInut */ "./src/app/search/CheckFollowedInut.ts");
+/* harmony import */ var _UnfollowInput__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./UnfollowInput */ "./src/app/search/UnfollowInput.ts");
+
+
 
 
 
@@ -1039,59 +1497,96 @@ __webpack_require__.r(__webpack_exports__);
 let SearchComponent = class SearchComponent {
     constructor(userService) {
         this.userService = userService;
-        this.buttonActif = true;
+        this.followButtonEnabled = true;
+        this.unfollowButtonEnabled = true;
+        this.searchButtonEnabled = true;
         this.username = null;
+        this.userExists = false;
+        this.iFollowHim = false;
         this.output = {
-            username: '',
+            username: null,
+            errorMessage: null,
             countOfFollowers: null
         };
     }
     ngOnInit() {
+        var thiObj = this;
+        setInterval(function () {
+            if (thiObj.userExists) {
+                thiObj.getNbOfFollowers();
+            }
+        }, 2000);
     }
     findUserAndNbOfFollowers() {
-        console.log(this.output.username);
-        this.callCheckUsernameExists();
-        this.getNbOfFollowers();
+        this.findUser();
     }
     getNbOfFollowers() {
-        if (this.output.username !== "Unexistant Username!" && this.output.username != null) {
-            this.userService.getUserFollowers(new _GetUserFollowersInput__WEBPACK_IMPORTED_MODULE_5__["GetUserFollowersInput"](localStorage.getItem(this.output.username))).subscribe(response => this.doCountFollowersSuccessful(response), error => this.doCountFollowersUnssuccessful(error));
-        }
+        this.userService.getUserFollowers(new _GetUserFollowersInput__WEBPACK_IMPORTED_MODULE_4__["GetUserFollowersInput"](this.output.username)).subscribe(response => this.doAfterNbrFollowersOk(response), error => this.doAfterNbrFollowersKo(error));
     }
-    callFindUser() {
-        this.userService.findUser(new _FindUserInput__WEBPACK_IMPORTED_MODULE_3__["FindUserInput"](localStorage.getItem(this.output.username), this.username, localStorage.getItem("token"))).subscribe(response => this.doOnSearchSuccessful(response), error => this.doOnSearchUnsuccessful(error));
+    findUser() {
+        this.searchButtonEnabled = false;
+        this.userService.findUser(new _FindUserInput__WEBPACK_IMPORTED_MODULE_3__["FindUserInput"](localStorage.getItem("username"), localStorage.getItem("token"), this.username)).subscribe(response => this.doAfterUserFound(response), error => this.doAfterUserNotFound(error));
     }
-    callCheckUsernameExists() {
-        this.userService.checkUsername(new _CheckUsernameInput__WEBPACK_IMPORTED_MODULE_4__["CheckUsernameInput"](this.username)).subscribe(response => this.doCheckUsernameExits(response), error => this.doCheckUsernameExists(error));
-    }
-    doOnSearchSuccessful(response) {
+    doAfterUserFound(response) {
+        this.userExists = true;
+        this.output.errorMessage = null;
         this.output.username = response.userEntity.username;
+        this.searchButtonEnabled = true;
+        this.checkIfFollowed();
+        this.getNbOfFollowers();
     }
-    doOnSearchUnsuccessful(error) {
-        this.output.username = "An error occured!";
+    doAfterUserNotFound(error) {
+        this.searchButtonEnabled = true;
+        this.userExists = false;
+        this.output.errorMessage = "User not found!";
     }
-    doCheckUsernameExits(response) {
-        if (response.exists === null || response.exists === false) {
-            this.output.username = "Unexistant Username!";
-        }
-        else {
-            this.callFindUser();
-        }
-    }
-    doCheckUsernameExists(error) {
-        this.output.username = "An error occured!";
-    }
-    doCountFollowersSuccessful(response) {
-        console.log(this.output.countOfFollowers);
+    doAfterNbrFollowersOk(response) {
         this.output.countOfFollowers = response.nbOfFollowers;
     }
-    doCountFollowersUnssuccessful(error) {
-        console.log(this.output.countOfFollowers);
-        this.output.countOfFollowers = "An error occured!";
+    doAfterNbrFollowersKo(error) {
+        // TODO
+    }
+    checkIfFollowed() {
+        this.searchButtonEnabled = false;
+        this.userService.checkUsernameIsFollowed(new _CheckFollowedInut__WEBPACK_IMPORTED_MODULE_6__["CheckFollowedInut"](localStorage.getItem('username'), this.output.username, localStorage.getItem('token'))).subscribe(response => this.doCheckFollowedSuccessful(response), error => this.doCheckFollowedUnsuccessful(error));
+    }
+    follow() {
+        this.followButtonEnabled = false;
+        this.userService.followUser(new _FollowInput__WEBPACK_IMPORTED_MODULE_5__["FollowInput"](localStorage.getItem('username'), localStorage.getItem('token'), this.output.username)).subscribe(response => this.doFollowSuccessful(response), error => this.doFollowUnsuccessful(error));
+    }
+    unfollow() {
+        this.unfollowButtonEnabled = false;
+        this.userService.unfollow(new _UnfollowInput__WEBPACK_IMPORTED_MODULE_7__["UnfollowInput"](localStorage.getItem("username"), localStorage.getItem("token"), this.output.username)).subscribe(response => this.doUnFollowSuccessful(response), error => this.UnFollowUnsuccessful(error));
+    }
+    doCheckFollowedSuccessful(response) {
+        this.searchButtonEnabled = true;
+        this.iFollowHim = response.followed;
+    }
+    doCheckFollowedUnsuccessful(error) {
+        this.searchButtonEnabled = true;
+        // TODO
+    }
+    doFollowSuccessful(response) {
+        this.followButtonEnabled = true;
+        this.iFollowHim = true;
+    }
+    doFollowUnsuccessful(error) {
+        this.followButtonEnabled = true;
+        // TODO
+    }
+    doUnFollowSuccessful(response) {
+        this.unfollowButtonEnabled = true;
+        if (response.deleted === 1) {
+            this.iFollowHim = false;
+        }
+    }
+    UnFollowUnsuccessful(error) {
+        this.unfollowButtonEnabled = true;
+        // TODO
     }
 };
 SearchComponent.ctorParameters = () => [
-    { type: _service_user_service_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] }
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] }
 ];
 SearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1105,10 +1600,10 @@ SearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/service/user-service.service.ts":
-/*!*************************************************!*\
+/***/ "./src/app/service/user.service.ts":
+/*!*****************************************!*\
   !*** ./src/app/service/user.service.ts ***!
-  \*************************************************/
+  \*****************************************/
 /*! exports provided: UserService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1118,6 +1613,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _feed_GetLastPostsInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../feed/GetLastPostsInput */ "./src/app/feed/GetLastPostsInput.ts");
+/* harmony import */ var _disconnect_DisconnectInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../disconnect/DisconnectInput */ "./src/app/disconnect/DisconnectInput.ts");
+/* harmony import */ var _onepost_LikePostInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../onepost/LikePostInput */ "./src/app/onepost/LikePostInput.ts");
+/* harmony import */ var _onepost_DislikePostInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../onepost/DislikePostInput */ "./src/app/onepost/DislikePostInput.ts");
+/* harmony import */ var _onepost_CheckLikePostInput__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../onepost/CheckLikePostInput */ "./src/app/onepost/CheckLikePostInput.ts");
+/* harmony import */ var _onepost_CountLikePostInput__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../onepost/CountLikePostInput */ "./src/app/onepost/CountLikePostInput.ts");
+
+
+
+
+
+
 
 
 
@@ -1127,8 +1634,17 @@ let UserService = class UserService {
         this.registerUserUrl = "/user/create";
         this.connectUserUrl = "/user/connect";
         this.findUserUrl = "/user/find";
-        this.checkUsernameExists = "/user/username/check";
+        this.getLastPostsUrl = "/post/get";
         this.getFolllowers = "/follower/count";
+        this.follow = "/follower/add";
+        this.checkFollower = "/follower/check";
+        this.unfollowUser = "/follower/delete";
+        this.disconnectUser = "/user/disconnect";
+        this.addpost = "post/add";
+        this.likePostUrl = "like/add";
+        this.dislikePostUrl = "like/delete";
+        this.checkLikePostUrl = "like/check";
+        this.countLikesUrl = "like/count";
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
                 'Content-Type': 'application/json'
@@ -1138,17 +1654,44 @@ let UserService = class UserService {
     registerUser(body) {
         return this.httpClient.post(this.registerUserUrl, body, this.httpOptions);
     }
+    addPost(body) {
+        return this.httpClient.post(this.addpost, body, this.httpOptions);
+    }
+    getLastPosts() {
+        return this.httpClient.post(this.getLastPostsUrl, new _feed_GetLastPostsInput__WEBPACK_IMPORTED_MODULE_3__["GetLastPostsInput"](localStorage.getItem('username'), localStorage.getItem('token')), this.httpOptions);
+    }
+    countLikes(uniqueIdentifier) {
+        return this.httpClient.post(this.countLikesUrl, new _onepost_CountLikePostInput__WEBPACK_IMPORTED_MODULE_8__["CountLikePostInput"](uniqueIdentifier), this.httpOptions);
+    }
+    checkLike(uniqueIdentifier) {
+        return this.httpClient.post(this.checkLikePostUrl, new _onepost_CheckLikePostInput__WEBPACK_IMPORTED_MODULE_7__["CheckLikePostInput"](localStorage.getItem('username'), localStorage.getItem('token'), uniqueIdentifier), this.httpOptions);
+    }
+    likePost(uniqueIdentifier) {
+        return this.httpClient.post(this.likePostUrl, new _onepost_LikePostInput__WEBPACK_IMPORTED_MODULE_5__["LikePostInput"](localStorage.getItem('username'), localStorage.getItem('token'), uniqueIdentifier), this.httpOptions);
+    }
+    dislikePost(uniqueIdentifier) {
+        return this.httpClient.post(this.dislikePostUrl, new _onepost_DislikePostInput__WEBPACK_IMPORTED_MODULE_6__["DislikePostInput"](localStorage.getItem('username'), localStorage.getItem('token'), uniqueIdentifier), this.httpOptions);
+    }
+    disconnect() {
+        return this.httpClient.post(this.disconnectUser, new _disconnect_DisconnectInput__WEBPACK_IMPORTED_MODULE_4__["DisconnectInput"](localStorage.getItem('username'), localStorage.getItem('token')), this.httpOptions);
+    }
     connectUser(body) {
         return this.httpClient.post(this.connectUserUrl, body, this.httpOptions);
     }
     findUser(body) {
         return this.httpClient.post(this.findUserUrl, body, this.httpOptions);
     }
-    checkUsername(body) {
-        return this.httpClient.post(this.checkUsernameExists, body, this.httpOptions);
-    }
     getUserFollowers(body) {
         return this.httpClient.post(this.getFolllowers, body, this.httpOptions);
+    }
+    followUser(body) {
+        return this.httpClient.post(this.follow, body, this.httpOptions);
+    }
+    checkUsernameIsFollowed(body) {
+        return this.httpClient.post(this.checkFollower, body, this.httpOptions);
+    }
+    unfollow(body) {
+        return this.httpClient.post(this.unfollowUser, body, this.httpOptions);
     }
 };
 UserService.ctorParameters = () => [
@@ -1227,7 +1770,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\aya\Documents\gitHub_Repos\tiny_instagramF\tiny_insta\src\main\resources\front-end\tiny-insta-angular-app\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Dev\aya\insta\tiny_insta\src\main\resources\front-end\tiny-insta-angular-app\src\main.ts */"./src/main.ts");
 
 
 /***/ })

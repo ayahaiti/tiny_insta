@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {AddPostInput} from "./AddPostInput";
 
@@ -9,17 +9,17 @@ import {AddPostInput} from "./AddPostInput";
 })
 export class AddPostComponent implements OnInit {
 
-  uploadedImage: string = null;
+  uploadedImage: string= null;
 
   quote: string = null;
-
+  errorMessage: string = null;
 
   constructor(private userService:UserService) { }
 
   ngOnInit() {
   }
 
-  addpost() {
+  sendPost() {
     this.userService.addPost(new AddPostInput(
       this.uploadedImage,
       localStorage.getItem('username'),
@@ -33,4 +33,27 @@ export class AddPostComponent implements OnInit {
 
   private doAddPostUnsuccessful() {
   }
+
+  onFileChange(event) {
+  const reader = new FileReader();
+
+  if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      let result = null;
+      reader.onload = () => {
+        result = reader.result;
+        this.uploadedImage = result.toString();
+        console.log(result.toString());
+        if(this.uploadedImage.startsWith("data:image/jpeg;")){
+          this.errorMessage = null;
+        }
+        else{
+          this.errorMessage = "File type not accepted, please upload JPEG only !";
+        }
+      };
+    }
+  }
+
+
 }
