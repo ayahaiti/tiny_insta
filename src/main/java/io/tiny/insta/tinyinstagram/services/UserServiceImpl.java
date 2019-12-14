@@ -1,6 +1,7 @@
 package io.tiny.insta.tinyinstagram.services;
 
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameExistsException;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
 import io.tiny.insta.tinyinstagram.services.io_user.*;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(CreateUserServiceInput createUserServiceInput) throws Exception {
+    public void createUser(CreateUserServiceInput createUserServiceInput) throws UsernameExistsException {
         UserEntity repositoryInput = new UserEntity(
                 createUserServiceInput.getUsername(),
                 createUserServiceInput.getPassword(),
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
             userRepository.save(repositoryInput);
         }
         else{
-            throw new Exception();
+            throw new UsernameExistsException();
         }
     }
 
