@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 
+declare var $: any;
+
 @Component({
   selector: 'app-disconnect',
   templateUrl: './disconnect.component.html',
@@ -15,6 +17,7 @@ export class DisconnectComponent implements OnInit {
   }
 
   disconnectUser() {
+    $('#myModal').modal('show');
     this.userService.disconnect().subscribe(
       response => this.disconnectSuccessful(response),
       error => this.disconnectUnsuccessful(error)
@@ -22,10 +25,12 @@ export class DisconnectComponent implements OnInit {
   }
 
   private disconnectUnsuccessful(response: any) {
+    $('#myModal').modal('hide');
     // TODO
   }
 
   private disconnectSuccessful(error: any) {
+    $('#myModal').modal('hide');
     localStorage.removeItem('username');
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');

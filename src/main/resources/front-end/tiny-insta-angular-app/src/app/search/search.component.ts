@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {FindUserInput} from "./FindUserInput";
 import {GetUserFollowersInput} from "./GetUserFollowersInput";
 import {FollowInput} from "./FollowInput";
 import {CheckFollowedInut} from "./CheckFollowedInut";
 import {UnfollowInput} from "./UnfollowInput";
+
+declare var $: any;
 
 @Component({
   selector: 'app-search',
@@ -52,6 +54,7 @@ export class SearchComponent implements OnInit{
   }
 
   findUser() {
+    $('#myModal').modal('show');
     this.searchButtonEnabled = false;
     this.userService.findUser( new FindUserInput(
       localStorage.getItem("username"), localStorage.getItem("token"), this.username
@@ -68,6 +71,7 @@ export class SearchComponent implements OnInit{
   }
 
   private doAfterUserNotFound(error: any) {
+    $('#myModal').modal('hide');
     this.searchButtonEnabled = true;
     this.userExists = false;
     this.output.errorMessage = "User not found!";
@@ -92,6 +96,7 @@ export class SearchComponent implements OnInit{
   }
 
   follow() {
+    $('#myModal').modal('show');
     this.followButtonEnabled = false;
     this.userService.followUser( new FollowInput(
       localStorage.getItem('username'),
@@ -101,6 +106,7 @@ export class SearchComponent implements OnInit{
   }
 
   unfollow() {
+    $('#myModal').modal('show');
     this.unfollowButtonEnabled = false;
     this.userService.unfollow( new UnfollowInput(
       localStorage.getItem("username"),
@@ -111,33 +117,45 @@ export class SearchComponent implements OnInit{
   }
 
   private doCheckFollowedSuccessful(response: any) {
+    $('#myModal').modal('hide');
     this.searchButtonEnabled = true;
     this.iFollowHim = response.followed;
   }
 
   private doCheckFollowedUnsuccessful(error: any) {
+    $('#myModal').modal('hide');
     this.searchButtonEnabled = true;
     // TODO
   }
 
   private doFollowSuccessful(response: any) {
+    $('#myModal').modal('hide');
     this.followButtonEnabled = true;
     this.iFollowHim = true;
+    if(this.output.countOfFollowers!=null){
+      this.output.countOfFollowers++;
+    }
   }
 
   private doFollowUnsuccessful(error: any) {
+    $('#myModal').modal('hide');
     this.followButtonEnabled = true;
     // TODO
   }
 
   private doUnFollowSuccessful(response: any) {
-    this.unfollowButtonEnabled = true;
+    $('#myModal').modal('hide');
     if (response.deleted === 1) {
+      this.unfollowButtonEnabled = true;
       this.iFollowHim = false;
+      if(this.output.countOfFollowers!=null){
+        this.output.countOfFollowers--;
+      }
     }
   }
 
   private UnFollowUnsuccessful(error: any) {
+    $('#myModal').modal('hide');
     this.unfollowButtonEnabled = true;
     // TODO
   }

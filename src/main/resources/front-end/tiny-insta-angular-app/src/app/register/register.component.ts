@@ -3,6 +3,8 @@ import {RegisterFormInput} from "./RegisterFormInput";
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 
+declare var $: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -45,19 +47,30 @@ export class RegisterComponent {
   }
 
   onUserRegistrationSucceded(){
+    $('#myModal').modal('hide');
     this.buttonActif = true;
     this.router.navigateByUrl('/login');
   }
 
   onUserRegistrationFailed(){
+    $('#myModal').modal('hide');
     this.buttonActif = true;
     // TODO show error message
   }
 
   onUserRegisterButtonClicked(){
-    this.buttonActif = false;
-    this.userService.registerUser(this.inputForm).subscribe(response => this.onUserRegistrationSucceded(),
-      error => this.onUserRegistrationFailed());
+    if(this.inputForm.username=="" || this.inputForm.username==null ||
+      this.inputForm.password=="" || this.inputForm.password==null ||
+      this.inputForm.email=="" || this.inputForm.email==null){
+      // TODO show error
+    }
+    else{
+      this.buttonActif = false;
+      $('#myModal').modal('show');
+      this.userService.registerUser(this.inputForm).subscribe(response => this.onUserRegistrationSucceded(),
+        error => this.onUserRegistrationFailed());
+    }
+
   }
 
   goToLogin() {

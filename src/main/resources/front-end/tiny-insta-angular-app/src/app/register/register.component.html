@@ -2,8 +2,9 @@
 <h2>Register</h2>
 <form>
   <div class="container">
+    <p>Spaces will be ignored and removed from the value before requesting the server !</p>
     <label> <b>Email</b></label>
-    <input type="text" placeholder="Enter email" (ngModelChange)="onEmailChanged($event)" [(ngModel)]="email" name="email" required>
+    <input type="text" placeholder="Enter email" (ngModelChange)="onEmailChanged($event)" [(ngModel)]="email" name="email" value="email" required>
 
     <label><b>Username</b></label>
     <input type="text" placeholder="Enter Username" (ngModelChange)="onUsernameChanged($event)" [(ngModel)]="username" name="uname" required>
@@ -19,3 +20,16 @@
     <span class="login">You already have an account? <a href="" (click)="goToLogin()">Login</a></span>
   </div>
 </form>
+
+
+<div class="modal" id="myModal"
+     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">We are executing your request, please wait ...</h5>
+      </div>
+    </div>
+  </div>
+</div>

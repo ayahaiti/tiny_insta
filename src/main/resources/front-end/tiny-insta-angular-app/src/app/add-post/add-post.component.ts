@@ -2,6 +2,8 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {AddPostInput} from "./AddPostInput";
 
+declare var $: any;
+
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
@@ -26,6 +28,7 @@ export class AddPostComponent implements OnInit {
   }
 
   sendPost() {
+    $('#myModal').modal('show');
     this.userService.addPost(new AddPostInput(
       this.uploadedImage,
       localStorage.getItem('username'),
@@ -35,6 +38,7 @@ export class AddPostComponent implements OnInit {
   }
 
   private doAddPostSuccessful() {
+    $('#myModal').modal('hide');
     this.quote = null;
     this.inputFile.nativeElement.value = "";
     this.uploadedImage = null;
@@ -45,6 +49,7 @@ export class AddPostComponent implements OnInit {
   }
 
   private doAddPostUnsuccessful() {
+    $('#myModal').modal('hide');
   }
 
   onFileChange(event) {
@@ -52,7 +57,7 @@ export class AddPostComponent implements OnInit {
 
     const size = event.srcElement.files[0].size;
     console.log(size);
-    if (size < 1000) {
+    if (size < 1024) {
       this.size = size;
       this.unit = "bytes";
     } else if (size < 1000*1000) {

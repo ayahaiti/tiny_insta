@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Post} from "../feed/Post";
 import {UserService} from "../service/user.service";
 
+declare var $: any;
+
 @Component({
   selector: 'app-onepost',
   templateUrl: './onepost.component.html',
@@ -10,8 +12,9 @@ import {UserService} from "../service/user.service";
 export class OnepostComponent implements OnInit {
 
   @Input() input: Post;
-  liked: string = 'grey';
-  nbrOfLikes: number = 0;
+  postAction: string = "like";
+  liked: boolean = false;
+  nbrOfLikes: number = null;
 
   constructor(private userService: UserService) { }
 
@@ -25,9 +28,10 @@ export class OnepostComponent implements OnInit {
   }
 
   likePost() {
-    if(this.liked === 'grey') {
+    $('#myModal').modal('show');
+    if(this.postAction === "like") {
       this.userService.likePost(this.input.id).subscribe(
-        response => this.doOnLikeOk(),
+        response => this.doOnLikeOk(response),
         error => this.doOnLikeKo(error)
       );
     } else {
@@ -35,39 +39,55 @@ export class OnepostComponent implements OnInit {
         response => this.doOnDislikeOk(),
         error => this.doOnDislikeKo(error)
       );
-      this.liked = 'grey';
+      this.postAction = "like";
+      this.liked = false;
     }
   }
-  doOnLikeOk(){
-    this.scroll(document.getElementById(this.input.id));
-    this.liked = 'red';
+  doOnLikeOk(response){
+    $('#myModal').modal('hide');
+    this.postAction = "dislike";
+    if(this.nbrOfLikes!=null){
+      this.nbrOfLikes++;
+    }
+    this.liked = true;
   }
   doOnLikeKo(error){
+    $('#myModal').modal('hide');
     // TODO show error
   }
   doOnDislikeOk() {
-    this.scroll(document.getElementById(this.input.id));
-    this.liked = 'grey';
+    $('#myModal').modal('hide');
+    if(this.nbrOfLikes!=null){
+      this.nbrOfLikes--;
+    }
+    this.postAction = "like";
+    this.liked = false;
   }
   doOnDislikeKo(error) {
+    $('#myModal').modal('hide');
     // TODO show error
   }
 
   checkIfLiked(){
+    $('#myModal').modal('show');
     this.userService.checkLike(this.input.id).subscribe(
       response => this.doOnCheckLikeOk(response),
       error => this.doOnCheckLikeKo(error)
     );
   }
   doOnCheckLikeOk(response){
+    $('#myModal').modal('hide');
     if(response.liked){
-      this.liked = 'red';
+      this.postAction = "dislike";
+      this.liked = true;
     }
     else{
-      this.liked = 'grey';
+      this.postAction = "like";
+      this.liked = false;
     }
   }
   doOnCheckLikeKo(error){
+    $('#myModal').modal('hide');
     // TODO show error
   }
 

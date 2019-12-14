@@ -24,9 +24,19 @@
         <p class="nb_likes">likes count : {{nbrOfLikes}}</p>
         <p>{{input.quote}}</p>
 
-        <label for="toggle-heart" (click)="likePost()" [ngStyle]="{color: (liked)}">❤</label>
-        <input id="toggle-heart" type="checkbox" />
-        <hr>
+        <button style="width: 100px" [ngClass]="{ 'btn-danger' : liked,  'btn':true, 'btn-primary': !liked }" class="btn-primary" (click)="likePost()">{{postAction}}</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="myModal"
+     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">We are executing your request, please wait ...</h5>
+      </div>
     </div>
   </div>
 </div>
