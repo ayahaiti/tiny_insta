@@ -4,7 +4,7 @@ import io.tiny.insta.tinyinstagram.entities.UserEntity;
 
 public class FindUserServiceOutput {
 
-    UserEntity userEntity;
+    private UserEntity userEntity;
 
     public FindUserServiceOutput() {
     }
@@ -20,4 +20,5 @@ public class FindUserServiceOutput {
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
+
 }

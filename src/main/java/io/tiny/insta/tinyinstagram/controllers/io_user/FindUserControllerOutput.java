@@ -6,12 +6,15 @@ public class FindUserControllerOutput {
 
     private UserEntity userEntity;
 
+    private String error;
+
     public FindUserControllerOutput() {
     }
 
-    public FindUserControllerOutput(UserEntity userEntity) {
+    public FindUserControllerOutput(UserEntity userEntity, String error) {
         this.userEntity = new UserEntity();
         this.userEntity = userEntity;
+        this.error = error;
     }
 
     public UserEntity getUserEntity() {
@@ -22,5 +25,13 @@ public class FindUserControllerOutput {
         this.userEntity = userEntity;
         this.userEntity.setPassword(null);
         this.userEntity.setToken(null);
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

@@ -2,15 +2,17 @@ package io.tiny.insta.tinyinstagram.controllers.io_user;
 
 public class ConnectUserControllerOutput {
 
-    String username;
-    String token;
+    private String username;
+    private String token;
+    private String error;
 
     public ConnectUserControllerOutput() {
     }
 
-    public ConnectUserControllerOutput(String username, String token) {
+    public ConnectUserControllerOutput(String username, String token, String error) {
         this.username = username;
         this.token = token;
+        this.error = error;
     }
 
     public String getUsername() {
@@ -27,5 +29,13 @@ public class ConnectUserControllerOutput {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

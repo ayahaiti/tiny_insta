@@ -2,6 +2,8 @@ package io.tiny.insta.tinyinstagram.services;
 
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameExistsException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrPasswordKoException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
 import io.tiny.insta.tinyinstagram.services.io_user.*;
 import org.springframework.stereotype.Service;
@@ -60,7 +62,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput) {
+    public FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput) throws UsernameOrTokenKoException {
         FindUserServiceOutput findUserServiceOutput = new FindUserServiceOutput();
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(findUserServiceInput.getUsername(),
                 findUserServiceInput.getToken());
@@ -70,21 +72,25 @@ public class UserServiceImpl implements UserService {
                 findUserServiceOutput.setUserEntity(userEntityToFind.get(0));
             }
         }
+        else{
+            throw new UsernameOrTokenKoException();
+        }
         return findUserServiceOutput;
     }
 
     @Override
-    public ConnectUserServiceOutput connectUser(ConnectUserServiceInput connectUserServiceInput) {
+    public ConnectUserServiceOutput connectUser(ConnectUserServiceInput connectUserServiceInput) throws UsernameOrPasswordKoException {
         List<UserEntity> userEntity = userRepository.findByUsernameAndPassword(connectUserServiceInput.getUsername(),
                 connectUserServiceInput.getPassword());
         ConnectUserServiceOutput responseOutput = null;
         String tokenGenerated = generateToken();
         if(userEntity!=null && userEntity.size()==1){
-            if(userEntity.get(0).getToken() == null){
-                userEntity.get(0).setToken(tokenGenerated);
-            }
+            userEntity.get(0).setToken(tokenGenerated);
             userRepository.save(userEntity.get(0));
             responseOutput = new ConnectUserServiceOutput(userEntity.get(0).getUsername(), userEntity.get(0).getToken());
+        }
+        else{
+            throw new UsernameOrPasswordKoException();
         }
         return responseOutput;
     }

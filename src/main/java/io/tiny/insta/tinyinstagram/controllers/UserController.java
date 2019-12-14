@@ -2,6 +2,8 @@ package io.tiny.insta.tinyinstagram.controllers;
 
 import io.tiny.insta.tinyinstagram.controllers.io_user.*;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameExistsException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrPasswordKoException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.services.UserService;
 import io.tiny.insta.tinyinstagram.services.io_user.*;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +23,19 @@ public class UserController {
             produces = "application/json",
             path = "/create"
     )
-    public void createUser(@RequestBody CreateUserControllerInput createUserControllerInput) throws UsernameExistsException {
+    public @ResponseBody CreateUserControllerOutput createUser(@RequestBody CreateUserControllerInput createUserControllerInput) {
         CreateUserServiceInput serviceInput = new CreateUserServiceInput(
 
                 createUserControllerInput.getUsername(),
                 createUserControllerInput.getEmail(),
                 createUserControllerInput.getPassword());
-
-        userService.createUser(serviceInput);
+        try{
+            userService.createUser(serviceInput);
+            return new CreateUserControllerOutput(null);
+        }
+        catch (UsernameExistsException ex){
+            return new CreateUserControllerOutput("username_used");
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST,
@@ -40,10 +47,21 @@ public class UserController {
         ConnectUserServiceInput serviceInput = new ConnectUserServiceInput(
                 connectUserControllerInput.getUsername(),
                 connectUserControllerInput.getPassword());
-        ConnectUserServiceOutput connectUserServiceOutput = userService.connectUser(serviceInput);
-        ConnectUserControllerOutput connectUserControllerOutput = new ConnectUserControllerOutput(connectUserServiceOutput.getUsername()
-                                                                    ,connectUserServiceOutput.getToken());
-        return connectUserControllerOutput;
+        ConnectUserServiceOutput connectUserServiceOutput = null;
+        try {
+            connectUserServiceOutput = userService.connectUser(serviceInput);
+        } catch (UsernameOrPasswordKoException e) {
+            return new ConnectUserControllerOutput(
+                    null,
+                    null,
+                    "username_password_ko"
+            );
+        }
+        return new ConnectUserControllerOutput(
+                connectUserServiceOutput.getUsername(),
+                connectUserServiceOutput.getToken(),
+                null
+        );
     }
 
     @RequestMapping(method = RequestMethod.POST,
@@ -91,9 +109,16 @@ public class UserController {
                 findUserControllerInput.getUsername(),
                 findUserControllerInput.getToken()
         );
-        FindUserServiceOutput findUserServiceOutput = userService.findUser(findUserServiceInput);
-        findUserControllerOutput.setUserEntity(findUserServiceOutput.getUserEntity());
-        return findUserControllerOutput;
+        FindUserServiceOutput findUserServiceOutput = null;
+        try {
+            findUserServiceOutput = userService.findUser(findUserServiceInput);
+            findUserControllerOutput.setUserEntity(findUserServiceOutput.getUserEntity());
+            findUserControllerOutput.setError(null);
+            return findUserControllerOutput;
+        } catch (UsernameOrTokenKoException e) {
+            findUserControllerOutput.setError("username_token_ko");
+            return findUserControllerOutput;
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST,

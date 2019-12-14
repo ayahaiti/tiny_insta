@@ -46,29 +46,35 @@ export class RegisterComponent {
     this.inputForm.password = this.password;
   }
 
-  onUserRegistrationSucceded(){
+  onUserRegistrationSucceded(response){
     $('#myModal').modal('hide');
-    this.buttonActif = true;
-    this.router.navigateByUrl('/login');
+    if(response.error == "username_used"){
+      // TODO show error notification : username already used
+      console.log("username used!");
+    }
+    else{
+      this.buttonActif = true;
+      this.router.navigateByUrl('/login');
+    }
   }
 
-  onUserRegistrationFailed(){
+  onUserRegistrationFailed(error){
     $('#myModal').modal('hide');
     this.buttonActif = true;
-    // TODO show error message
+    // TODO show error notification : unknown exception
   }
 
   onUserRegisterButtonClicked(){
     if(this.inputForm.username=="" || this.inputForm.username==null ||
       this.inputForm.password=="" || this.inputForm.password==null ||
       this.inputForm.email=="" || this.inputForm.email==null){
-      // TODO show error
+      // TODO show error notification : fill the form correctly - please be advised : the blanks are ignored
     }
     else{
       this.buttonActif = false;
       $('#myModal').modal('show');
-      this.userService.registerUser(this.inputForm).subscribe(response => this.onUserRegistrationSucceded(),
-        error => this.onUserRegistrationFailed());
+      this.userService.registerUser(this.inputForm).subscribe(response => this.onUserRegistrationSucceded(response),
+        error => this.onUserRegistrationFailed(error));
     }
 
   }
