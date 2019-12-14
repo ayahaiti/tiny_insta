@@ -1,6 +1,7 @@
 package io.tiny.insta.tinyinstagram.controllers;
 
 import io.tiny.insta.tinyinstagram.controllers.io_user.*;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameExistsException;
 import io.tiny.insta.tinyinstagram.services.UserService;
 import io.tiny.insta.tinyinstagram.services.io_user.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class UserController {
             produces = "application/json",
             path = "/create"
     )
-    public void createUser(@RequestBody CreateUserControllerInput createUserControllerInput) throws Exception {
+    public void createUser(@RequestBody CreateUserControllerInput createUserControllerInput) throws UsernameExistsException {
         CreateUserServiceInput serviceInput = new CreateUserServiceInput(
 
                 createUserControllerInput.getUsername(),
