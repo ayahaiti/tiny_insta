@@ -30,11 +30,11 @@ export class UserService {
   private checkFollower = "/follower/check";
   private unfollowUser = "/follower/delete";
   private disconnectUser = "/user/disconnect";
-  private addpost = "post/add";
-  private likePostUrl = "like/add";
-  private dislikePostUrl = "like/delete";
-  private checkLikePostUrl = "like/check";
-  private countLikesUrl = "like/count";
+  private addpost = "/post/add";
+  private likePostUrl = "/like/add";
+  private dislikePostUrl = "/like/delete";
+  private checkLikePostUrl = "/like/check";
+  private countLikesUrl = "/like/count";
 
   private httpOptions = {
     headers: new HttpHeaders({

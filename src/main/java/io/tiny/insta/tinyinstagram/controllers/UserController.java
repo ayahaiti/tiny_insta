@@ -1,6 +1,7 @@
 package io.tiny.insta.tinyinstagram.controllers;
 
 import io.tiny.insta.tinyinstagram.controllers.io_user.*;
+import io.tiny.insta.tinyinstagram.exceptions.UnknowUsernameException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameExistsException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameOrPasswordKoException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
@@ -117,6 +118,9 @@ public class UserController {
             return findUserControllerOutput;
         } catch (UsernameOrTokenKoException e) {
             findUserControllerOutput.setError("username_token_ko");
+            return findUserControllerOutput;
+        } catch (UnknowUsernameException e) {
+            findUserControllerOutput.setError("unknown_user");
             return findUserControllerOutput;
         }
     }

@@ -6,11 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TinyInstagramApplication {
 
-    // TODO show notifications https://www.npmjs.com/package/angular-notifier
-
     // TODO add exceptions : usernameAndTokenKO for the rest of ws
-    // TODO add exceptions : usernameAlreadyExists for user-create
-    // TODO add exceptions : usernameAndPasswordKO for user-connect + username&password ko
+    // TODO show notifications https://www.npmjs.com/package/angular-notifier
 
     // TODO reload feed every 5seconds => load only 6 last images
 

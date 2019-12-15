@@ -1,6 +1,7 @@
 package io.tiny.insta.tinyinstagram.services;
 
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
+import io.tiny.insta.tinyinstagram.exceptions.UnknowUsernameException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameExistsException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameOrPasswordKoException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput) throws UsernameOrTokenKoException {
+    public FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput) throws UsernameOrTokenKoException, UnknowUsernameException {
         FindUserServiceOutput findUserServiceOutput = new FindUserServiceOutput();
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(findUserServiceInput.getUsername(),
                 findUserServiceInput.getToken());
@@ -70,6 +71,9 @@ public class UserServiceImpl implements UserService {
         if( userEntity != null && userEntity.size() == 1 ) {
             if( userEntityToFind!=null && userEntityToFind.size()==1 ) {
                 findUserServiceOutput.setUserEntity(userEntityToFind.get(0));
+            }
+            else{
+                throw new UnknowUsernameException();
             }
         }
         else{

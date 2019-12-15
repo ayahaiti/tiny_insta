@@ -1,5 +1,6 @@
 package io.tiny.insta.tinyinstagram.controllers;
 import io.tiny.insta.tinyinstagram.controllers.io_post.*;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.services.PostService;
 import io.tiny.insta.tinyinstagram.services.io_post.*;
 import org.springframework.web.bind.annotation.*;
@@ -66,10 +67,22 @@ public class PostController {
                 getLastPostsControllerInput.getToken(),
                 getLastPostsControllerInput.getPage()
         );
-        GetLastPostsServiceOutput getLastPostsServiceOutput = postService.getSomePosts(getLastPostsServiceInput);
-        GetLastPostsControllerOutput getLastPostsControllerOutput = new GetLastPostsControllerOutput(
-                getLastPostsServiceOutput.getPostEntityList());
-        return getLastPostsControllerOutput;
+        GetLastPostsServiceOutput getLastPostsServiceOutput = null;
+        try {
+            getLastPostsServiceOutput = postService.getSomePosts(getLastPostsServiceInput);
+            GetLastPostsControllerOutput getLastPostsControllerOutput = new GetLastPostsControllerOutput(
+                    getLastPostsServiceOutput.getPostEntityList(),
+                    null
+            );
+            return getLastPostsControllerOutput;
+        } catch (UsernameOrTokenKoException e) {
+            GetLastPostsControllerOutput getLastPostsControllerOutput = new GetLastPostsControllerOutput(
+                    null,
+                    "username_token_ko"
+            );
+            return getLastPostsControllerOutput;
+        }
+
     }
 
 }

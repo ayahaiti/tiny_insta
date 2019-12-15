@@ -1,6 +1,8 @@
 package io.tiny.insta.tinyinstagram.controllers;
 
 import io.tiny.insta.tinyinstagram.controllers.io_followers.*;
+import io.tiny.insta.tinyinstagram.exceptions.MoreThanOneFollowException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.services.FollowService;
 import io.tiny.insta.tinyinstagram.services.io_followers.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +22,20 @@ public class FollowController {
             produces = "application/json",
             path = "/add"
     )
-    public void follow(@RequestBody FollowUserControllerInput followUserControllerInput) throws Exception {
+    public @ResponseBody FollowUserControllerOutput follow(@RequestBody FollowUserControllerInput followUserControllerInput) {
         FollowUserServiceInput followUserServiceInput = new FollowUserServiceInput(
                 followUserControllerInput.getUsername(),
                 followUserControllerInput.getToken(),
                 followUserControllerInput.getUsernameToFollow()
         );
-        followService.followUser(followUserServiceInput);
+        try {
+            followService.followUser(followUserServiceInput);
+            return new FollowUserControllerOutput(null);
+        } catch (UsernameOrTokenKoException e) {
+            return new FollowUserControllerOutput("username_token_ko");
+        } catch (MoreThanOneFollowException e) {
+            return new FollowUserControllerOutput("more_than_one_follow");
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST,
@@ -34,17 +43,24 @@ public class FollowController {
             produces = "application/json",
             path = "/check"
     )
-    public CheckIfFollowedControllerOutput checkFollowed(@RequestBody CheckIfFollowedControllerInput checkIfFollowedControllerInput) throws Exception {
+    public @ResponseBody CheckIfFollowedControllerOutput checkFollowed(@RequestBody CheckIfFollowedControllerInput checkIfFollowedControllerInput) {
         CheckIfFollowedServiceInput checkIfFollowedServiceInput = new CheckIfFollowedServiceInput(
                 checkIfFollowedControllerInput.getFollower(),
                 checkIfFollowedControllerInput.getFollowed(),
                 checkIfFollowedControllerInput.getToken()
         );
-        CheckIfFollowedServiceOutput checkIfFollowedServiceOutput = followService.checkIfFollowed(checkIfFollowedServiceInput);
-        CheckIfFollowedControllerOutput checkIfFollowedControllerOutput = new CheckIfFollowedControllerOutput(
-                checkIfFollowedServiceOutput.isFollowed()
-        );
-        return checkIfFollowedControllerOutput;
+        CheckIfFollowedServiceOutput checkIfFollowedServiceOutput = null;
+        try {
+            checkIfFollowedServiceOutput = followService.checkIfFollowed(checkIfFollowedServiceInput);
+            CheckIfFollowedControllerOutput checkIfFollowedControllerOutput = new CheckIfFollowedControllerOutput(
+                    checkIfFollowedServiceOutput.isFollowed(),
+                    null);
+            return checkIfFollowedControllerOutput;
+        } catch (UsernameOrTokenKoException e) {
+            return new CheckIfFollowedControllerOutput(
+                    false,
+                    "username_token_ko");
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST,
@@ -74,16 +90,25 @@ public class FollowController {
             path = "/delete"
     )
     public @ResponseBody
-    UnfollowOutputController unfollow( @RequestBody UnfollowInputController unfollowInputController) throws Exception {
+    UnfollowOutputController unfollow( @RequestBody UnfollowInputController unfollowInputController) {
         UnfollowOutputController unfollowOutputController = new UnfollowOutputController();
         UnfollowServiceInput unfollowServiceInput = new UnfollowServiceInput(
                 unfollowInputController.getUsername(),
                 unfollowInputController.getToken(),
                 unfollowInputController.getUsernameToFollow()
         );
-        UnfollowServiceOutput unfollowServiceOutput = this.followService.unfollow(unfollowServiceInput);
-        unfollowOutputController.setDeleted(unfollowServiceOutput.getDeleted());
-        return unfollowOutputController;
+        UnfollowServiceOutput unfollowServiceOutput = null;
+        try {
+            unfollowServiceOutput = this.followService.unfollow(unfollowServiceInput);
+            unfollowOutputController.setDeleted(unfollowServiceOutput.getDeleted());
+            return unfollowOutputController;
+        } catch (MoreThanOneFollowException e) {
+            unfollowOutputController.setError("more_than_one_follow");
+            return unfollowOutputController;
+        } catch (UsernameOrTokenKoException e) {
+            unfollowOutputController.setError("username_token_ko");
+            return unfollowOutputController;
+        }
     }
 
 }

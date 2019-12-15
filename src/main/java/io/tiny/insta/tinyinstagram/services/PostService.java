@@ -1,5 +1,6 @@
 package io.tiny.insta.tinyinstagram.services;
 
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.services.io_post.*;
 
 public interface PostService {
@@ -8,6 +9,6 @@ public interface PostService {
 
     PostCheckServiceOutput checkPost(PostCheckServiceInput postCheckInput) throws Exception;
 
-    GetLastPostsServiceOutput getSomePosts(GetLastPostsServiceInput input);
+    GetLastPostsServiceOutput getSomePosts(GetLastPostsServiceInput input) throws UsernameOrTokenKoException;
 
 }

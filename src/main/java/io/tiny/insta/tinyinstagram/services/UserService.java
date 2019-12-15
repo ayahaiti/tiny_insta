@@ -1,5 +1,6 @@
 package io.tiny.insta.tinyinstagram.services;
 
+import io.tiny.insta.tinyinstagram.exceptions.UnknowUsernameException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameExistsException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameOrPasswordKoException;
 import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
@@ -17,7 +18,7 @@ public interface UserService {
 
     CheckTokenServiceOutput checkToken(CheckTokenServiceInput checkTokenServiceInput);
 
-    FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput) throws UsernameOrTokenKoException;
+    FindUserServiceOutput findUser(FindUserServiceInput findUserServiceInput) throws UsernameOrTokenKoException, UnknowUsernameException;
 
     CheckUsernameExistsServiceOutput checkUsernameExists(CheckUsernameExistsServiceInput checkUsernameExistsServiceInput);
 

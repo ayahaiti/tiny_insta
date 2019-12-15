@@ -6,8 +6,13 @@ import java.util.List;
 
 public class GetLastPostsControllerOutput {
 
-
     private List<PostPojo> postPojos;
+    private String error;
+
+    public GetLastPostsControllerOutput(List<PostPojo> list, String error) {
+        this.postPojos = list;
+        this.error = error;
+    }
 
     public List<PostPojo> getTempPostPojoList() {
         return postPojos;
@@ -17,7 +22,11 @@ public class GetLastPostsControllerOutput {
         this.postPojos = postPojos;
     }
 
-    public GetLastPostsControllerOutput(List<PostPojo> list) {
-        this.postPojos = list;
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

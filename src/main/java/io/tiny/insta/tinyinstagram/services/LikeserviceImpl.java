@@ -2,6 +2,8 @@ package io.tiny.insta.tinyinstagram.services;
 
 import io.tiny.insta.tinyinstagram.entities.LikesEntity;
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
+import io.tiny.insta.tinyinstagram.exceptions.MoreThanOneLikeException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.repositories.LikesRespository;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
 import io.tiny.insta.tinyinstagram.services.io_likes.*;
@@ -21,7 +23,7 @@ public class LikeserviceImpl implements LikeService {
     }
 
     @Override
-    public void likePost(LikePostServiceInput likePostServiceInput) throws Exception{
+    public void likePost(LikePostServiceInput likePostServiceInput) throws MoreThanOneLikeException, UsernameOrTokenKoException {
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(likePostServiceInput.getUsername(),
                 likePostServiceInput.getToken());
        if( userEntity != null && userEntity.size() == 1) {
@@ -30,7 +32,7 @@ public class LikeserviceImpl implements LikeService {
                    likePostServiceInput.getUniqueIdentifier()
            );
            if (likesEntities != null && likesEntities.size() > 0){
-               throw new Exception();
+               throw new MoreThanOneLikeException();
            }
            else{
                LikesEntity likesEntity = new LikesEntity(likePostServiceInput.getUsername(), likePostServiceInput.getUniqueIdentifier());
@@ -38,12 +40,12 @@ public class LikeserviceImpl implements LikeService {
            }
         }
         else {
-            throw new Exception();
+            throw new UsernameOrTokenKoException();
         }
     }
 
     @Override
-    public void unLikePost(UnlikePostServiceInput unlikePostServiceInput) throws Exception{
+    public void unLikePost(UnlikePostServiceInput unlikePostServiceInput) throws UsernameOrTokenKoException{
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 unlikePostServiceInput.getUsername(),
                 unlikePostServiceInput.getToken());
@@ -58,12 +60,12 @@ public class LikeserviceImpl implements LikeService {
             );
         }
         else {
-            throw new Exception();
+            throw new UsernameOrTokenKoException();
         }
     }
 
     @Override
-    public CheckLikedServiceOutput checkLiked(CheckLikedServiceInplut checkLikedServiceInplut) {
+    public CheckLikedServiceOutput checkLiked(CheckLikedServiceInplut checkLikedServiceInplut) throws UsernameOrTokenKoException {
         CheckLikedServiceOutput checkLikedServiceOutput = new CheckLikedServiceOutput(false);
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(checkLikedServiceInplut.getUsername(),
                 checkLikedServiceInplut.getToken());
@@ -77,6 +79,9 @@ public class LikeserviceImpl implements LikeService {
             else {
                 checkLikedServiceOutput.setLiked(false);
             }
+        }
+        else{
+            throw new UsernameOrTokenKoException();
         }
         return checkLikedServiceOutput;
     }

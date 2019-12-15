@@ -2,6 +2,8 @@ package io.tiny.insta.tinyinstagram.services;
 
 import io.tiny.insta.tinyinstagram.entities.FollowersEntity;
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
+import io.tiny.insta.tinyinstagram.exceptions.MoreThanOneFollowException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.repositories.FollowersRepository;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
 import io.tiny.insta.tinyinstagram.services.io_followers.*;
@@ -21,7 +23,7 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public void followUser(FollowUserServiceInput followUserServiceInput) throws Exception{
+    public void followUser(FollowUserServiceInput followUserServiceInput) throws UsernameOrTokenKoException, MoreThanOneFollowException {
         FollowUserServiceOutput followUserServiceOutput = new FollowUserServiceOutput();
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 followUserServiceInput.getUsername(),
@@ -33,7 +35,7 @@ public class FollowServiceImpl implements FollowService {
             );
 
             if (followersEntities != null && followersEntities.size() > 0) {
-                throw new Exception();
+                throw new MoreThanOneFollowException();
             } else {
                 FollowersEntity followersEntity = new FollowersEntity(
                         followUserServiceInput.getUsernameToFollow(),
@@ -43,12 +45,12 @@ public class FollowServiceImpl implements FollowService {
             }
         }
         else {
-            throw new Exception();
+            throw new UsernameOrTokenKoException();
         }
     }
 
     @Override
-    public CheckIfFollowedServiceOutput checkIfFollowed(CheckIfFollowedServiceInput checkIfFollowedServiceInput) throws Exception {
+    public CheckIfFollowedServiceOutput checkIfFollowed(CheckIfFollowedServiceInput checkIfFollowedServiceInput) throws UsernameOrTokenKoException {
         CheckIfFollowedServiceOutput checkIfFollowedServiceOutput = new CheckIfFollowedServiceOutput();
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 checkIfFollowedServiceInput.getFollower(),
@@ -65,7 +67,7 @@ public class FollowServiceImpl implements FollowService {
             }
         }
         else {
-            throw new Exception();
+            throw new UsernameOrTokenKoException();
         }
         return checkIfFollowedServiceOutput;
     }
@@ -79,7 +81,7 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public UnfollowServiceOutput unfollow(UnfollowServiceInput unfollowServiceInput) throws Exception{
+    public UnfollowServiceOutput unfollow(UnfollowServiceInput unfollowServiceInput) throws MoreThanOneFollowException, UsernameOrTokenKoException {
         UnfollowServiceOutput unfollowServiceOutput = new UnfollowServiceOutput();
         List<UserEntity> userEntity = userRepository.findByUsernameAndToken(
                 unfollowServiceInput.getUsername(),
@@ -98,11 +100,11 @@ public class FollowServiceImpl implements FollowService {
                 unfollowServiceOutput.setDeleted(deleted);
 
             } else {
-                throw new Exception();
+                throw new MoreThanOneFollowException();
             }
         }
         else {
-            throw new Exception();
+            throw new UsernameOrTokenKoException();
         }
         return unfollowServiceOutput;
     }

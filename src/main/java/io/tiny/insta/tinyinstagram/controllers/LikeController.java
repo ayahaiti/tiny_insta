@@ -2,6 +2,8 @@ package io.tiny.insta.tinyinstagram.controllers;
 
 
 import io.tiny.insta.tinyinstagram.controllers.io_likes.*;
+import io.tiny.insta.tinyinstagram.exceptions.MoreThanOneLikeException;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.services.LikeService;
 import io.tiny.insta.tinyinstagram.services.io_likes.*;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +23,20 @@ public class LikeController {
             produces = "application/json",
             path = "/add"
     )
-    public void likePost(@RequestBody LikePostControllerInput likePostControllerInput) throws Exception {
+    public @ResponseBody LikePostControllerOutput likePost(@RequestBody LikePostControllerInput likePostControllerInput) {
         LikePostServiceInput likePostServiceInput = new LikePostServiceInput(
                 likePostControllerInput.getUsername(),
                 likePostControllerInput.getToken(),
                 likePostControllerInput.getUniqueIdentifier()
         );
-        likeService.likePost(likePostServiceInput);
+        try {
+            likeService.likePost(likePostServiceInput);
+            return new LikePostControllerOutput(null);
+        } catch (MoreThanOneLikeException e) {
+            return new LikePostControllerOutput("more_than_one_like");
+        } catch (UsernameOrTokenKoException e) {
+            return new LikePostControllerOutput("username_token_ko");
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST,
@@ -35,13 +44,18 @@ public class LikeController {
             produces = "application/json",
             path = "/delete"
     )
-    public void dislikePost(@RequestBody DislikePostControllerInput dislikePostControllerInput) throws Exception {
+    public @ResponseBody DislikePostControllerOutput dislikePost(@RequestBody DislikePostControllerInput dislikePostControllerInput) {
         UnlikePostServiceInput unlikePostServiceInput = new UnlikePostServiceInput(
                 dislikePostControllerInput.getUsername(),
                 dislikePostControllerInput.getToken(),
                 dislikePostControllerInput.getUniqueIdentifier()
         );
-        likeService.unLikePost(unlikePostServiceInput);
+        try {
+            likeService.unLikePost(unlikePostServiceInput);
+            return new DislikePostControllerOutput(null);
+        } catch (UsernameOrTokenKoException e) {
+            return new DislikePostControllerOutput("username_token_ko");
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST,
@@ -57,11 +71,21 @@ public class LikeController {
                 checkLikedControllerInput.getToken(),
                 checkLikedControllerInput.getUniqueIdentifier()
         );
-        CheckLikedServiceOutput checkLikedServiceOutput = likeService.checkLiked(checkLikedServiceInplut);
-        CheckLikedControllerOutput checkLikedControllerOutput = new CheckLikedControllerOutput(
-                checkLikedServiceOutput.isLiked()
-        );
-        return checkLikedControllerOutput;
+        CheckLikedServiceOutput checkLikedServiceOutput = null;
+        try {
+            checkLikedServiceOutput = likeService.checkLiked(checkLikedServiceInplut);
+            CheckLikedControllerOutput checkLikedControllerOutput = new CheckLikedControllerOutput(
+                    checkLikedServiceOutput.isLiked(),
+                    null
+            );
+            return checkLikedControllerOutput;
+        } catch (UsernameOrTokenKoException e) {
+            return new CheckLikedControllerOutput(
+                    false,
+                    "username_token_ko"
+            );
+        }
+
     }
 
     @RequestMapping(method = RequestMethod.POST,

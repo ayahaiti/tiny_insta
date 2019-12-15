@@ -2,6 +2,7 @@ package io.tiny.insta.tinyinstagram.services;
 
 import io.tiny.insta.tinyinstagram.entities.PostEntity;
 import io.tiny.insta.tinyinstagram.entities.UserEntity;
+import io.tiny.insta.tinyinstagram.exceptions.UsernameOrTokenKoException;
 import io.tiny.insta.tinyinstagram.repositories.PostRepository;
 import io.tiny.insta.tinyinstagram.repositories.PostSortingAndPaginationRepository;
 import io.tiny.insta.tinyinstagram.repositories.UserRepository;
@@ -75,7 +76,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public GetLastPostsServiceOutput getSomePosts(GetLastPostsServiceInput input) {
+    public GetLastPostsServiceOutput getSomePosts(GetLastPostsServiceInput input) throws UsernameOrTokenKoException {
         GetLastPostsServiceOutput output = null;
         List<UserEntity> userEntityOptional =
                 userRepository.findByUsernameAndToken(
@@ -104,6 +105,9 @@ public class PostServiceImpl implements PostService {
                             })
                             .collect(Collectors.toList())
             );
+        }
+        else{
+            throw new UsernameOrTokenKoException();
         }
         return output;
     }
