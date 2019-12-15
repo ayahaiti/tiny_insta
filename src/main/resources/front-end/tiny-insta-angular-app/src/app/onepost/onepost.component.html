@@ -21,7 +21,7 @@
     </div>
     <div class="col-sm-12 col-md-6">
         <h2>owner : {{input.username}}</h2>
-        <p class="nb_likes">likes count : {{nbrOfLikes}}</p>
+        <h3 style="color: red" class="nb_likes">likes count : {{nbrOfLikes}}</h3>
         <p>{{input.quote}}</p>
 
         <button style="width: 100px" [ngClass]="{ 'btn-danger' : liked,  'btn':true, 'btn-primary': !liked }" class="btn-primary" (click)="likePost()">{{postAction}}</button>
