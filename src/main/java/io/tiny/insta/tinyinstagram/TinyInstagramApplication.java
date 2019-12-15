@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TinyInstagramApplication {
 
-    // 1h15
-    // TODO design search component + result using bootstrap
+    // 15min
     // TODO remove all posts and add pretty ones
 
     // 45min
