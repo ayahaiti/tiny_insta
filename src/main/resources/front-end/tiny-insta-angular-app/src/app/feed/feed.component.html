@@ -1,5 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <button class="btn btn-success" style="width: 150px" (click)="reload()"><i class="fa fa-refresh"></i> Reload</button>
+    </div>
+  </div>
+</div>
 <div class="container-fluid" *ngFor="let post of postList">
   <app-onepost [input]="post" class="onepost"></app-onepost>
   <br/>
+</div>
+<div class="modal" id="myModal"
+     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">We are executing your request, please wait ...</h5>
+      </div>
+    </div>
+  </div>
 </div>
 

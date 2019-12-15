@@ -3,6 +3,8 @@ import {UserService} from "../service/user.service";
 import {Post} from "./Post";
 import {NotifierService} from "angular-notifier";
 
+declare var $: any;
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -12,19 +14,14 @@ export class FeedComponent implements OnInit, OnDestroy{
 
   postList: Post[];
 
-  interval: any = null;
-
   constructor(private notifierService: NotifierService, private userService: UserService) { }
 
   ngOnInit() {
     this.retrieveLastPosts();
-    var thiObj = this;
-    this.interval = setInterval(function () {
-      thiObj.retrieveLastPosts();
-    }, 6000);
   }
 
   retrieveLastPosts(){
+    $('#myModal').modal('show');
     this.userService.getLastPosts().subscribe(
       response => this.doOnPostsRetrievedOk(response),
         error => this.doOnPostsRetrievedKo(error)
@@ -32,6 +29,7 @@ export class FeedComponent implements OnInit, OnDestroy{
   }
 
   private doOnPostsRetrievedOk(response) {
+    $('#myModal').modal('hide');
     if(response.error=="username_token_ko"){
       this.notifierService.notify("error","your token is ko, please disconnect and reconnect !");
     }
@@ -41,10 +39,14 @@ export class FeedComponent implements OnInit, OnDestroy{
   }
 
   private doOnPostsRetrievedKo(error) {
+    $('#myModal').modal('hide');
     this.notifierService.notify("error","unknown error ! we are working to fix it!");
   }
 
+  reload(){
+    this.retrieveLastPosts();
+  }
+
   ngOnDestroy(): void {
-    clearInterval(this.interval);
   }
 }

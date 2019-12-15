@@ -1,31 +1,33 @@
-<div class="container-fluid">
-    <div>
-      <div class="form-group">
-        <label for="quoter" class="sr-only">Quote</label>
-        <input type="test" class="form-control" id="quoter" placeholder="description" [(ngModel)]="quote">
+<div class="jumbotron" style="padding: 1rem 2rem">
+  <p class="lead">Post form :</p>
+  <div class="container-fluid">
+      <div>
+        <div class="form-group">
+          <label for="quoter" class="sr-only">Quote</label>
+          <input type="test" class="form-control" id="quoter" placeholder="description" [(ngModel)]="quote">
+        </div>
       </div>
-    </div>
-    <form class="form-inline">
-      <div class="form-group mb-2">
-        <label for="picture" class="sr-only">Picture</label>
-        <input #fileInput type="file" class="form-control-file" (change)="onFileChange($event)" id="picture" accept="image/jpeg">
-      </div>
-    </form>
-    <form>
-      <div class="form-group">
-        <p style="color: red" *ngIf="errorMessage!=null">{{errorMessage}}</p>
-        <p style="color: red" *ngIf="sizeMessage!=null">{{sizeMessage}}</p>
-      </div>
-    </form>
-    <form>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary"
-                [disabled]="errorMessage!=null || sizeMessage!=null || uploadedImage==null"
-                (click)="sendPost()">post</button>
-      </div>
-    </form>
+      <form class="form-inline">
+        <div class="form-group mb-2">
+          <label for="picture" class="sr-only">Picture</label>
+          <input #fileInput type="file" class="form-control-file" (change)="onFileChange($event)" id="picture" accept="image/jpeg">
+        </div>
+      </form>
+      <form>
+        <div class="form-group">
+          <p style="color: red" *ngIf="errorMessage!=null">{{errorMessage}}</p>
+          <p style="color: red" *ngIf="sizeMessage!=null">{{sizeMessage}}</p>
+        </div>
+      </form>
+      <form>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary"
+                  [disabled]="errorMessage!=null || sizeMessage!=null || uploadedImage==null"
+                  (click)="sendPost()">post</button>
+        </div>
+      </form>
+  </div>
 </div>
-
 
 <div class="modal" id="myModal"
      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"

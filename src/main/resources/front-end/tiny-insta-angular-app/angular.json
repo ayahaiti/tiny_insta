@@ -32,7 +32,8 @@
               "node_modules/angular-notifier/styles/types/type-info.scss",
               "node_modules/angular-notifier/styles/types/type-success.scss",
               "node_modules/angular-notifier/styles/types/type-warning.scss",
-              "node_modules/angular-notifier/styles/themes/theme-material.scss"
+              "node_modules/angular-notifier/styles/themes/theme-material.scss",
+              "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
