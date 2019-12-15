@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
 import {Post} from "./Post";
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-feed',
@@ -11,7 +12,7 @@ export class FeedComponent implements OnInit {
 
   postList: Post[];
 
-  constructor(private userService: UserService) { }
+  constructor(private notifierService: NotifierService, private userService: UserService) { }
 
   ngOnInit() {
     this.retrieveLastPosts();
@@ -25,10 +26,15 @@ export class FeedComponent implements OnInit {
   }
 
   private doOnPostsRetrievedOk(response) {
-    this.postList = response.tempPostPojoList;
+    if(response.error=="username_token_ko"){
+      this.notifierService.notify("error","your token is ko, please disconnect and reconnect !");
+    }
+    else{
+      this.postList = response.tempPostPojoList;
+    }
   }
 
   private doOnPostsRetrievedKo(error) {
-
+    this.notifierService.notify("error","unknown error ! we are working to fix it!");
   }
 }

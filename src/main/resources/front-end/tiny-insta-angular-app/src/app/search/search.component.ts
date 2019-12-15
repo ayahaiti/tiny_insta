@@ -5,6 +5,7 @@ import {GetUserFollowersInput} from "./GetUserFollowersInput";
 import {FollowInput} from "./FollowInput";
 import {CheckFollowedInut} from "./CheckFollowedInut";
 import {UnfollowInput} from "./UnfollowInput";
+import {NotifierService} from "angular-notifier";
 
 declare var $: any;
 
@@ -14,10 +15,6 @@ declare var $: any;
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit{
-
-  followButtonEnabled: boolean = true;
-  unfollowButtonEnabled: boolean = true;
-  searchButtonEnabled: boolean = true;
 
   username: string = null;
 
@@ -30,7 +27,7 @@ export class SearchComponent implements OnInit{
     countOfFollowers: null
   };
 
-  constructor( private userService: UserService) {}
+  constructor(private notifierService: NotifierService, private userService: UserService) {}
 
   ngOnInit(): void {
     var thiObj = this;
@@ -55,26 +52,36 @@ export class SearchComponent implements OnInit{
 
   findUser() {
     $('#myModal').modal('show');
-    this.searchButtonEnabled = false;
     this.userService.findUser( new FindUserInput(
       localStorage.getItem("username"), localStorage.getItem("token"), this.username
     )).subscribe( response => this.doAfterUserFound(response), error => this.doAfterUserNotFound(error));
   }
 
   private doAfterUserFound(response: any) {
-    this.userExists = true;
-    this.output.errorMessage = null;
-    this.output.username = response.userEntity.username;
-    this.searchButtonEnabled = true;
-    this.checkIfFollowed();
-    this.getNbOfFollowers();
+    if(response.error=="username_token_ko"){
+      this.notifierService.notify("error","Please reconnect! your token was KO");
+      $('#myModal').modal('hide');
+    }
+    else if(response.error=="unknown_user"){
+      this.notifierService.notify("warning","This username does not exist !");
+      $('#myModal').modal('hide');
+    }
+    else{
+      this.notifierService.hideAll();
+      this.notifierService.notify("success", "user loaded !");
+      this.userExists = true;
+      this.output.errorMessage = null;
+      this.output.username = response.userEntity.username;
+      this.checkIfFollowed();
+      this.getNbOfFollowers();
+    }
   }
 
   private doAfterUserNotFound(error: any) {
     $('#myModal').modal('hide');
-    this.searchButtonEnabled = true;
     this.userExists = false;
     this.output.errorMessage = "User not found!";
+    this.notifierService.notify("warning","We could not get the user you are looking for !");
   }
 
   private doAfterNbrFollowersOk(response: any) {
@@ -82,11 +89,10 @@ export class SearchComponent implements OnInit{
   }
 
   private doAfterNbrFollowersKo(error: any) {
-    // TODO
+    this.notifierService.notify("error","could not get the number of followers !");
   }
 
   checkIfFollowed() {
-    this.searchButtonEnabled = false;
     this.userService.checkUsernameIsFollowed(new CheckFollowedInut(
       localStorage.getItem('username'),
       this.output.username,
@@ -97,7 +103,6 @@ export class SearchComponent implements OnInit{
 
   follow() {
     $('#myModal').modal('show');
-    this.followButtonEnabled = false;
     this.userService.followUser( new FollowInput(
       localStorage.getItem('username'),
       localStorage.getItem('token'),
@@ -107,7 +112,6 @@ export class SearchComponent implements OnInit{
 
   unfollow() {
     $('#myModal').modal('show');
-    this.unfollowButtonEnabled = false;
     this.userService.unfollow( new UnfollowInput(
       localStorage.getItem("username"),
       localStorage.getItem("token"),
@@ -118,45 +122,60 @@ export class SearchComponent implements OnInit{
 
   private doCheckFollowedSuccessful(response: any) {
     $('#myModal').modal('hide');
-    this.searchButtonEnabled = true;
-    this.iFollowHim = response.followed;
+    if(response.error=="username_token_ko"){
+      this.notifierService.notify("error","Please reconnect! your token was KO");
+    }
+    else{
+      this.iFollowHim = response.followed;
+    }
   }
 
   private doCheckFollowedUnsuccessful(error: any) {
     $('#myModal').modal('hide');
-    this.searchButtonEnabled = true;
-    // TODO
+    this.notifierService.notify("error","If you want to follow, please try again!");
   }
 
   private doFollowSuccessful(response: any) {
     $('#myModal').modal('hide');
-    this.followButtonEnabled = true;
-    this.iFollowHim = true;
-    if(this.output.countOfFollowers!=null){
-      this.output.countOfFollowers++;
+    if(response.error=="username_token_ko"){
+      this.notifierService.notify("error","Please reconnect! your token was KO");
+    }
+    else if (response.error=="more_than_one_follow"){
+      this.notifierService.notify("error","you can't follow this person, we are working on fixing this issue!");
+    }
+    else{
+      this.iFollowHim = true;
+      if(this.output.countOfFollowers!=null){
+        this.output.countOfFollowers++;
+      }
     }
   }
 
   private doFollowUnsuccessful(error: any) {
     $('#myModal').modal('hide');
-    this.followButtonEnabled = true;
-    // TODO
+    this.notifierService.notify("error","If you want to follow, please try again!");
   }
 
   private doUnFollowSuccessful(response: any) {
     $('#myModal').modal('hide');
-    if (response.deleted === 1) {
-      this.unfollowButtonEnabled = true;
-      this.iFollowHim = false;
-      if(this.output.countOfFollowers!=null){
-        this.output.countOfFollowers--;
+    if(response.error=="username_token_ko"){
+      this.notifierService.notify("error","Please reconnect! your token was KO");
+    }
+    else if (response.error=="more_than_one_follow"){
+      this.notifierService.notify("error","you can't unfollow this person, we are working on fixing this issue!");
+    }
+    else{
+      if (response.deleted === 1) {
+        this.iFollowHim = false;
+        if(this.output.countOfFollowers!=null){
+          this.output.countOfFollowers--;
+        }
       }
     }
   }
 
   private UnFollowUnsuccessful(error: any) {
     $('#myModal').modal('hide');
-    this.unfollowButtonEnabled = true;
-    // TODO
+    this.notifierService.notify("error","If you want to unfollow, please try again!");
   }
 }

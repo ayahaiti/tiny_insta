@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Post} from "../feed/Post";
 import {UserService} from "../service/user.service";
+import {NotifierService} from "angular-notifier";
 
 declare var $: any;
 
@@ -9,20 +10,21 @@ declare var $: any;
   templateUrl: './onepost.component.html',
   styleUrls: ['./onepost.component.css']
 })
-export class OnepostComponent implements OnInit {
+export class OnepostComponent implements OnInit, OnDestroy {
 
   @Input() input: Post;
   postAction: string = "like";
   liked: boolean = false;
   nbrOfLikes: number = null;
+  interval: any = null;
 
-  constructor(private userService: UserService) { }
+  constructor(private notifierService: NotifierService, private userService: UserService) { }
 
   ngOnInit() {
     this.checkIfLiked();
 
     var thiObj = this;
-    setInterval(function () {
+    this.interval = setInterval(function () {
       thiObj.getNbrOfLikes();
     }, 2000);
   }
@@ -36,7 +38,7 @@ export class OnepostComponent implements OnInit {
       );
     } else {
       this.userService.dislikePost(this.input.id).subscribe(
-        response => this.doOnDislikeOk(),
+        response => this.doOnDislikeOk(response),
         error => this.doOnDislikeKo(error)
       );
       this.postAction = "like";
@@ -53,19 +55,28 @@ export class OnepostComponent implements OnInit {
   }
   doOnLikeKo(error){
     $('#myModal').modal('hide');
-    // TODO show error
+    this.notifierService.notify("error", "you can't like this post ! we are working to fix this issue !");
   }
-  doOnDislikeOk() {
+  doOnDislikeOk(response) {
     $('#myModal').modal('hide');
-    if(this.nbrOfLikes!=null){
-      this.nbrOfLikes--;
+    if(response.error=="username_token_ko"){
+      this.notifierService.notify("error", "your token is KO, please disconnect and reconnect !");
     }
-    this.postAction = "like";
-    this.liked = false;
+    else if(response.error=="more_than_one_like"){
+      this.notifierService.notify("error", "you can't have more than one like! we are working to fix this issue");
+    }
+    else{
+      this.notifierService.hideAll();
+      if(this.nbrOfLikes!=null){
+        this.nbrOfLikes--;
+      }
+      this.postAction = "like";
+      this.liked = false;
+    }
   }
   doOnDislikeKo(error) {
     $('#myModal').modal('hide');
-    // TODO show error
+    this.notifierService.notify("error", "you can't dislike this post ! we are working to fix this issue !");
   }
 
   checkIfLiked(){
@@ -88,7 +99,7 @@ export class OnepostComponent implements OnInit {
   }
   doOnCheckLikeKo(error){
     $('#myModal').modal('hide');
-    // TODO show error
+    this.notifierService.notify("error", "unknown error, we are working to fix it!");
   }
 
   getNbrOfLikes(){
@@ -102,7 +113,7 @@ export class OnepostComponent implements OnInit {
     this.nbrOfLikes = response.nbOfPostLikes;
   }
   doOnGetNbrOfLikesKo(error){
-    // TODO show error
+    this.notifierService.notify("error", "unknown error, we are working to fix it!");
   }
 
   scroll(el: HTMLElement) {
@@ -118,6 +129,10 @@ export class OnepostComponent implements OnInit {
   onCloseModalClicked(){
     var modal = document.getElementById("myModal"+this.input.id);
     modal.style.display = "none";
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 
 }

@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {AddPostInput} from "./AddPostInput";
+import {NotifierService} from "angular-notifier";
 
 declare var $: any;
 
@@ -22,7 +23,7 @@ export class AddPostComponent implements OnInit {
   errorMessage: string = null;
   sizeMessage: string = null;
 
-  constructor(private userService:UserService) { }
+  constructor(private notifierService: NotifierService, private userService:UserService) { }
 
   ngOnInit() {
   }
@@ -34,22 +35,30 @@ export class AddPostComponent implements OnInit {
       localStorage.getItem('username'),
       localStorage.getItem('token'),
       this.quote
-      )).subscribe( response => this.doAddPostSuccessful(), error => this.doAddPostUnsuccessful());
+      )).subscribe( response => this.doAddPostSuccessful(response), error => this.doAddPostUnsuccessful());
   }
 
-  private doAddPostSuccessful() {
+  private doAddPostSuccessful(response) {
     $('#myModal').modal('hide');
-    this.quote = null;
-    this.inputFile.nativeElement.value = "";
-    this.uploadedImage = null;
-    this.errorMessage = null;
-    this.sizeMessage = null;
-    this.size = null;
-    this.unit = null;
+    if(response.uniqueIdentifier!=null){
+      this.notifierService.hideAll();
+      this.notifierService.notify("success","Post saved!");
+      this.quote = null;
+      this.inputFile.nativeElement.value = "";
+      this.uploadedImage = null;
+      this.errorMessage = null;
+      this.sizeMessage = null;
+      this.size = null;
+      this.unit = null;
+    }
+    else{
+      this.notifierService.notify("error", "could not add the post! if this error persist please reconnect and retry!");
+    }
   }
 
   private doAddPostUnsuccessful() {
     $('#myModal').modal('hide');
+    this.notifierService.notify("error", "unknown error ! we are working on it!")
   }
 
   onFileChange(event) {

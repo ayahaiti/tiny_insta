@@ -33,7 +33,7 @@ public class LikeController {
             likeService.likePost(likePostServiceInput);
             return new LikePostControllerOutput(null);
         } catch (MoreThanOneLikeException e) {
-            return new LikePostControllerOutput("more_than_one_like");
+            return new LikePostControllerOutput("<more_than_one_like>");
         } catch (UsernameOrTokenKoException e) {
             return new LikePostControllerOutput("username_token_ko");
         }

@@ -17,8 +17,6 @@ export class RegisterComponent {
   username: string = null;
   password: string = null;
 
-  buttonActif: boolean = true;
-
   inputForm : RegisterFormInput = new RegisterFormInput();
 
   constructor (private notifierService: NotifierService, private userService: UserService, private router: Router){
@@ -54,15 +52,14 @@ export class RegisterComponent {
       console.log("username used!");
     }
     else{
+      this.notifierService.hideAll();
       this.notifierService.notify("success", "Registration complete!");
-      this.buttonActif = true;
       this.router.navigateByUrl('/login');
     }
   }
 
   onUserRegistrationFailed(error){
     $('#myModal').modal('hide');
-    this.buttonActif = true;
     this.notifierService.notify("error", "Unknown error! We are working on it!");
   }
 
@@ -73,7 +70,6 @@ export class RegisterComponent {
       this.notifierService.notify("warning", "Form incomplete ! the white spaces are ignored! Incorrect input !");
     }
     else{
-      this.buttonActif = false;
       $('#myModal').modal('show');
       this.userService.registerUser(this.inputForm).subscribe(response => this.onUserRegistrationSucceded(response),
         error => this.onUserRegistrationFailed(error));

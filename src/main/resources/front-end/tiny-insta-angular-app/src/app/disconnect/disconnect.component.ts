@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
+import {NotifierService} from "angular-notifier";
 
 declare var $: any;
 
@@ -11,7 +12,7 @@ declare var $: any;
 })
 export class DisconnectComponent implements OnInit {
 
-  constructor(private router: Router, private userService:UserService) { }
+  constructor(private notifierService: NotifierService, private router: Router, private userService:UserService) { }
 
   ngOnInit() {
   }
@@ -24,12 +25,12 @@ export class DisconnectComponent implements OnInit {
     );
   }
 
-  private disconnectUnsuccessful(response: any) {
+  private disconnectUnsuccessful(error: any) {
     $('#myModal').modal('hide');
-    // TODO
+    this.notifierService.notify("error", "failed to disconnect you! please delete your cookies and retry !")
   }
 
-  private disconnectSuccessful(error: any) {
+  private disconnectSuccessful(response: any) {
     $('#myModal').modal('hide');
     localStorage.removeItem('username');
     localStorage.removeItem('token');

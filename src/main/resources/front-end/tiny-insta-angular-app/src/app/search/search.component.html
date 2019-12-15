@@ -2,7 +2,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <div class="example" style="margin:auto;max-width:300px">
     <input type="text" placeholder="Search username.." name="search2" [(ngModel)]="username" >
-    <button type="submit" [disabled]="!searchButtonEnabled" (click)="findUserAndNbOfFollowers()"><i class="fa fa-search"></i></button>
+    <button type="submit" (click)="findUserAndNbOfFollowers()"><i class="fa fa-search"></i></button>
   </div>
   <app-disconnect></app-disconnect>
   <p *ngIf="!userExists && output.errorMessage!=null"  class="usernotfound">{{output.errorMessage}}</p>
@@ -10,8 +10,8 @@
     <div class="follow_div">
       <p class="username">{{output.username}}</p>
       <p class="nb_followers">{{output.countOfFollowers}}</p>
-      <button class="follow_button" [disabled]="!followButtonEnabled" (click)="follow()" *ngIf="!iFollowHim">FOLLOW</button>
-      <button class="unfollow_button" [disabled]="!unfollowButtonEnabled" (click)="unfollow()" *ngIf="iFollowHim">UNFOLLOW</button>
+      <button class="follow_button" (click)="follow()" *ngIf="!iFollowHim">FOLLOW</button>
+      <button class="unfollow_button" (click)="unfollow()" *ngIf="iFollowHim">UNFOLLOW</button>
     </div>
   </div>
 </div>
