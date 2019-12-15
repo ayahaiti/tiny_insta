@@ -14,6 +14,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DisconnectComponent } from './disconnect/disconnect.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { NotifierModule } from "angular-notifier";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,18 @@ import { AddPostComponent } from './add-post/add-post.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'right'
+        },
+        vertical: {
+          position: 'top'
+        }
+      },
+      theme: "material"
+    })
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

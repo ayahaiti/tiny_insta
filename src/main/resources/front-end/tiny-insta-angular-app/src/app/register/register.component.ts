@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {RegisterFormInput} from "./RegisterFormInput";
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
+import {NotifierService} from "angular-notifier";
 
 declare var $: any;
 
@@ -20,7 +21,7 @@ export class RegisterComponent {
 
   inputForm : RegisterFormInput = new RegisterFormInput();
 
-  constructor (private userService: UserService, private router: Router){
+  constructor (private notifierService: NotifierService, private userService: UserService, private router: Router){
   }
 
   ngOnInit(): void {
@@ -49,10 +50,11 @@ export class RegisterComponent {
   onUserRegistrationSucceded(response){
     $('#myModal').modal('hide');
     if(response.error == "username_used"){
-      // TODO show error notification : username already used
+      this.notifierService.notify("warning", "Username exists already!");
       console.log("username used!");
     }
     else{
+      this.notifierService.notify("success", "Registration complete!");
       this.buttonActif = true;
       this.router.navigateByUrl('/login');
     }
@@ -61,14 +63,14 @@ export class RegisterComponent {
   onUserRegistrationFailed(error){
     $('#myModal').modal('hide');
     this.buttonActif = true;
-    // TODO show error notification : unknown exception
+    this.notifierService.notify("error", "Unknown error! We are working on it!");
   }
 
   onUserRegisterButtonClicked(){
     if(this.inputForm.username=="" || this.inputForm.username==null ||
       this.inputForm.password=="" || this.inputForm.password==null ||
       this.inputForm.email=="" || this.inputForm.email==null){
-      // TODO show error notification : fill the form correctly - please be advised : the blanks are ignored
+      this.notifierService.notify("warning", "Form incomplete ! the white spaces are ignored! Incorrect input !");
     }
     else{
       this.buttonActif = false;
