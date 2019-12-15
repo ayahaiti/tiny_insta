@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {Post} from "./Post";
 import {NotifierService} from "angular-notifier";
@@ -8,14 +8,20 @@ import {NotifierService} from "angular-notifier";
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy{
 
   postList: Post[];
+
+  interval: any = null;
 
   constructor(private notifierService: NotifierService, private userService: UserService) { }
 
   ngOnInit() {
     this.retrieveLastPosts();
+    var thiObj = this;
+    this.interval = setInterval(function () {
+      thiObj.retrieveLastPosts();
+    }, 6000);
   }
 
   retrieveLastPosts(){
@@ -36,5 +42,9 @@ export class FeedComponent implements OnInit {
 
   private doOnPostsRetrievedKo(error) {
     this.notifierService.notify("error","unknown error ! we are working to fix it!");
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 }

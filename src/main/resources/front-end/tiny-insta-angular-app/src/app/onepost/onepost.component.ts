@@ -80,7 +80,7 @@ export class OnepostComponent implements OnInit, OnDestroy {
   }
 
   checkIfLiked(){
-    $('#myModal').modal('show');
+    //$('#myModal').modal('show');
     this.userService.checkLike(this.input.id).subscribe(
       response => this.doOnCheckLikeOk(response),
       error => this.doOnCheckLikeKo(error)
