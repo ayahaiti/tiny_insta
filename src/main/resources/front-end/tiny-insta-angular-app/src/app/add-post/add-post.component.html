@@ -1,4 +1,4 @@
-<div class="jumbotron" style="padding: 1rem 2rem">
+<div style="padding: 1rem 2rem">
   <p class="lead">Post form :</p>
   <div class="container-fluid">
       <div>
@@ -21,7 +21,7 @@
       </form>
       <form>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary"
+          <button type="submit" style="width: 150px" class="btn btn-primary"
                   [disabled]="errorMessage!=null || sizeMessage!=null || uploadedImage==null"
                   (click)="sendPost()">post</button>
         </div>
