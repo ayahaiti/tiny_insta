@@ -61,9 +61,11 @@ export class SearchComponent implements OnInit{
     if(response.error=="username_token_ko"){
       this.notifierService.notify("error","Please reconnect! your token was KO");
       $('#myModal').modal('hide');
+      this.userExists=false;
     }
     else if(response.error=="unknown_user"){
       this.notifierService.notify("warning","This username does not exist !");
+      this.userExists=false;
       $('#myModal').modal('hide');
     }
     else{
